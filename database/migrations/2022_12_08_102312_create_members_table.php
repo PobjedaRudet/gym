@@ -18,7 +18,7 @@ class CreateMembersTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->char('code');
-            $table->timestamp('email')->nullable();
+            $table->string('email')->nullable();
             $table->string('mobile');
             $table->bigInteger('jmbg');
             $table->date('register_date');

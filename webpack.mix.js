@@ -15,6 +15,7 @@ const mix = require('laravel-mix');
  mix.js('resources/js/app.js', 'public/js')
  .js('resources/js/main.js', 'public/js')
  .js('resources/js/datepicker.js', 'public/js')
+ .js('resources/js/live.js', 'public/js')
  .vue()
  .sass('resources/sass/app.scss', 'public/css');
 

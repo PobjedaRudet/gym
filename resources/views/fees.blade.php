@@ -50,16 +50,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            
                                 @if (isset($stanje))
                                     @foreach ($stanje as $key => $data)
                                         <tr>
                                             <td scope="row">{{ $data->name }}</td>
                                             <td scope="row">{{ $data->surname }}</td>
                                             <td scope="row" style="text-align: center">{{ $data->code }}</td>
-                                            <td scope="row" style="text-align: center">{{$data->city}}</td>
-                                            <td scope="row" style="text-align: center">{{$data->end}}</td>
-                                            <td scope="row" style="text-align: center" ><a href="{{ route('memberProfile',$data->member_id)}}" class="btn btn-warning">Izmijeni</a></td>
-                                            <td scope="row" style="text-align: center" ><a href="{{ route('feesDelete',$data->id)}}" class="btn btn-danger">Briši</a></td>
+                                            {{--   <td scope="row" style="text-align: center">{{$data->start}}</td> --}}
+                                            {{-- <td scope="row" style="text-align: center">{{$data->end}}</td> --}}
+                                             <td scope="row" style="text-align: center"> {{ date("d.m.Y", strtotime($data->start))}}</td>
+                                            <td scope="row" style="text-align: center"> {{ date("d.m.Y", strtotime($data->end))}}</td>
+                                            <td scope="row" style="text-align: center" ><a href="{{ route('editFee',$data->fees_id)}}" class="btn btn-warning">Izmijeni</a></td>
+                                            <td scope="row" style="text-align: center" ><a href="{{ route('feesDelete',$data->fees_id)}}" class="btn btn-danger">Briši</a></td>
                                             
                                         </tr>
                                     @endforeach

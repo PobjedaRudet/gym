@@ -25,13 +25,17 @@
                             <label for="inputPassword4" class="form-label">Prezime</label>
                             <input type="text" class="form-control" id="surname" name="surname" required value="{{$member->surname}}">
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <label for="inputAddress" class="form-label">Code</label>
                             <input type="text" class="form-control" id="code" placeholder="" name="code" required value="{{$member->code}}">
                         </div>
-                        <div class="col-8">
+                        <div class="col-5">
                             <label for="inputAddress" class="form-label">JMBG</label>
                             <input type="text" class="form-control" id="jmbg" placeholder="" name="jmbg" required value="{{$member->jmbg}}">
+                        </div>
+                        <div class="col-4">
+                            <label for="inputAddress" class="form-label">E-mail</label>
+                            <input type="text" class="form-control" id="email" placeholder="" name="email" required value="{{$member->email}}">
                         </div>
                    
                         <div class="col-3">
@@ -79,8 +83,7 @@
                     <hr>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                          
-                        <button type="button" class="btn btn-primary justify-content-md-end mx-3 my-4" onclick="location.href='{{ url('/izlaz') }}'">Početak</button>
-                        <button type="button" class="btn btn-dark justify-content-md-end mx-4 my-4" onclick="location.href='{{ url('/logout') }}'">Izlaz</button>
+                        <a style="float: right;" href="{{ route('members')}}" class="btn btn-light border">Početna</a>
 
                 </div>
 

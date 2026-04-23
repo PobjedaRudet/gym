@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.in')
 
 @section('content')
     <div class="container">
@@ -19,11 +19,14 @@
                                         <p class="text-muted mb-1">STATUS</p>
                                         <p id="status" name="status" class="mb-8">PRIJAVA / ODJAVA</p>
                                         <div class="d-flex justify-content-center mb-2">
-                                            <p id="inout" name="status" class="mb-8 h4" style="color:white"></p>
-                                        {{--  <button type="button" class="btn btn-primary">Follow</button> --}}
-                                        {{--  <button type="button" class="btn btn-outline-primary ms-1">Message</button> --}}
+                                            <p id="inout" class="mb-8 h4" style="color:white"></p>
+                                            <br>
+                                    
+                         
                                         </div>
+                                    
                                     </div>
+                                    <div id="rok" class="mb-8 h4 d-flex justify-content-center mb-2"></div>
                                 </div>
                                 
                             </div>
@@ -52,5 +55,10 @@
     <script>
         document.getElementById("sifra").focus();
     </script>
+    <script language="javascript">
+       setTimeout(function(){
+   window.location.reload(1);
+}, 60000);
+        </script>
     <script src="{{ asset('js/main.js') }}" defer></script>
 @endsection

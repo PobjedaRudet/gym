@@ -1,423 +1,565 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="description" content="Gym Template">
+    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BEG'S FIT&FIGHT</title>
 
-  <title>SoftLand Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
 
-  <!-- Favicons -->
-  <link href="{{ asset('landing/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('landing/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('landing/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="{{ asset('landing/css/style.css') }}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: SoftLand - v4.10.0
-  * Template URL: https://bootstrapmade.com/softland-bootstrap-app-landing-page-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{ asset('site/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/flaticon.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/barfiller.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" type="text/css">
 </head>
 
 <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex justify-content-between align-items-center">
-
-      <div class="logo">
-        <h1><a href="index.html">SoftLand</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="active " href="index.html">Home</a></li>
-          <li><a href="features.html">Features</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+    <!-- Offcanvas Menu Section Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="fa fa-close"></i>
+        </div>
+        <div class="canvas-search search-switch">
+            <i class="fa fa-search"></i>
+        </div>
+        <nav class="canvas-menu mobile-menu">
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+                <li><a href="./index.html">Početna</a></li>
+                <li><a href="./about-us.html">O nama</a></li>
+                <li><a href="./classes.html">Treninzi</a></li>
+                <li><a href="./services.html">Usluge</a></li>
+                <li><a href="./team.html">Naš tim</a></li>
+                <li><a href="#">Više</a>
+                    <ul class="dropdown">
+                        <li><a href="./about-us.html">O nama</a></li>
+                        <li><a href="./class-timetable.html">Raspored treninga</a></li>
+                        <li><a href="./team.html">Naš tim</a></li>
+                        <li><a href="./gallery.html">Galerija</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="./contact.html">Kontakt</a></li>
+                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                
             </ul>
-          </li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="canvas-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube-play"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
     </div>
-  </header><!-- End Header -->
+    <!-- Offcanvas Menu Section End -->
 
-  <!-- ======= Hero Section ======= -->
-  <section class="hero-section" id="hero">
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <a href="./index.html">
+                            <img src="{{ asset('site/img/logo.png') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="nav-menu">
+                        <ul>
+                            <li class="active"><a href="./index.html">Početna</a></li>
+                            <li><a href="./about-us.html">O nama</a></li>
+                            <li><a href="./class-details.html">Treninzi</a></li>
+                            <li><a href="./services.html">Usluge</a></li>
+                            <li><a href="./team.html">Naš tim</a></li>
+                            <li><a href="#">Više</a>
+                                <ul class="dropdown">
+                                    <li><a href="./about-us.html">O nama</a></li>
+                                    <li><a href="./class-timetable.html">Raspored treninga</a></li>
+                                    <li><a href="./team.html">Naš tim</a></li>
+                                    <li><a href="./gallery.html">Galerija</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="./contact.html">Kontakt</a></li>
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="top-option">
+                        <div class="to-search search-switch">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="to-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
 
-    <div class="wave">
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hs-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="{{ asset('site/img/hero/hero-1.jpg') }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7 offset-lg-7">
+                            <div class="hi-text">
+                                <span>Oblikuj svoje tijelo</span>
+                                <h1>Budi<strong> jak</strong> treniraj snažno</h1>
+                                <a href="#" class="primary-btn">Više informacija</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hs-item set-bg" data-setbg="{{ asset('site/img/hero/hero-2.jpg') }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-6">
+                            <div class="hi-text">
+                                <span>Oblikuj svoje tijelo</span>
+                                <h1>Budi <strong>jak</strong> treniraj snažno</h1>
+                                <a href="#" class="primary-btn">Više informacija</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
 
-      <svg width="100%" height="355px" viewBox="0 0 1920 355" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
-            <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,757 L1017.15166,757 L0,757 L0,439.134243 Z" id="Path"></path>
-          </g>
-        </g>
-      </svg>
+    <!-- ChoseUs Section Begin -->
+    <section class="choseus-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Zašto izabrati nas?</span>
+                        <h2>POMJERITE SVOJE GRANICE</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-034-stationary-bike"></span>
+                        <h4>Moderna oprema</h4>
+                        <p>U našem fitness centru nudimo vrhunske sprave za vježbanje i stručne trenere.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-033-juice"></span>
+                        <h4>Beg's caffe</h4>
+                        <p>Poseban prostor za opuštanje i osvježenje - naš kafić i dječija igraonica. Smješten unutar samog centra, kafić i igraonica su idealno mjesto za sve koji žele odmor i ugodnu atmosferu.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-002-dumbell"></span>
+                        <h4>Kik boks club - treninzi</h4>
+                        <p>
+Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posjedujemo i kik boks klub. Ovaj prostor je namijenjen za sve ljubitelje borilačkih sportova, bilo da ste početnik ili iskusan borac.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-014-heart-beat"></span>
+                        <h4>Zdrava ishrana</h4>
+                        <p>Svi naši proizvodi su pažljivo odabrani kako bi podržali zdrav životni stil i pomogli vam da izgledate i osjećate se najbolje. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ChoseUs Section End -->
 
+    <!-- Classes Section Begin -->
+    <section class="classes-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Treninzi</span>
+                        <h2>Šta nudimo</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{{ asset('site/img/classes/class-1.jpg') }}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>FITNESS CENTAR</span>
+                            <h5>SPRAVE ZA VJEŽBANJE</h5>
+                            <a href="#"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{{ asset('site/img/classes/class-2.jpg') }}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>KIK BOKS CLUB</span>
+                            <h5>BEZ KONTAKTNI I KONTAKTNI</h5>
+                            <a href="#"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{{ asset('site/img/hero/hero-2.jpg') }}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>LADIES FITNESS</span>
+                            <h5>poseban objekat za žene opremljen je najnovijim spravama</h5>
+                            <a href="#"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{{ asset('site/img/classes/Screenshot_quad.jpg') }}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>QUAD</span>
+                            <h4>RENT A QUAD</h4>
+                            <a href="#"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{{ asset('site/img/classes/apartmani-rawda-foto-3-scaled.jpg') }}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>RENT A APARTMENT</span>
+                            <h4>Iznajmite jedan od naših apartmana</h4>
+                            <a href="#"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ChoseUs Section End -->
+
+    <!-- Banner Section Begin -->
+    <section class="banner-section set-bg" data-setbg="{{ asset('site/img/banner-bg.jpg') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="bs-text">
+                        <h2>Za više informacija</h2>
+                        <div class="bt-tips">Gdje se zdravlje, ljepota i izgleda upoznaju.</div>
+                        <a href="#" class="primary-btn  btn-normal">Više informacija</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
+
+    <!-- Pricing Section Begin -->
+    <section class="pricing-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Članarine</span>
+                        <h2>Našim članovima nudimo</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>Dječija članarina</h3>
+                        <div class="pi-price">
+                            <h2>KM 30.00</h2>
+                            <span>Za mališane
+                        </div>
+                        <ul>
+                            <li>Namjenjen djeci do 15 godina</li>
+                            <li>Uključuje redovne kik-boks treninge prilagođen uzrastu</li>
+                            <li>Fokus na razvoju koordinacije, kondicije i discipline kroz zabavne i interaktivne vježbe</li>
+                            <li>Profesionalni treneri sa iskustvon u radu sa djecom</li>
+                            <li>Ideslno za mališane kiji žele aktivno provoditi slobodno vrijeme i razvijati sportsku vještinu</li>
+                        </ul>
+                        <a href="#" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>Đačka članarina</h3>
+                        <div class="pi-price">
+                            <h2>KM 40.00</h2>
+                            <span>Korištenje teretana mjesec dana</span>
+                        </div>
+                        <ul>
+                            <li>Namjenjen maloljetnicima od 14 do 18 godina</li>
+                            <li>Uključuje neograničen pristup teretani</li>
+                            <li>Mogućnost sudjelovanja u kik-boks treninzima bez dodatnih troškova</li>
+                            <li>Programi prilagođeni uzrastu i kondicionim sposobnostima</li>
+                            <li>Poseban fokus na jačanju izdržljivosti, snage i mentalne discipline</li>
+                        </ul>
+                        <a href="#" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>Članarina za odrasle</h3>
+                        <div class="pi-price">
+                            <h2>KM 50.00</h2>
+                            <span>Korištenje teretane mjesec dana</span>
+                        </div>
+                        <ul>
+                            <li>Neograničen pristup teretani</li>
+                            <li>Uključuje opciju sudjelovanja kik-boks treninzima za rekreativce</li>
+                            <li>Idealno za one koji žele kombinovati vježbe snage i borilačke sportove</li>
+                            <li>Treninzi pod nadzorom licenciranih instruktora</li>
+                            <li>Savršeno za poboljšanje kondicije, redukciju stresa i izgradnju samopouzdanja</li>
+</ul>
+                        <a href="#" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>Članarina za penzionere</h3>
+                        <div class="pi-price">
+                            <h2>KM 40.00</h2>
+                            <span>Korištenje teretana mjesec dana</span>
+                        </div>
+                        <ul>
+                            <li>Namjenjen osobama u penziji koji žele održavati zdravlje i kondiciju</li>
+                            <li>Uključuje pristup teretani i prilagođene treninge</li>
+                            <li>Fokus na lagane vježbe, fleksibilnost i rehabilitaciju</li>
+                            <li>Idealna prilika za socijalizaciju i aktivan stil života</li></ul>
+                        <a href="#" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>Dnevna karta</h3>
+                        <div class="pi-price">
+                            <h2>KM 15.00</h2>
+                            <span>Jednodnevni pristup svim sadržajima teretane</span>
+                        </div>
+                        <ul>
+                            <li>pogodna opcija za povremene korisnike ili one koji žele isprobati ponudu</li>
+                            <li>uključuje pristup grupnim treninzima ili individualno korištenje opreme</li>
+                            <li>Fleksibilan izbor za ljude sa ograničenim rasporedom</li>
+</ul>
+                        <a href="#" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>Sponsorship</h3>
+                        <div class="pi-price">
+                            <h2>KM **</h2>
+                            <span>Namjenjen sportskim klubovima i kompanijama</span>
+                        </div>
+                        <ul>
+                            <li>Namjenjen grupama od 10 ili više članova</li>
+                            <li>Uključuje pristup teretani i mogućnost zakazivanja gruonih treninga</li>
+                            <li>Dodatni popust za timove ili grupe</li>
+                            <li>Prilagođeni termini za treninge i mogućnost korištenja prostora za timske aktivnosti</li>
+
+
+
+
+
+                        </ul>
+                        <a href="#" class="primary-btn pricing-btn">Saznaj više</a>
+                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Section End -->
+
+    <!-- Gallery Section Begin -->
+    <div class="gallery-section">
+        <div class="gallery">
+            <div class="grid-sizer"></div>
+            <div class="gs-item grid-wide set-bg" data-setbg="{{ asset('site/img/gallery/teretana.jpg') }}">
+                <a href="{{ asset('site/img/gallery/teretana.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item set-bg" data-setbg="{{ asset('site/img/gallery/sampion.jpg') }}">
+                <a href="{{ asset('site/img/gallery/sampion.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item set-bg" data-setbg="{{ asset('site/img/gallery/latte.jpg') }}">
+                <a href="{{ asset('site/img/gallery/gallery-3.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item set-bg" data-setbg="{{ asset('site/img/gallery/igraonavanjska.jpg') }}">
+                <a href="{{ asset('site/img/gallery/igraonavanjska.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item set-bg" data-setbg="{{ asset('site/img/gallery/sank.jpg') }}">
+                <a href="{{ asset('site/img/gallery/sank.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item grid-wide set-bg" data-setbg="{{ asset('site/img/gallery/begstim.jpg') }}">
+                <a href="{{ asset('site/img/gallery/begstim.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+        </div>
     </div>
+    <!-- Gallery Section End -->
 
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-12 hero-text-image">
-          <div class="row">
-            <div class="col-lg-8 text-center text-lg-start">
-              <h1 data-aos="fade-right">Promote Your App with SoftLand</h1>
-              <p class="mb-5" data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit.</p>
-              <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="#" class="btn btn-outline-white">Get started</a></p>
+    <!-- Team Section Begin -->
+    <section class="team-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="team-title">
+                        <div class="section-title">
+                            <span>Naš tim</span>
+                            <h2>Trenirajte sa profesionalcima</h2>
+                        </div>
+                     
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 iphone-wrap">
-              <img src="{{ asset('landing/img/phone_1.png') }}" alt="Image" class="phone-1" data-aos="fade-right">
-              <img src="{{ asset('landing/img/phone_2.png') }}" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200">
+            <div class="row">
+                
+                    <div class="col-lg-4">
+                        <div class="ts-item set-bg" data-setbg="{{ asset('site/img/team/emir.jpg') }}">
+                            <div class="ts_text">
+                                <h4>Emir Begović</h4>
+                                <span>Licencirani kik boks trener</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="ts-item set-bg" data-setbg="{{ asset('site/img/team/lejs.jpg') }}">
+                            <div class="ts_text">
+                                <h4>Lejs Begović</h4>
+                                <span>Licencirani kik boks trener</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="ts-item set-bg" data-setbg="{{ asset('site/img/team/adnan.jpg') }}">
+                            <div class="ts_text">
+                                <h4>Adnan Kadić</h4>
+                                <span>Kik boks trener</span>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
+    <!-- Team Section End -->
+
+    <!-- Get In Touch Section Begin -->
+    <div class="gettouch-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="gt-text">
+                        <i class="fa fa-map-marker"></i>
+                        <p>Zaima Imamovića<br/> br. 29</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gt-text">
+                        <i class="fa fa-mobile"></i>
+                        <ul>
+                            <li>+387 38 941 900</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gt-text email">
+                        <i class="fa fa-envelope"></i>
+                        <p>info@begsfit-fight.ba</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Get In Touch Section End -->
 
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= Home Section ======= -->
-    <section class="section">
-      <div class="container">
-
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-5" data-aos="fade-up">
-            <h2 class="section-heading">Save your time to using SoftLand</h2>
-          </div>
+    <!-- Footer Section Begin -->
+    <section class="footer-section">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="copyright-text">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made  by <a href="https://begsfit.ba" target="_blank">BEG'S FITNESS</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-            <div class="feature-1 text-center">
-              <div class="wrap-icon icon-1">
-                <i class="bi bi-people"></i>
-              </div>
-              <h3 class="mb-3">Explore Your Team</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-            </div>
-          </div>
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="feature-1 text-center">
-              <div class="wrap-icon icon-1">
-                <i class="bi bi-brightness-high"></i>
-              </div>
-              <h3 class="mb-3">Digital Whiteboard</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-            </div>
-          </div>
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="feature-1 text-center">
-              <div class="wrap-icon icon-1">
-                <i class="bi bi-bar-chart"></i>
-              </div>
-              <h3 class="mb-3">Design To Development</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </section>
+    <!-- Footer Section End -->
 
-    <section class="section">
-
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5" data-aos="fade">
-          <div class="col-md-6 mb-5">
-            <img src="{{ asset('landing/img/undraw_svg_1.svg') }}" alt="Image" class="img-fluid">
-          </div>
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
         </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <div class="step">
-              <span class="number">01</span>
-              <h3>Sign Up</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="step">
-              <span class="number">02</span>
-              <h3>Create Profile</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="step">
-              <span class="number">03</span>
-              <h3>Enjoy the app</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-4 me-auto">
-            <h2 class="mb-4">Seamlessly Communicate</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur at reprehenderit optio,
-              laudantium eius quod, eum maxime molestiae porro omnis. Dolores aspernatur delectus impedit incidunt
-              dolore mollitia esse natus beatae.</p>
-            <p><a href="#" class="btn btn-primary">Download Now</a></p>
-          </div>
-          <div class="col-md-6" data-aos="fade-left">
-            <img src="{{ asset('landing/img/undraw_svg_2.svg') }}" alt="Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-4 ms-auto order-2">
-            <h2 class="mb-4">Gather Feedback</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur at reprehenderit optio,
-              laudantium eius quod, eum maxime molestiae porro omnis. Dolores aspernatur delectus impedit incidunt
-              dolore mollitia esse natus beatae.</p>
-            <p><a href="#" class="btn btn-primary">Download Now</a></p>
-          </div>
-          <div class="col-md-6" data-aos="fade-right">
-            <img src="{{ asset('landing/img/undraw_svg_3.svg') }}" alt="Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= Testimonials Section ======= -->
-    <section class="section border-top border-bottom">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-4">
-            <h2 class="section-heading">Review From Our Users</h2>
-          </div>
-        </div>
-        <div class="row justify-content-center text-center">
-          <div class="col-md-7">
-
-            <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-              <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                  <div class="review text-center">
-                    <p class="stars">
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill muted"></span>
-                    </p>
-                    <h3>Excellent App!</h3>
-                    <blockquote>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam
-                        aperiam dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi,
-                        provident voluptates consectetur maiores quos.</p>
-                    </blockquote>
-
-                    <p class="review-user">
-                      <img src="{{ asset('landing/img/person_1.jpg') }}" alt="Image" class="img-fluid rounded-circle mb-3">
-                      <span class="d-block">
-                        <span class="text-black">Jean Doe</span>, &mdash; App User
-                      </span>
-                    </p>
-
-                  </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                  <div class="review text-center">
-                    <p class="stars">
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill muted"></span>
-                    </p>
-                    <h3>This App is easy to use!</h3>
-                    <blockquote>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam
-                        aperiam dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi,
-                        provident voluptates consectetur maiores quos.</p>
-                    </blockquote>
-
-                    <p class="review-user">
-                      <img src="{{ asset('landing/img/person_2.jpg') }}" alt="Image" class="img-fluid rounded-circle mb-3">
-                      <span class="d-block">
-                        <span class="text-black">Johan Smith</span>, &mdash; App User
-                      </span>
-                    </p>
-
-                  </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                  <div class="review text-center">
-                    <p class="stars">
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill"></span>
-                      <span class="bi bi-star-fill muted"></span>
-                    </p>
-                    <h3>Awesome functionality!</h3>
-                    <blockquote>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam
-                        aperiam dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi,
-                        provident voluptates consectetur maiores quos.</p>
-                    </blockquote>
-
-                    <p class="review-user">
-                      <img src="{{ asset('landing/img/person_3.jpg') }}" alt="Image" class="img-fluid rounded-circle mb-3">
-                      <span class="d-block">
-                        <span class="text-black">Jean Thunberg</span>, &mdash; App User
-                      </span>
-                    </p>
-
-                  </div>
-                </div><!-- End testimonial item -->
-
-              </div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Testimonials Section -->
-
-    <!-- ======= CTA Section ======= -->
-    <section class="section cta-section">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6 me-auto text-center text-md-start mb-5 mb-md-0">
-            <h2>Starts Publishing Your Apps</h2>
-          </div>
-          <div class="col-md-5 text-center text-md-end">
-            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-apple"></i><span>App store</span></a> <a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-play-store"></i><span>Google play</span></a></p>
-          </div>
-        </div>
-      </div>
-    </section><!-- End CTA Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 mb-4 mb-md-0">
-          <h3>About SoftLand</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam aperiam
-            dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi.</p>
-          <p class="social">
-            <a href="#"><span class="bi bi-twitter"></span></a>
-            <a href="#"><span class="bi bi-facebook"></span></a>
-            <a href="#"><span class="bi bi-instagram"></span></a>
-            <a href="#"><span class="bi bi-linkedin"></span></a>
-          </p>
-        </div>
-        <div class="col-md-7 ms-auto">
-          <div class="row site-section pt-0">
-            <div class="col-md-4 mb-4 mb-md-0">
-              <h3>Navigation</h3>
-              <ul class="list-unstyled">
-                <li><a href="#">Pricing</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4 mb-4 mb-md-0">
-              <h3>Services</h3>
-              <ul class="list-unstyled">
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Collaboration</a></li>
-                <li><a href="#">Todos</a></li>
-                <li><a href="#">Events</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4 mb-4 mb-md-0">
-              <h3>Downloads</h3>
-              <ul class="list-unstyled">
-                <li><a href="#">Get from the App Store</a></li>
-                <li><a href="#">Get from the Play Store</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row justify-content-center text-center">
-        <div class="col-md-7">
-          <p class="copyright">&copy; Copyright SoftLand. All Rights Reserved</p>
-          <div class="credits">
-            <!--
-            All the links in the footer should remain intact.
-            You can delete the links only if you purchased the pro version.
-            Licensing information: https://bootstrapmade.com/license/
-            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=SoftLand
-          -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </footer>
+    <!-- Search model end -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Js Plugins -->
+    <script src="{{ asset('site/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('site/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('site/js/masonry.pkgd.min.js') }}"></script>
+    <script src="{{ asset('site/js/jquery.barfiller.js') }}"></script>
+    <script src="{{ asset('site/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('site/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('site/js/main.js') }}"></script>
 
-  <!-- Vendor JS Files -->
-  <script src="{{ asset('landing/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('landing/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('landing/vendor/swiper/swiper-bundle.min.js') }}"></script>
-  <script src="{{ asset('landing/vendor/php-email-form/validate.js') }}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="{{ asset('landing/js/main.js') }}"></script>
 
 </body>
 

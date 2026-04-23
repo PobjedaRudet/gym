@@ -71,11 +71,7 @@
                         <hr>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-                            <button type="button" class="btn btn-primary justify-content-md-end mx-3 my-4"
-                                onclick="location.href='{{ url('/izlaz') }}'">Početak</button>
-                            <button type="button" class="btn btn-dark justify-content-md-end mx-4 my-4"
-                                onclick="location.href='{{ url('/logout') }}'">Izlaz</button>
-
+                            <a style="float: right;" href="{{ route('members')}}" class="btn btn-light border">Početna</a>
                         </div>
 
                     </div>

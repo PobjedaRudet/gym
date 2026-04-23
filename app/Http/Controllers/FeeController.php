@@ -34,14 +34,19 @@ class FeeController extends Controller
 
     public function fees($id){
     
-        $member = Member::select("*")
+        /* $member = Member::select('*')
             ->join("fees", "fees.member_id", "=", "members.id")
             ->where([
                 ['members.id', '=', $id],
                 
             ])->orderBy('fees.id', 'DESC')
+            ->get(); */
+            $member = Member::join('fees', 'fees.member_id', '=', 'members.id')
+            ->select('members.*', 'fees.id as fees_id', 'fees.start as start','fees.end as end')
+            ->where('members.id', $id)
+            ->orderBy('fees.id', 'desc')
             ->get();
-Log::info($member);
+
 
         return view('fees',['stanje' => $member, 'id'=>$id]);
     }
@@ -101,9 +106,16 @@ Log::info($member);
      * @param  \App\Models\Fee  $fee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fee $fee)
+    public function editFee($id)
     {
-        //
+        $member = Member::join('fees', 'fees.member_id', '=', 'members.id')
+        ->select('members.*', 'fees.*', 'fees.id as fees_id')
+        ->where('fees.id', $id)
+        ->get();
+
+        
+
+        return view('editFee', ['test' => $member]);
     }
 
     /**
@@ -128,5 +140,15 @@ Log::info($member);
     {
         Fee::where('id',$id)->delete();
         return redirect()->route('members');
+    }
+    public function updateFee(Request $request){
+
+        Fee::where('id', $request->fees_id)
+        ->update([
+            'amount' => $request->amount,
+           
+        ]);
+        return redirect('members');
+
     }
 }

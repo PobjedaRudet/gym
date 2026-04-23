@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MemberController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/test2', [MemberController::class, 'test2']);
+
+Route::post('/login', function (Request $request) {
+ 
+    return response()->json(['status' => 'OK'], 200);
+});
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

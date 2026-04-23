@@ -73,15 +73,30 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
               $('#inout').removeClass("bg-warning");
               $('#inout').removeClass("bg-danger");
               $("#inout").text('PRIJAVA').addClass("bg-success font-weight-bold rounded");
+              var surname = data['response'][0].surname;
+              $("#sifra").val("");
+              $("#rok").text('Članarina traje do: ' + data['rok']);
+              $("#name").text(name + ' ' + surname);
+              console.log(name);
+              $("#pic").attr('src', 'images/' + picture);
             } else if (id == 1) {
               $("#status").text('');
+              $("#rok").text('');
               $('#inout').removeClass("bg-danger");
               $('#inout').removeClass("bg-success");
               $("#inout").text('ODJAVA').addClass("bg-warning font-weight-bold rounded");
+              var surname = data['response'][0].surname;
+              $("#sifra").val("");
+              $("#name").text(name + ' ' + surname);
+              console.log(name);
+              $("#pic").attr('src', 'images/' + picture);
             }
           }
         } else {
           console.log('Članarina je istekla');
+          $("#name").text('');
+          $("#rok").text('');
+          $("#pic").attr('src', 'images/avatar.jpg');
           $('#okvir').removeClass("bg-success");
           // $('#okvir').addClass("bg-danger"); // crvena #F3522E
           $("#status").text('');
@@ -89,11 +104,6 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
           $("#status").text('ČLANARINA JE ISTEKLA');
           $("#inout").text('NE MOŽETE SE PRIJAVITI').addClass("bg-danger text-white font-weight-bold rounded");
         }
-        var surname = data['response'][0].surname;
-        $("#sifra").val("");
-        $("#name").text(name + ' ' + surname);
-        console.log(name);
-        $("#pic").attr('src', 'images/' + picture);
       }
     });
   }

@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/js/main.js": "/js/main.js",
     "/js/datepicker.js": "/js/datepicker.js",
+    "/js/live.js": "/js/live.js",
     "/css/app.css": "/css/app.css"
 }

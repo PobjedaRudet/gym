@@ -35,19 +35,23 @@
 <body>
   <ul class="nav  nav-pills justify-content-center mt-4">
     <li class="nav-item">
-        <a class="nav-item nav-link active" href="{{ route('members') }}">Članovi</a>
+        <a class="nav-item nav-link border" href="{{ route('members') }}" style="background-color: rgba(201, 63, 63, 0.05);"   >Članovi</a>
     </li>
     <li class="nav-item mx-2">
-      <a class="nav-link bg-info" href="{{ route('attendance-list') }}">Evidencije članova</a>
-    </li>
+        <a class="nav-link border" href="{{ route('createMember') }}" style="background-color: rgba(201, 63, 63, 0.05);">Kreiraj člana</a>
+      </li>
     <li class="nav-item mx-2">
-      <a class="nav-link border" href="{{ route('createMember') }}" style="background-color: rgba(201, 63, 63, 0.05);">Kreiraj člana</a>
+        <a class="nav-link border" href="{{ route('attendance-live') }}" style="background-color: rgba(201, 63, 63, 0.05);">Evidencije live</a>
+      </li>
+    <li class="nav-item mx-2">
+      <a class="nav-link border" href="{{ route('attendance-list') }}" style="background-color: rgba(83, 80, 80, 0.05);">Evidencije članova</a>
     </li>
+   
     <li class="nav-item mx-2">
         <a class="nav-link border" href="{{ route('attendance') }}" style="background-color:rgb(95, 152, 226);color:white">Prijava</a>
       </li>
     <li class="nav-item mx-2">
-      <a class="nav-link disabled bg-secondary" href="#" tabindex="-1" aria-disabled="true" style="color:white">Admin</a>
+      <a class="nav-link disabled bg-secondary border" href="#" tabindex="-1" aria-disabled="true" style="color:white">Admin</a>
     </li>
   </ul>
         <main class="py-4">
