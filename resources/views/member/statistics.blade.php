@@ -1,99 +1,122 @@
 @extends('member.layout')
 @section('styles')
 <style>
+  :root {
+    --dash-bg: #0a0a0a;
+    --dash-panel: #131316;
+    --dash-panel-soft: #17171b;
+    --dash-border: rgba(255,255,255,0.08);
+    --dash-text: #f4f4f5;
+    --dash-muted: #a1a1aa;
+    --dash-subtle: #8b8b93;
+    --dash-accent: #ffb800;
+    --dash-accent-soft: #ffdd8a;
+  }
+
+  body { background: var(--dash-bg); color: var(--dash-text); }
+  .main-content { background: var(--dash-bg); }
+
   .page-title {
-    font-size: 1.4rem; font-weight: 800; color: #1a1a1a; margin-bottom: 1.5rem;
+    font-size: 1.4rem; font-weight: 800; color: var(--dash-text); margin-bottom: 1.5rem;
     display: flex; align-items: center; gap: 10px;
   }
-  .page-title svg { color: #FF375F; }
+  .page-title svg { color: var(--dash-accent); }
 
   .stat-card {
-    background: #fff; border: 1px solid rgba(0,0,0,0.06);
+    background: linear-gradient(160deg, var(--dash-panel), #0f0f11);
+    border: 1px solid var(--dash-border);
     border-radius: 14px; padding: 1.25rem; text-align: center;
-    transition: transform 0.2s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.26);
   }
-  .stat-card:hover { transform: translateY(-2px); }
+  .stat-card:hover { transform: translateY(-2px); border-color: rgba(255,184,0,0.3); }
   .stat-icon {
     width: 44px; height: 44px; border-radius: 12px;
     display: inline-flex; align-items: center; justify-content: center;
     margin-bottom: 8px;
   }
-  .stat-value { font-size: 1.4rem; font-weight: 800; color: #1a1a1a; margin: 0; }
+  .stat-value { font-size: 1.4rem; font-weight: 800; color: var(--dash-text); margin: 0; }
   .stat-label {
-    font-size: 10px; font-weight: 700; color: #888;
+    font-size: 10px; font-weight: 700; color: var(--dash-muted);
     text-transform: uppercase; letter-spacing: 0.8px;
   }
-  .stat-sub { font-size: 11px; color: #888; font-weight: 500; margin-top: 2px; }
+  .stat-sub { font-size: 11px; color: var(--dash-subtle); font-weight: 500; margin-top: 2px; }
 
   .section-title {
-    font-weight: 700; font-size: 15px; color: #1a1a1a;
+    font-weight: 700; font-size: 15px; color: var(--dash-text);
     margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+  }
+  .monthly-goals-title {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
   }
   .section-title .dot {
     width: 8px; height: 8px; border-radius: 50%; display: inline-block;
   }
 
   .glass-panel {
-    background: #fff; border: 1px solid rgba(0,0,0,0.06);
+    background: linear-gradient(160deg, var(--dash-panel), var(--dash-panel-soft));
+    border: 1px solid var(--dash-border);
     border-radius: 16px; padding: 1.25rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.24);
   }
 
   .progress-wrap { margin-bottom: 16px; }
   .progress-header {
     display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
   }
-  .progress-title { font-weight: 700; font-size: 13px; color: #1a1a1a; }
+  .progress-title { font-weight: 700; font-size: 13px; color: var(--dash-text); }
   .progress-value { font-weight: 800; font-size: 14px; }
   .progress-bar-bg {
-    background: #eee; border-radius: 10px; height: 12px; overflow: hidden;
+    background: rgba(255,255,255,0.08); border-radius: 10px; height: 12px; overflow: hidden;
   }
   .progress-bar-fill {
     height: 100%; border-radius: 10px; transition: width 0.8s ease; position: relative;
   }
   .progress-bar-fill span {
     position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
-    font-size: 9px; font-weight: 700; color: #fff;
+    font-size: 9px; font-weight: 700; color: #0a0a0a;
   }
   .progress-msg { margin: 4px 0 0; font-size: 11px; font-weight: 600; }
 
   .month-row {
-    padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.04);
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .month-row:last-child { border-bottom: none; }
-  .month-name { font-size: 13px; font-weight: 600; color: #555; }
-  .month-name.tekuci { color: #FF375F; font-weight: 700; }
-  .month-stats { font-size: 11px; color: #888; font-weight: 500; }
+  .month-name { font-size: 13px; font-weight: 600; color: var(--dash-muted); }
+  .month-name.tekuci { color: var(--dash-accent-soft); font-weight: 700; }
+  .month-stats { font-size: 11px; color: var(--dash-subtle); font-weight: 500; }
   .month-bar-bg {
-    background: #eee; border-radius: 6px; height: 6px; overflow: hidden; margin-top: 4px;
+    background: rgba(255,255,255,0.08); border-radius: 6px; height: 6px; overflow: hidden; margin-top: 4px;
   }
   .month-bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s ease; }
 
   .week-card {
-    background: #fff; border: 1px solid rgba(0,0,0,0.06);
+    background: linear-gradient(160deg, var(--dash-panel), #101013);
+    border: 1px solid var(--dash-border);
     border-radius: 12px; padding: 1rem; text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.2);
   }
-  .week-card.tekuca { border-color: rgba(255,55,95,0.4); background: rgba(255,55,95,0.04); }
-  .week-label { font-size: 11px; font-weight: 600; color: #888; margin-bottom: 6px; }
-  .week-value { font-size: 1.1rem; font-weight: 800; color: #1a1a1a; }
-  .week-sub { font-size: 10px; color: #aaa; }
+  .week-card.tekuca { border-color: rgba(255,184,0,0.45); background: rgba(255,184,0,0.08); }
+  .week-label { font-size: 11px; font-weight: 600; color: var(--dash-muted); margin-bottom: 6px; }
+  .week-value { font-size: 1.1rem; font-weight: 800; color: var(--dash-text); }
+  .week-sub { font-size: 10px; color: var(--dash-subtle); }
 
   .year-table {
     width: 100%; border-collapse: separate; border-spacing: 0;
     border-radius: 12px; overflow: hidden; font-size: 12px;
   }
   .year-table thead tr {
-    background: linear-gradient(135deg, #1C1C1E, #2C2C2E); color: #fff;
+    background: linear-gradient(135deg, #151517, #0f0f11); color: var(--dash-text);
   }
   .year-table th { padding: 10px 8px; font-weight: 700; text-align: center; }
   .year-table th:first-child { text-align: left; padding-left: 14px; }
-  .year-table td { padding: 8px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.04); color: #333; }
-  .year-table td:first-child { text-align: left; padding-left: 14px; font-weight: 600; color: #555; }
-  .year-table tbody tr:hover { background: rgba(0,0,0,0.015); }
+  .year-table td { padding: 8px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); color: #d4d4d8; }
+  .year-table td:first-child { text-align: left; padding-left: 14px; font-weight: 600; color: var(--dash-muted); }
+  .year-table tbody tr:hover { background: rgba(255,255,255,0.03); }
   .year-table tfoot tr {
-    background: linear-gradient(135deg, #1C1C1E, #2C2C2E); color: #fff; font-weight: 700;
+    background: linear-gradient(135deg, #151517, #0f0f11); color: var(--dash-text); font-weight: 700;
   }
 
   @media (max-width: 767.98px) {
@@ -120,7 +143,7 @@
   <div class="row g-3 mb-4">
     <div class="col-6 col-md-3">
       <div class="stat-card">
-        <div class="stat-icon" style="background:linear-gradient(135deg,#FF375F,#FF6482);">
+        <div class="stat-icon" style="background:linear-gradient(135deg,#ffb800,#f59e0b);">
           <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
         </div>
         <p class="stat-value">{{ $ukupnoDolazaka }}</p>
@@ -129,14 +152,14 @@
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
-        <div class="stat-icon" style="background:linear-gradient(135deg,#30D158,#4ADE80);">
+        <div class="stat-icon" style="background:linear-gradient(135deg,#f4f4f5,#d4d4d8);">
           <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         </div>
         <p class="stat-value">{{ $trenutniMjesec }}</p>
         <p class="stat-label">Ovaj mjesec</p>
         @if($prethodniMjesec > 0)
           @php $promjena = round((($trenutniMjesec - $prethodniMjesec) / $prethodniMjesec) * 100); @endphp
-          <p class="stat-sub" style="color:{{ $promjena >= 0 ? '#30D158' : '#FF375F' }};font-weight:600;">
+          <p class="stat-sub" style="color:{{ $promjena >= 0 ? '#ffdd8a' : '#d4d4d8' }};font-weight:600;">
             {{ $promjena >= 0 ? '+' : '' }}{{ $promjena }}% vs prethodni
           </p>
         @endif
@@ -144,7 +167,7 @@
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
-        <div class="stat-icon" style="background:linear-gradient(135deg,#5AC8FA,#64D2FF);">
+        <div class="stat-icon" style="background:linear-gradient(135deg,#a1a1aa,#71717a);">
           <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <p class="stat-value">{{ floor($vrijemeUkupno->ukupno / 60) }}<span style="font-size:0.7em;font-weight:600;">h</span></p>
@@ -153,7 +176,7 @@
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
-        <div class="stat-icon" style="background:linear-gradient(135deg,#FF9F0A,#FFB340);">
+        <div class="stat-icon" style="background:linear-gradient(135deg,#ffdd8a,#f4f4f5);">
           <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <p class="stat-value">{{ floor($vrijemeUkupno->prosjek) }}<span style="font-size:0.7em;font-weight:600;">min</span></p>
@@ -163,8 +186,8 @@
   </div>
 
   <!-- Ciljevi -->
-  <div class="section-title">
-    <span class="dot" style="background:linear-gradient(135deg,#FF375F,#FF6482);"></span>
+  <div class="section-title monthly-goals-title">
+    <span class="dot" style="background:linear-gradient(135deg,#ffb800,#f59e0b);"></span>
     Mjesečni ciljevi
   </div>
   <div class="row g-3 mb-4">
@@ -174,14 +197,14 @@
         <div class="progress-wrap">
           <div class="progress-header">
             <span class="progress-title">Dolasci ovog mjeseca</span>
-            <span class="progress-value" style="color:#FF375F;">{{ $trenutniMjesec }} / {{ $ciljDolazaka }}</span>
+            <span class="progress-value" style="color:#ffdd8a;">{{ $trenutniMjesec }} / {{ $ciljDolazaka }}</span>
           </div>
           <div class="progress-bar-bg">
-            <div class="progress-bar-fill" style="width:{{ $progresDolasci }}%;background:linear-gradient(90deg,#FF375F,#FF6482);">
+            <div class="progress-bar-fill" style="width:{{ $progresDolasci }}%;background:linear-gradient(90deg,#ffb800,#f59e0b);">
               @if($progresDolasci > 15)<span>{{ $progresDolasci }}%</span>@endif
             </div>
           </div>
-          <p class="progress-msg" style="color:{{ $progresDolasci >= 80 ? '#30D158' : ($progresDolasci >= 50 ? '#FF9F0A' : '#FF375F') }};">
+          <p class="progress-msg" style="color:{{ $progresDolasci >= 80 ? '#ffdd8a' : ($progresDolasci >= 50 ? '#f4f4f5' : '#a1a1aa') }};">
             @if($progresDolasci >= 80) Odlično! Na dobrom ste putu.
             @elseif($progresDolasci >= 50) Dobar napredak, nastavite!
             @else Potrebno je više treninga.
@@ -196,14 +219,14 @@
         <div class="progress-wrap">
           <div class="progress-header">
             <span class="progress-title">Sati u teretani ovog mjeseca</span>
-            <span class="progress-value" style="color:#30D158;">{{ floor($vrijemeTrenutni->ukupno / 60) }}h / {{ floor($ciljMinuta / 60) }}h</span>
+            <span class="progress-value" style="color:#f4f4f5;">{{ floor($vrijemeTrenutni->ukupno / 60) }}h / {{ floor($ciljMinuta / 60) }}h</span>
           </div>
           <div class="progress-bar-bg">
-            <div class="progress-bar-fill" style="width:{{ $progresVrijeme }}%;background:linear-gradient(90deg,#30D158,#4ADE80);">
+            <div class="progress-bar-fill" style="width:{{ $progresVrijeme }}%;background:linear-gradient(90deg,#f4f4f5,#d4d4d8);">
               @if($progresVrijeme > 15)<span>{{ $progresVrijeme }}%</span>@endif
             </div>
           </div>
-          <p class="progress-msg" style="color:{{ $progresVrijeme >= 80 ? '#30D158' : ($progresVrijeme >= 50 ? '#FF9F0A' : '#FF375F') }};">
+          <p class="progress-msg" style="color:{{ $progresVrijeme >= 80 ? '#ffdd8a' : ($progresVrijeme >= 50 ? '#f4f4f5' : '#a1a1aa') }};">
             @if($progresVrijeme >= 80) Fenomenalan angažman!
             @elseif($progresVrijeme >= 50) Solidno, dodajte još treninga.
             @else Provedite više vremena na treningu.
@@ -216,7 +239,7 @@
 
   <!-- Vrijeme boravka -->
   <div class="section-title">
-    <span class="dot" style="background:linear-gradient(135deg,#5AC8FA,#64D2FF);"></span>
+    <span class="dot" style="background:linear-gradient(135deg,#a1a1aa,#71717a);"></span>
     Vrijeme boravka u teretani
   </div>
   <div class="row g-3 mb-4">
@@ -245,7 +268,7 @@
 
   <!-- Sedmicni pregled -->
   <div class="section-title">
-    <span class="dot" style="background:linear-gradient(135deg,#FF9F0A,#FFB340);"></span>
+    <span class="dot" style="background:linear-gradient(135deg,#ffdd8a,#f4f4f5);"></span>
     Sedmični pregled
   </div>
   <div class="row g-3 mb-4">
@@ -254,7 +277,7 @@
       <div class="week-card {{ $sed['tekuca'] ? 'tekuca' : '' }}">
         <p class="week-label">
           {{ $sed['label'] }}
-          @if($sed['tekuca']) <span style="font-size:9px;background:#FF375F;color:#fff;padding:2px 6px;border-radius:5px;margin-left:2px;">Sada</span> @endif
+          @if($sed['tekuca']) <span style="font-size:9px;background:#ffb800;color:#0a0a0a;padding:2px 6px;border-radius:5px;margin-left:2px;">Sada</span> @endif
         </p>
         <p class="week-value">{{ $sed['dolasci'] }}</p>
         <p class="week-sub">{{ floor($sed['minuta'] / 60) }}h {{ $sed['minuta'] % 60 }}m</p>
@@ -267,13 +290,13 @@
   <div class="row g-3 mb-4">
     <div class="col-md-7">
       <div class="glass-panel">
-        <p style="font-weight:700;font-size:14px;color:#1a1a1a;margin-bottom:16px;">Dolasci po mjesecima</p>
+        <p style="font-weight:700;font-size:14px;color:#f4f4f5;margin-bottom:16px;">Dolasci po mjesecima</p>
         <canvas id="chartDolasci" height="240"></canvas>
       </div>
     </div>
     <div class="col-md-5">
       <div class="glass-panel">
-        <p style="font-weight:700;font-size:14px;color:#1a1a1a;margin-bottom:16px;">Dani u sedmici</p>
+        <p style="font-weight:700;font-size:14px;color:#f4f4f5;margin-bottom:16px;">Dani u sedmici</p>
         <canvas id="chartDani" height="240"></canvas>
       </div>
     </div>
@@ -281,7 +304,7 @@
 
   <!-- Mjesecna usporedba -->
   <div class="section-title">
-    <span class="dot" style="background:linear-gradient(135deg,#FF375F,#FF6482);"></span>
+    <span class="dot" style="background:linear-gradient(135deg,#ffb800,#f59e0b);"></span>
     Mjesečna usporedba (6 mjeseci)
   </div>
   <div class="glass-panel mb-4">
@@ -290,7 +313,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <span class="month-name {{ $mp['tekuci'] ? 'tekuci' : '' }}">
           {{ $mp['mjesec'] }}
-          @if($mp['tekuci']) <span style="font-size:9px;background:#FF375F;color:#fff;padding:2px 6px;border-radius:5px;margin-left:4px;">Sada</span> @endif
+          @if($mp['tekuci']) <span style="font-size:9px;background:#ffb800;color:#0a0a0a;padding:2px 6px;border-radius:5px;margin-left:4px;">Sada</span> @endif
         </span>
         <span class="month-stats">{{ $mp['dolasci'] }} posjeta &middot; {{ floor($mp['ukupno_minuta'] / 60) }}h {{ $mp['ukupno_minuta'] % 60 }}m</span>
       </div>
@@ -300,13 +323,13 @@
         $percCilja = min(round(($mp['dolasci'] / $ciljDolazaka) * 100), 100);
       @endphp
       <div class="d-flex align-items-center gap-2 mt-1">
-        <span style="font-size:11px;font-weight:700;color:{{ $percCilja >= 80 ? '#30D158' : ($percCilja >= 50 ? '#FF9F0A' : '#FF375F') }};min-width:32px;">{{ $percCilja }}%</span>
+        <span style="font-size:11px;font-weight:700;color:{{ $percCilja >= 80 ? '#ffdd8a' : ($percCilja >= 50 ? '#f4f4f5' : '#a1a1aa') }};min-width:32px;">{{ $percCilja }}%</span>
         <div class="month-bar-bg flex-grow-1">
-          <div class="month-bar-fill" style="width:{{ $barPerc }}%;background:linear-gradient(90deg,{{ $mp['tekuci'] ? '#FF375F,#FF6482' : '#ccc,#bbb' }});"></div>
+          <div class="month-bar-fill" style="width:{{ $barPerc }}%;background:linear-gradient(90deg,{{ $mp['tekuci'] ? '#ffb800,#f59e0b' : '#71717a,#52525b' }});"></div>
         </div>
       </div>
       @if($mp['prosjek_minuta'] > 0)
-      <p style="margin:2px 0 0;font-size:10px;color:#aaa;">Prosjek po posjeti: {{ floor($mp['prosjek_minuta'] / 60) }}h {{ $mp['prosjek_minuta'] % 60 }}m</p>
+      <p style="margin:2px 0 0;font-size:10px;color:#8b8b93;">Prosjek po posjeti: {{ floor($mp['prosjek_minuta'] / 60) }}h {{ $mp['prosjek_minuta'] % 60 }}m</p>
       @endif
     </div>
     @endforeach
@@ -314,20 +337,20 @@
 
   <!-- Godisnja uporedba -->
   <div class="section-title">
-    <span class="dot" style="background:linear-gradient(135deg,#FF375F,#FF6482);"></span>
+    <span class="dot" style="background:linear-gradient(135deg,#ffb800,#f59e0b);"></span>
     Uporedba godina — {{ $godisnjiPregled['prethodna']['godina'] }} vs {{ $godisnjiPregled['trenutna']['godina'] }}
   </div>
 
   <div class="row g-3 mb-4">
     <div class="col-md-6">
       <div class="glass-panel">
-        <p style="font-weight:700;font-size:13px;color:#1a1a1a;margin-bottom:12px;">Dolasci po mjesecima</p>
+        <p style="font-weight:700;font-size:13px;color:#f4f4f5;margin-bottom:12px;">Dolasci po mjesecima</p>
         <canvas id="yearVisits" height="240"></canvas>
       </div>
     </div>
     <div class="col-md-6">
       <div class="glass-panel">
-        <p style="font-weight:700;font-size:13px;color:#1a1a1a;margin-bottom:12px;">Provedeno vrijeme (sati)</p>
+        <p style="font-weight:700;font-size:13px;color:#f4f4f5;margin-bottom:12px;">Provedeno vrijeme (sati)</p>
         <canvas id="yearHours" height="240"></canvas>
       </div>
     </div>
@@ -364,19 +387,19 @@
           $diffS = round($tS - $pS, 1);
           $isTekuci = ($idx + 1) == now()->month;
         @endphp
-        <tr style="{{ $isTekuci ? 'background:rgba(255,55,95,0.08);' : '' }}">
-          <td style="font-weight:{{ $isTekuci ? '700' : '600' }};{{ $isTekuci ? 'color:#FF375F;' : '' }}">
+        <tr style="{{ $isTekuci ? 'background:rgba(255,184,0,0.1);' : '' }}">
+          <td style="font-weight:{{ $isTekuci ? '700' : '600' }};{{ $isTekuci ? 'color:#ffdd8a;' : '' }}">
             {{ $mjesecPuni[$label] ?? $label }}
-            @if($isTekuci) <span style="font-size:8px;background:#FF375F;color:#fff;padding:1px 5px;border-radius:4px;margin-left:3px;">Sada</span> @endif
+            @if($isTekuci) <span style="font-size:8px;background:#ffb800;color:#0a0a0a;padding:1px 5px;border-radius:4px;margin-left:3px;">Sada</span> @endif
           </td>
-          <td style="color:#8E8E93;font-weight:600;">{{ $pD }}</td>
-          <td style="color:#FF375F;font-weight:700;">{{ $tD }}</td>
-          <td style="font-weight:700;color:{{ $diffD > 0 ? '#30D158' : ($diffD < 0 ? '#FF375F' : '#aaa') }};">
+          <td style="color:#a1a1aa;font-weight:600;">{{ $pD }}</td>
+          <td style="color:#ffdd8a;font-weight:700;">{{ $tD }}</td>
+          <td style="font-weight:700;color:{{ $diffD > 0 ? '#ffdd8a' : ($diffD < 0 ? '#d4d4d8' : '#8b8b93') }};">
             {{ $diffD > 0 ? '+' : '' }}{{ $diffD }}
           </td>
-          <td class="hide-mobile" style="color:#8E8E93;font-weight:600;">{{ $pS }}h</td>
-          <td class="hide-mobile" style="color:#30D158;font-weight:700;">{{ $tS }}h</td>
-          <td class="hide-mobile" style="font-weight:700;color:{{ $diffS > 0 ? '#30D158' : ($diffS < 0 ? '#FF375F' : '#aaa') }};">
+          <td class="hide-mobile" style="color:#a1a1aa;font-weight:600;">{{ $pS }}h</td>
+          <td class="hide-mobile" style="color:#f4f4f5;font-weight:700;">{{ $tS }}h</td>
+          <td class="hide-mobile" style="font-weight:700;color:{{ $diffS > 0 ? '#ffdd8a' : ($diffS < 0 ? '#d4d4d8' : '#8b8b93') }};">
             {{ $diffS > 0 ? '+' : '' }}{{ $diffS }}h
           </td>
         </tr>
@@ -391,12 +414,12 @@
           <td>UKUPNO</td>
           <td>{{ $totalPD }}</td>
           <td>{{ $totalTD }}</td>
-          <td style="color:{{ $totalDiffD > 0 ? '#30D158' : ($totalDiffD < 0 ? '#FF375F' : '#fff') }};">
+          <td style="color:{{ $totalDiffD > 0 ? '#ffdd8a' : ($totalDiffD < 0 ? '#d4d4d8' : '#f4f4f5') }};">
             {{ $totalDiffD > 0 ? '+' : '' }}{{ $totalDiffD }}
           </td>
           <td class="hide-mobile">{{ $totalPS }}h</td>
           <td class="hide-mobile">{{ $totalTS }}h</td>
-          <td class="hide-mobile" style="color:{{ $totalDiffS > 0 ? '#30D158' : ($totalDiffS < 0 ? '#FF375F' : '#fff') }};">
+          <td class="hide-mobile" style="color:{{ $totalDiffS > 0 ? '#ffdd8a' : ($totalDiffS < 0 ? '#d4d4d8' : '#f4f4f5') }};">
             {{ $totalDiffS > 0 ? '+' : '' }}{{ $totalDiffS }}h
           </td>
         </tr>
@@ -411,8 +434,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  Chart.defaults.color = 'rgba(0,0,0,0.5)';
-  Chart.defaults.borderColor = 'rgba(0,0,0,0.06)';
+  Chart.defaults.color = 'rgba(244,244,245,0.72)';
+  Chart.defaults.borderColor = 'rgba(255,255,255,0.1)';
 
   var labels = @json($mjesecniPregled->pluck('mjesec_kratki'));
   var dolasci = @json($mjesecniPregled->pluck('dolasci'));
@@ -420,16 +443,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var ctx1 = document.getElementById('chartDolasci').getContext('2d');
   var grad1 = ctx1.createLinearGradient(0, 0, 0, 240);
-  grad1.addColorStop(0, 'rgba(48,209,88,0.25)');
-  grad1.addColorStop(1, 'rgba(48,209,88,0.02)');
+  grad1.addColorStop(0, 'rgba(255,184,0,0.28)');
+  grad1.addColorStop(1, 'rgba(255,184,0,0.04)');
 
   new Chart(ctx1, {
     type: 'bar',
     data: {
       labels: labels,
       datasets: [
-        { label: 'Dolasci', data: dolasci, backgroundColor: 'rgba(255,55,95,0.7)', borderColor: '#FF375F', borderWidth: 2, borderRadius: 8, borderSkipped: false, yAxisID: 'y', order: 2 },
-        { label: 'Sati', data: sati, type: 'line', borderColor: '#30D158', backgroundColor: grad1, borderWidth: 2.5, pointBackgroundColor: '#30D158', pointBorderColor: '#fff', pointBorderWidth: 2, pointRadius: 4, fill: true, tension: 0.35, yAxisID: 'y1', order: 1 }
+        { label: 'Dolasci', data: dolasci, backgroundColor: 'rgba(255,184,0,0.76)', borderColor: '#ffb800', borderWidth: 2, borderRadius: 8, borderSkipped: false, yAxisID: 'y', order: 2 },
+        { label: 'Sati', data: sati, type: 'line', borderColor: '#f4f4f5', backgroundColor: grad1, borderWidth: 2.5, pointBackgroundColor: '#f4f4f5', pointBorderColor: '#0a0a0a', pointBorderWidth: 2, pointRadius: 4, fill: true, tension: 0.35, yAxisID: 'y1', order: 1 }
       ]
     },
     options: {
@@ -439,8 +462,8 @@ document.addEventListener('DOMContentLoaded', function() {
         tooltip: { backgroundColor: '#1C1C1E', padding: 10, cornerRadius: 8 }
       },
       scales: {
-        y: { beginAtZero: true, position: 'left', ticks: { stepSize: 1, font: { size: 10 } }, title: { display: true, text: 'Dolasci', font: { size: 10, weight: '600' }, color: '#FF375F' } },
-        y1: { beginAtZero: true, position: 'right', grid: { display: false }, ticks: { font: { size: 10 } }, title: { display: true, text: 'Sati', font: { size: 10, weight: '600' }, color: '#30D158' } },
+        y: { beginAtZero: true, position: 'left', ticks: { stepSize: 1, font: { size: 10 } }, title: { display: true, text: 'Dolasci', font: { size: 10, weight: '600' }, color: '#ffdd8a' } },
+        y1: { beginAtZero: true, position: 'right', grid: { display: false }, ticks: { font: { size: 10 } }, title: { display: true, text: 'Sati', font: { size: 10, weight: '600' }, color: '#f4f4f5' } },
         x: { ticks: { font: { size: 11, weight: '600' } }, grid: { display: false } }
       }
     }
@@ -450,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var daniLabels = @json($daniNazivi);
   var daniData = @json($daniData);
   var maxDan = Math.max(...daniData);
-  var daniColors = daniData.map(function(v) { return v === maxDan ? '#FF375F' : 'rgba(255,55,95,0.35)'; });
+  var daniColors = daniData.map(function(v) { return v === maxDan ? '#ffb800' : 'rgba(161,161,170,0.4)'; });
 
   new Chart(document.getElementById('chartDani').getContext('2d'), {
     type: 'bar',
@@ -462,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
       responsive: true, indexAxis: 'y',
       plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1C1C1E', padding: 10, cornerRadius: 8 } },
       scales: {
-        x: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        x: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.08)' } },
         y: { ticks: { font: { size: 11, weight: '600' } }, grid: { display: false } }
       }
     }
@@ -489,15 +512,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   new Chart(document.getElementById('yearVisits').getContext('2d'), {
     type: 'bar', data: { labels: ycLabels, datasets: [
-      { label: ycPG.toString(), data: ycPD, backgroundColor: 'rgba(255,55,95,0.3)', borderColor: '#FF6482', borderWidth: 1.5, borderRadius: 5, borderSkipped: false },
-      { label: ycTG.toString(), data: ycTD, backgroundColor: 'rgba(255,55,95,0.7)', borderColor: '#FF375F', borderWidth: 1.5, borderRadius: 5, borderSkipped: false }
+      { label: ycPG.toString(), data: ycPD, backgroundColor: 'rgba(161,161,170,0.4)', borderColor: '#71717a', borderWidth: 1.5, borderRadius: 5, borderSkipped: false },
+      { label: ycTG.toString(), data: ycTD, backgroundColor: 'rgba(255,184,0,0.72)', borderColor: '#ffb800', borderWidth: 1.5, borderRadius: 5, borderSkipped: false }
     ]}, options: ycOpts('posjeta')
   });
 
   new Chart(document.getElementById('yearHours').getContext('2d'), {
     type: 'bar', data: { labels: ycLabels, datasets: [
-      { label: ycPG.toString(), data: ycPS, backgroundColor: 'rgba(48,209,88,0.3)', borderColor: '#4ADE80', borderWidth: 1.5, borderRadius: 5, borderSkipped: false },
-      { label: ycTG.toString(), data: ycTS, backgroundColor: 'rgba(48,209,88,0.6)', borderColor: '#30D158', borderWidth: 1.5, borderRadius: 5, borderSkipped: false }
+      { label: ycPG.toString(), data: ycPS, backgroundColor: 'rgba(161,161,170,0.4)', borderColor: '#71717a', borderWidth: 1.5, borderRadius: 5, borderSkipped: false },
+      { label: ycTG.toString(), data: ycTS, backgroundColor: 'rgba(244,244,245,0.7)', borderColor: '#f4f4f5', borderWidth: 1.5, borderRadius: 5, borderSkipped: false }
     ]}, options: ycOpts('sati')
   });
 });

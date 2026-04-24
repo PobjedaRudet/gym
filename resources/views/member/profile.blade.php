@@ -2,11 +2,13 @@
 @section('styles')
 <style>
   /* ===== APPLE FITNESS MEMBER DASHBOARD ===== */
+  body { background: #0a0a0a; color: #f4f4f5; }
+  .main-content { background: #0a0a0a; }
   .dash { max-width: 960px; }
 
   /* Hero banner */
   .dash-hero {
-    background: linear-gradient(135deg, #111 0%, #1a1a1a 60%, #222 100%);
+    background: linear-gradient(135deg, #0f0f10 0%, #17171a 58%, #202024 100%);
     border-radius: 22px;
     padding: 2rem 2.25rem;
     margin-bottom: 1.5rem;
@@ -19,7 +21,7 @@
     position: absolute;
     top: -80px; right: -40px;
     width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(255,55,95,0.12) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(255,184,0,0.14) 0%, transparent 65%);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -28,7 +30,7 @@
     position: absolute;
     bottom: -60px; left: -20px;
     width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(48,209,88,0.06) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 65%);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -38,14 +40,14 @@
   }
   .dash-avatar {
     width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
-    border: 3px solid rgba(255,55,95,0.5);
+    border: 3px solid rgba(255,184,0,0.5);
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     flex-shrink: 0;
   }
   .dash-avatar-init {
     width: 72px; height: 72px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, #FF375F, #FF6482);
+    background: linear-gradient(135deg, #ffb800, #ffd66b);
     font-weight: 800; color: #fff; font-size: 22px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     flex-shrink: 0;
@@ -68,8 +70,8 @@
     border-radius: 20px; letter-spacing: 0.3px;
     display: inline-flex; align-items: center; gap: 5px;
   }
-  .dash-badge-active { background: rgba(48,209,88,0.15); color: #30D158; }
-  .dash-badge-inactive { background: rgba(255,55,95,0.15); color: #FF375F; }
+  .dash-badge-active { background: rgba(255,184,0,0.16); color: #ffdd8a; }
+  .dash-badge-inactive { background: rgba(161,161,170,0.2); color: #d4d4d8; }
   .dash-badge-date {
     background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6);
     font-weight: 600;
@@ -102,28 +104,28 @@
   }
   .dash-day {
     flex: 1; text-align: center;
-    background: #fff; border-radius: 14px;
+    background: #141417; border-radius: 14px;
     padding: 10px 0 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    border: 1px solid #2c2c32;
     transition: all 0.2s;
   }
   .dash-day.today {
-    border-color: rgba(255,55,95,0.3);
-    box-shadow: 0 0 0 1px rgba(255,55,95,0.15), 0 2px 8px rgba(255,55,95,0.08);
+    border-color: rgba(255,184,0,0.38);
+    box-shadow: 0 0 0 1px rgba(255,184,0,0.22), 0 2px 8px rgba(255,184,0,0.15);
   }
-  .dash-day.attended { background: #FF375F; border-color: #FF375F; }
+  .dash-day.attended { background: #ffb800; border-color: #ffb800; }
   .dash-day-lbl {
-    font-size: 10px; font-weight: 700; color: #aaa;
+    font-size: 10px; font-weight: 700; color: #8b8b93;
     text-transform: uppercase; margin-bottom: 4px;
   }
-  .dash-day.today .dash-day-lbl { color: #FF375F; }
+  .dash-day.today .dash-day-lbl { color: #ffd66b; }
   .dash-day.attended .dash-day-lbl { color: rgba(255,255,255,0.7); }
   .dash-day-num {
-    font-size: 15px; font-weight: 800; color: #1a1a1a;
+    font-size: 15px; font-weight: 800; color: #f1f1f3;
   }
-  .dash-day.today .dash-day-num { color: #FF375F; }
-  .dash-day.attended .dash-day-num { color: #fff; }
+  .dash-day.today .dash-day-num { color: #ffd66b; }
+  .dash-day.attended .dash-day-num { color: #111111; }
   .dash-day-dot {
     width: 5px; height: 5px; border-radius: 50%;
     margin: 4px auto 0; background: transparent;
@@ -132,20 +134,24 @@
 
   /* Card */
   .dash-card {
-    background: #fff;
+    background: #111114;
     border-radius: 18px;
     padding: 1.5rem;
     margin-bottom: 1rem;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.22);
+    border: 1px solid #2d2d33;
   }
   .dash-card-head {
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 1.25rem;
   }
   .dash-card-title {
-    font-size: 15px; font-weight: 800; color: #1a1a1a;
+    font-size: 15px; font-weight: 800; color: #f5f5f5;
     display: flex; align-items: center; gap: 8px;
+  }
+  .monthly-goals-title {
+    font-size: 20px;
+    letter-spacing: 0.2px;
   }
   .dash-card-title .icon {
     width: 28px; height: 28px; border-radius: 8px;
@@ -168,21 +174,21 @@
     width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
   }
   .ring-info { flex: 1; }
-  .ring-info-label { font-size: 13px; font-weight: 600; color: #444; }
-  .ring-info-sub { font-size: 10px; color: #aaa; font-weight: 500; }
+  .ring-info-label { font-size: 13px; font-weight: 600; color: #d4d4d8; }
+  .ring-info-sub { font-size: 10px; color: #8b8b93; font-weight: 500; }
   .ring-val {
     font-size: 20px; font-weight: 800; text-align: right;
   }
   .ring-val small {
-    font-size: 0.6em; font-weight: 600; color: #aaa;
+    font-size: 0.6em; font-weight: 600; color: #8b8b93;
   }
 
   /* Metric cards */
   .metric {
-    background: #fff; border-radius: 18px;
+    background: #111114; border-radius: 18px;
     padding: 1.25rem; height: 100%;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    border: 1px solid #2d2d33;
     display: flex; flex-direction: column;
   }
   .metric-icon {
@@ -191,7 +197,7 @@
     margin-bottom: 12px;
   }
   .metric-label {
-    font-size: 12px; font-weight: 600; color: #999;
+    font-size: 12px; font-weight: 600; color: #a1a1aa;
     text-transform: uppercase; letter-spacing: 0.5px;
   }
   .metric-val {
@@ -205,8 +211,8 @@
     font-size: 11px; font-weight: 700; padding: 3px 10px;
     border-radius: 8px;
   }
-  .metric-trend.up { background: rgba(48,209,88,0.08); color: #30D158; }
-  .metric-trend.down { background: rgba(255,55,95,0.08); color: #FF375F; }
+  .metric-trend.up { background: rgba(255,184,0,0.15); color: #ffdd8a; }
+  .metric-trend.down { background: rgba(161,161,170,0.2); color: #d4d4d8; }
   .metric-trend.neutral { background: rgba(0,0,0,0.03); color: #999; }
 
   /* Mini bars */
@@ -221,7 +227,7 @@
 
   /* Progress track */
   .prog-track {
-    height: 6px; background: #f0f0f0; border-radius: 3px;
+    height: 6px; background: #2b2b30; border-radius: 3px;
     overflow: hidden; margin-top: 6px;
   }
   .prog-fill {
@@ -240,9 +246,9 @@
     display: flex; align-items: center; justify-content: center;
     margin-right: 14px; flex-shrink: 0;
   }
-  .info-label { font-size: 13px; color: #777; font-weight: 500; }
+  .info-label { font-size: 13px; color: #a1a1aa; font-weight: 500; }
   .info-val {
-    margin-left: auto; font-size: 14px; font-weight: 600; color: #1a1a1a;
+    margin-left: auto; font-size: 14px; font-weight: 600; color: #f4f4f5;
     text-align: right;
   }
 
@@ -258,10 +264,10 @@
     margin-right: 14px; flex-shrink: 0;
   }
   .mem-info { flex: 1; }
-  .mem-label { font-size: 13px; font-weight: 500; color: #777; }
-  .mem-sub { font-size: 10px; color: #bbb; font-weight: 500; }
+  .mem-label { font-size: 13px; font-weight: 500; color: #a1a1aa; }
+  .mem-sub { font-size: 10px; color: #7f7f86; font-weight: 500; }
   .mem-val {
-    font-size: 14px; font-weight: 700; color: #1a1a1a;
+    font-size: 14px; font-weight: 700; color: #f4f4f5;
     text-align: right;
   }
 
@@ -363,13 +369,13 @@
   {{-- ========== ACTIVITY RINGS ========== --}}
   <div class="dash-card">
     <div class="dash-card-head">
-      <div class="dash-card-title">
-        <span class="icon" style="background:rgba(255,55,95,0.08);">
-          <svg width="15" height="15" fill="none" stroke="#FF375F" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+      <div class="dash-card-title monthly-goals-title">
+        <span class="icon" style="background:rgba(255,184,0,0.14);">
+          <svg width="15" height="15" fill="none" stroke="#ffb800" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
         </span>
         Mjesečni ciljevi
       </div>
-      <span style="font-size:11px;font-weight:600;color:#bbb;">{{ $now->translatedFormat('F Y') }}</span>
+      <span style="font-size:11px;font-weight:600;color:#a1a1aa;">{{ $now->translatedFormat('F Y') }}</span>
     </div>
     <div class="rings-wrap">
       <div class="rings-svg">
@@ -383,40 +389,40 @@
           $o3 = $c3 - ($progresProsjek / 100) * $c3;
         @endphp
         <svg width="{{ $sz }}" height="{{ $sz }}" viewBox="0 0 {{ $sz }} {{ $sz }}">
-          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r1 }}" fill="none" stroke="rgba(255,55,95,0.12)" stroke-width="{{ $sw }}"/>
-          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r2 }}" fill="none" stroke="rgba(48,209,88,0.12)" stroke-width="{{ $sw }}"/>
-          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r3 }}" fill="none" stroke="rgba(90,200,250,0.12)" stroke-width="{{ $sw }}"/>
-          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r1 }}" fill="none" stroke="#FF375F" stroke-width="{{ $sw }}" stroke-linecap="round" stroke-dasharray="{{ $c1 }}" stroke-dashoffset="{{ $o1 }}" transform="rotate(-90 {{ $cx }} {{ $cx }})" style="transition:stroke-dashoffset 1.2s ease;"/>
-          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r2 }}" fill="none" stroke="#30D158" stroke-width="{{ $sw }}" stroke-linecap="round" stroke-dasharray="{{ $c2 }}" stroke-dashoffset="{{ $o2 }}" transform="rotate(-90 {{ $cx }} {{ $cx }})" style="transition:stroke-dashoffset 1.2s ease;"/>
-          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r3 }}" fill="none" stroke="#5AC8FA" stroke-width="{{ $sw }}" stroke-linecap="round" stroke-dasharray="{{ $c3 }}" stroke-dashoffset="{{ $o3 }}" transform="rotate(-90 {{ $cx }} {{ $cx }})" style="transition:stroke-dashoffset 1.2s ease;"/>
-          <text x="{{ $cx }}" y="{{ $cx - 6 }}" text-anchor="middle" font-size="22" font-weight="900" fill="#1a1a1a" style="font-family:inherit;">{{ $progresDolasci }}%</text>
-          <text x="{{ $cx }}" y="{{ $cx + 10 }}" text-anchor="middle" font-size="9" font-weight="600" fill="#aaa" style="font-family:inherit;text-transform:uppercase;letter-spacing:1px;">OSTVARENO</text>
+          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r1 }}" fill="none" stroke="rgba(255,184,0,0.16)" stroke-width="{{ $sw }}"/>
+          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r2 }}" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="{{ $sw }}"/>
+          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r3 }}" fill="none" stroke="rgba(161,161,170,0.18)" stroke-width="{{ $sw }}"/>
+          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r1 }}" fill="none" stroke="#ffb800" stroke-width="{{ $sw }}" stroke-linecap="round" stroke-dasharray="{{ $c1 }}" stroke-dashoffset="{{ $o1 }}" transform="rotate(-90 {{ $cx }} {{ $cx }})" style="transition:stroke-dashoffset 1.2s ease;"/>
+          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r2 }}" fill="none" stroke="#f4f4f5" stroke-width="{{ $sw }}" stroke-linecap="round" stroke-dasharray="{{ $c2 }}" stroke-dashoffset="{{ $o2 }}" transform="rotate(-90 {{ $cx }} {{ $cx }})" style="transition:stroke-dashoffset 1.2s ease;"/>
+          <circle cx="{{ $cx }}" cy="{{ $cx }}" r="{{ $r3 }}" fill="none" stroke="#a1a1aa" stroke-width="{{ $sw }}" stroke-linecap="round" stroke-dasharray="{{ $c3 }}" stroke-dashoffset="{{ $o3 }}" transform="rotate(-90 {{ $cx }} {{ $cx }})" style="transition:stroke-dashoffset 1.2s ease;"/>
+          <text x="{{ $cx }}" y="{{ $cx - 6 }}" text-anchor="middle" font-size="22" font-weight="900" fill="#f4f4f5" style="font-family:inherit;">{{ $progresDolasci }}%</text>
+          <text x="{{ $cx }}" y="{{ $cx + 10 }}" text-anchor="middle" font-size="9" font-weight="600" fill="#8b8b93" style="font-family:inherit;text-transform:uppercase;letter-spacing:1px;">OSTVARENO</text>
         </svg>
       </div>
       <div class="rings-legend">
         <div class="ring-row">
-          <span class="ring-color" style="background:#FF375F;"></span>
+          <span class="ring-color" style="background:#ffb800;"></span>
           <div class="ring-info">
             <div class="ring-info-label">Dolasci</div>
             <div class="ring-info-sub">Cilj: {{ $ciljDolazaka }} posjeta</div>
           </div>
-          <div class="ring-val" style="color:#FF375F;">{{ $trenutniMjesec }}<small>/{{ $ciljDolazaka }}</small></div>
+          <div class="ring-val" style="color:#ffdd8a;">{{ $trenutniMjesec }}<small>/{{ $ciljDolazaka }}</small></div>
         </div>
         <div class="ring-row">
-          <span class="ring-color" style="background:#30D158;"></span>
+          <span class="ring-color" style="background:#f4f4f5;"></span>
           <div class="ring-info">
             <div class="ring-info-label">Vrijeme</div>
             <div class="ring-info-sub">Cilj: {{ $ciljSati }} sati</div>
           </div>
-          <div class="ring-val" style="color:#30D158;">{{ $satTrenutni }}<small>h</small></div>
+          <div class="ring-val" style="color:#f4f4f5;">{{ $satTrenutni }}<small>h</small></div>
         </div>
         <div class="ring-row">
-          <span class="ring-color" style="background:#5AC8FA;"></span>
+          <span class="ring-color" style="background:#a1a1aa;"></span>
           <div class="ring-info">
             <div class="ring-info-label">Prosjek po treningu</div>
             <div class="ring-info-sub">Cilj: {{ $prosjekCilj }} minuta</div>
           </div>
-          <div class="ring-val" style="color:#5AC8FA;">{{ floor($prosjekTrenutni) }}<small>min</small></div>
+          <div class="ring-val" style="color:#d4d4d8;">{{ floor($prosjekTrenutni) }}<small>min</small></div>
         </div>
       </div>
     </div>
@@ -426,11 +432,11 @@
   <div class="row g-3 mb-3">
     <div class="col-md-4 col-6">
       <div class="metric">
-        <div class="metric-icon" style="background:rgba(255,55,95,0.08);">
-          <svg width="18" height="18" fill="none" stroke="#FF375F" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        <div class="metric-icon" style="background:rgba(255,184,0,0.14);">
+          <svg width="18" height="18" fill="none" stroke="#ffb800" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
         </div>
         <div class="metric-label">Dolasci</div>
-        <div class="metric-val" style="color:#FF375F;">{{ $trenutniMjesec }}</div>
+        <div class="metric-val" style="color:#ffdd8a;">{{ $trenutniMjesec }}</div>
         <div class="metric-footer">
           @if($promjena > 0)
             <span class="metric-trend up">
@@ -445,32 +451,32 @@
           @else
             <span class="metric-trend neutral">—</span>
           @endif
-          <span style="font-size:10px;color:#bbb;margin-left:3px;">vs prethodni</span>
+          <span style="font-size:10px;color:#8b8b93;margin-left:3px;">vs prethodni</span>
         </div>
       </div>
     </div>
     <div class="col-md-4 col-6">
       <div class="metric">
-        <div class="metric-icon" style="background:rgba(48,209,88,0.08);">
-          <svg width="18" height="18" fill="none" stroke="#30D158" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="metric-icon" style="background:rgba(255,255,255,0.14);">
+          <svg width="18" height="18" fill="none" stroke="#f4f4f5" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <div class="metric-label">Vrijeme ovaj mjesec</div>
-        <div class="metric-val" style="color:#30D158;">{{ $satTrenutni }}<small>h {{ $minTrenutni }}m</small></div>
+        <div class="metric-val" style="color:#f4f4f5;">{{ $satTrenutni }}<small>h {{ $minTrenutni }}m</small></div>
         <div class="metric-footer">
-          <div style="display:flex;justify-content:space-between;font-size:10px;font-weight:600;color:#bbb;margin-bottom:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:10px;font-weight:600;color:#8b8b93;margin-bottom:4px;">
             <span>Cilj</span>
-            <span style="color:#30D158;">{{ $progresSati }}%</span>
+            <span style="color:#f4f4f5;">{{ $progresSati }}%</span>
           </div>
           <div class="prog-track">
-            <div class="prog-fill" style="width:{{ $progresSati }}%;background:linear-gradient(90deg,#30D158,#4ADE80);"></div>
+            <div class="prog-fill" style="width:{{ $progresSati }}%;background:linear-gradient(90deg,#f4f4f5,#d4d4d8);"></div>
           </div>
         </div>
       </div>
     </div>
     <div class="col-md-4 col-12">
       <div class="metric">
-        <div class="metric-icon" style="background:rgba(90,200,250,0.08);">
-          <svg width="18" height="18" fill="none" stroke="#5AC8FA" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+        <div class="metric-icon" style="background:rgba(161,161,170,0.2);">
+          <svg width="18" height="18" fill="none" stroke="#a1a1aa" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
         </div>
         <div class="metric-label">Zadnjih 6 mjeseci</div>
         <div class="mini-bars" style="margin-top:4px;">
@@ -478,13 +484,13 @@
           @foreach($mjesecniMini as $mm)
             @php $barH = max(4, round(($mm['dolasci'] / $maxMini) * 40)); @endphp
             <div style="flex:1;text-align:center;">
-              <div class="mini-bar" style="height:{{ $barH }}px;background:{{ $mm['tekuci'] ? '#5AC8FA' : 'rgba(90,200,250,0.18)' }};margin:0 auto;border-radius:3px;"></div>
-              <div style="font-size:9px;font-weight:600;color:{{ $mm['tekuci'] ? '#5AC8FA' : '#ccc' }};margin-top:4px;">{{ $mm['label'] }}</div>
+              <div class="mini-bar" style="height:{{ $barH }}px;background:{{ $mm['tekuci'] ? '#ffb800' : 'rgba(161,161,170,0.25)' }};margin:0 auto;border-radius:3px;"></div>
+                <div style="font-size:9px;font-weight:600;color:{{ $mm['tekuci'] ? '#ffdd8a' : '#8b8b93' }};margin-top:4px;">{{ $mm['label'] }}</div>
             </div>
           @endforeach
         </div>
         <div class="metric-footer" style="padding-top:8px;">
-          <span style="font-size:11px;color:#aaa;font-weight:500;">Prosjek: {{ floor($vrijemeUkupno->prosjek) }} min/trening</span>
+            <span style="font-size:11px;color:#8b8b93;font-weight:500;">Prosjek: {{ floor($vrijemeUkupno->prosjek) }} min/trening</span>
         </div>
       </div>
     </div>
@@ -494,20 +500,20 @@
   <div class="dash-card">
     <div class="dash-card-head">
       <div class="dash-card-title">
-        <span class="icon" style="background:rgba(255,55,95,0.08);">
-          <svg width="15" height="15" fill="none" stroke="#FF375F" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span class="icon" style="background:rgba(255,184,0,0.14);">
+          <svg width="15" height="15" fill="none" stroke="#ffb800" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         </span>
         Članstvo
       </div>
       @if($aktivanClan && $danaDoIsteka > 0 && $danaDoIsteka <= 14)
-        <span style="font-size:11px;font-weight:700;color:#FF9F0A;background:rgba(255,159,10,0.08);padding:3px 10px;border-radius:8px;">
+        <span style="font-size:11px;font-weight:700;color:#ffdd8a;background:rgba(255,184,0,0.14);padding:3px 10px;border-radius:8px;">
           Ističe za {{ $danaDoIsteka }} dana
         </span>
       @endif
     </div>
     <div class="mem-row">
-      <div class="mem-icon" style="background:{{ $aktivanClan ? 'rgba(48,209,88,0.08)' : 'rgba(255,55,95,0.08)' }};">
-        <svg width="20" height="20" fill="none" stroke="{{ $aktivanClan ? '#30D158' : '#FF375F' }}" stroke-width="2" viewBox="0 0 24 24">
+      <div class="mem-icon" style="background:{{ $aktivanClan ? 'rgba(255,184,0,0.14)' : 'rgba(161,161,170,0.2)' }};">
+        <svg width="20" height="20" fill="none" stroke="{{ $aktivanClan ? '#ffb800' : '#d4d4d8' }}" stroke-width="2" viewBox="0 0 24 24">
           @if($aktivanClan)
             <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>
           @else
@@ -518,13 +524,13 @@
       <div class="mem-info">
         <div class="mem-label">Status članstva</div>
       </div>
-      <div class="mem-val" style="color:{{ $aktivanClan ? '#30D158' : '#FF375F' }};">
+      <div class="mem-val" style="color:{{ $aktivanClan ? '#ffdd8a' : '#d4d4d8' }};">
         {{ $aktivanClan ? 'Aktivno' : 'Neaktivno' }}
       </div>
     </div>
     <div class="mem-row">
-      <div class="mem-icon" style="background:rgba(255,159,10,0.06);">
-        <svg width="20" height="20" fill="none" stroke="#FF9F0A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <div class="mem-icon" style="background:rgba(255,184,0,0.14);">
+        <svg width="20" height="20" fill="none" stroke="#ffb800" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       </div>
       <div class="mem-info">
         <div class="mem-label">Članarina važi do</div>
@@ -535,8 +541,8 @@
     </div>
     @if($member->register_date)
     <div class="mem-row">
-      <div class="mem-icon" style="background:rgba(90,200,250,0.06);">
-        <svg width="20" height="20" fill="none" stroke="#5AC8FA" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+      <div class="mem-icon" style="background:rgba(161,161,170,0.2);">
+        <svg width="20" height="20" fill="none" stroke="#a1a1aa" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
       </div>
       <div class="mem-info">
         <div class="mem-label">Član od</div>
@@ -553,12 +559,12 @@
   <div class="dash-card">
     <div class="dash-card-head">
       <div class="dash-card-title">
-        <span class="icon" style="background:rgba(90,200,250,0.08);">
-          <svg width="15" height="15" fill="none" stroke="#5AC8FA" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="icon" style="background:rgba(161,161,170,0.2);">
+          <svg width="15" height="15" fill="none" stroke="#a1a1aa" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </span>
         Lični podaci
       </div>
-      <a href="{{ route('member.password') }}" style="font-size:12px;font-weight:600;color:#5AC8FA;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+      <a href="{{ route('member.password') }}" style="font-size:12px;font-weight:600;color:#ffdd8a;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         Promijeni lozinku
       </a>
