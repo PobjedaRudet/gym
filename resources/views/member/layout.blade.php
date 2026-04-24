@@ -20,6 +20,11 @@
             overflow-x: hidden;
         }
 
+        body.guest-portal {
+            background: #0a0a0a;
+            color: #f4f4f5;
+        }
+
         /* ===== SIDEBAR ===== */
         .sidebar-overlay {
             position: fixed; inset: 0;
@@ -158,48 +163,187 @@
 
         /* ===== AUTH CARD (login/register) ===== */
         .auth-card {
-            background: #fff;
-            border: 1px solid rgba(0,0,0,0.08);
+            background: #111111;
+            border: 1px solid #2a2a2a;
             border-radius: 20px;
             padding: 2.5rem;
             max-width: 440px;
             margin: 0 auto;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.45);
         }
-        .auth-card h2 { color: #1a1a1a; font-weight: 800; margin-bottom: 0.5rem; }
-        .auth-card .subtitle { color: #888; font-size: 14px; margin-bottom: 2rem; }
+        .auth-card h2 { color: #ffffff; font-weight: 800; margin-bottom: 0.5rem; }
+        .auth-card .subtitle { color: #b3b3b3; font-size: 14px; margin-bottom: 2rem; }
+        .auth-symbol {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            border: 1px solid #3a3a3a;
+            background: #161616;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f4f4f5;
+            margin-bottom: 1rem;
+        }
+        .auth-symbol svg {
+            width: 28px;
+            height: 28px;
+        }
         .auth-card label {
-            color: #555; font-size: 13px; font-weight: 600;
+            color: #d4d4d8; font-size: 13px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 0.5px;
         }
         .auth-card .form-control {
-            background: #f8f8f8;
-            border: 1px solid #ddd;
-            color: #1a1a1a; border-radius: 12px; padding: 12px 16px; font-size: 15px;
+            background: #1a1a1a;
+            border: 1px solid #3a3a3a;
+            color: #f4f4f5; border-radius: 12px; padding: 12px 16px; font-size: 15px;
         }
         .auth-card .form-control:focus {
-            background: #fff;
-            border-color: #c8a84e;
-            box-shadow: 0 0 0 3px rgba(200,168,78,0.15);
-            color: #1a1a1a;
+            background: #1f1f1f;
+            border-color: #8a8a8a;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.12);
+            color: #ffffff;
         }
-        .auth-card .form-control::placeholder { color: #aaa; }
+        .auth-card .form-control::placeholder { color: #7d7d7d; }
         .btn-portal {
-            background: linear-gradient(135deg, #c8a84e, #a08430);
-            border: none; color: #fff; font-weight: 700; font-size: 15px;
+            background: #f5f5f5;
+            border: 1px solid #f5f5f5;
+            color: #111111; font-weight: 700; font-size: 15px;
             padding: 12px; border-radius: 12px; width: 100%;
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-portal:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(200,168,78,0.35);
-            color: #fff;
+            box-shadow: 0 8px 24px rgba(255,255,255,0.2);
+            color: #000;
         }
-        .auth-link { color: #c8a84e; text-decoration: none; font-weight: 600; }
-        .auth-link:hover { color: #a08430; }
+        .auth-link { color: #ffffff; text-decoration: none; font-weight: 600; }
+        .auth-link:hover { color: #d4d4d8; }
         .alert-portal {
-            background: rgba(220,53,69,0.08); border: 1px solid rgba(220,53,69,0.2);
-            color: #dc3545; border-radius: 12px; padding: 12px 16px; font-size: 14px;
+            background: #1a1a1a; border: 1px solid #525252;
+            color: #e4e4e7; border-radius: 12px; padding: 12px 16px; font-size: 14px;
+        }
+
+        .auth-hero-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 0.75rem;
+        }
+        .auth-phone {
+            width: min(360px, 92vw);
+            min-height: 680px;
+            border-radius: 34px;
+            border: 1px solid #1f1f1f;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+        }
+        .auth-phone::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.92) 100%);
+        }
+        .auth-phone-inner {
+            position: relative;
+            min-height: 680px;
+            padding: 1.5rem 1.4rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .auth-brand {
+            text-align: center;
+            margin-top: 0.4rem;
+        }
+        .auth-brand img {
+            height: 72px;
+            width: auto;
+            filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+        }
+        .auth-copy {
+            margin-top: auto;
+            margin-bottom: 1rem;
+            color: #f5f5f5;
+            text-align: left;
+            line-height: 1.2;
+            font-size: 2.05rem;
+            font-weight: 300;
+            letter-spacing: 0.2px;
+        }
+        .auth-copy strong {
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .auth-actions {
+            display: grid;
+            gap: 0.75rem;
+        }
+        .btn-auth-primary,
+        .btn-auth-secondary {
+            width: 100%;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 0.82rem 1rem;
+            text-transform: uppercase;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+        }
+        .btn-auth-primary {
+            background: #ffb800;
+            color: #111111;
+            border: 1px solid #ffb800;
+        }
+        .btn-auth-primary:hover {
+            color: #111111;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(255, 184, 0, 0.3);
+        }
+        .btn-auth-secondary {
+            background: rgba(0, 0, 0, 0.35);
+            color: #f4f4f5;
+            border: 1px solid #3f3f46;
+        }
+        .btn-auth-secondary:hover {
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+        }
+        .auth-form-panel {
+            margin-top: 1rem;
+            background: rgba(9, 9, 11, 0.84);
+            border: 1px solid #2b2b2f;
+            border-radius: 14px;
+            padding: 0.95rem;
+        }
+        .auth-form-panel .form-control {
+            background: #16161a;
+            border-color: #31313a;
+            color: #f4f4f5;
+        }
+        .auth-form-panel .form-control:focus {
+            background: #18181b;
+            border-color: #ffb800;
+            box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.2);
+            color: #ffffff;
+        }
+        .auth-form-panel label,
+        .auth-form-panel small,
+        .auth-form-panel .form-check-label,
+        .auth-muted {
+            color: #d4d4d8 !important;
+        }
+        .auth-legal {
+            margin-top: auto;
+            text-align: center;
+            color: #a1a1aa;
+            font-size: 11px;
         }
 
         @media (min-width: 992px) {
@@ -211,7 +355,7 @@
     </style>
     @yield('styles')
 </head>
-<body>
+<body class="{{ Auth::guard('member')->check() ? '' : 'guest-portal' }}">
     @if(Auth::guard('member')->check())
     @php
         $authMember = Auth::guard('member')->user();
