@@ -1,5 +1,5 @@
 ##### THIS ALLOWS US TO DEPLOY THE SITE FROM A GIT REPO ######
-#/home/pobjeda/repositories/rudet_norme
+#/home/pobjeda/repositories/gym
 #https://pobjeda.com:2083/cpsess9724415117/frontend/jupiter/filemanager/index.html?dir=%2Fhome%2Fpobjeda%2Fpublic_html%2Fnorme.pobjeda.com
 ---
 deployment:
