@@ -221,13 +221,13 @@
     width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
   }
   .ring-info { flex: 1; }
-  .ring-info-label { font-size: 13px; font-weight: 600; color: #d4d4d8; }
-  .ring-info-sub { font-size: 10px; color: #8b8b93; font-weight: 500; }
+  .ring-info-label { font-size: 16px; font-weight: 700; color: #d4d4d8; }
+  .ring-info-sub { font-size: 13px; color: #a1a1aa; font-weight: 600; }
   .ring-val {
-    font-size: 20px; font-weight: 800; text-align: right;
+    font-size: 26px; font-weight: 900; text-align: right;
   }
   .ring-val small {
-    font-size: 0.6em; font-weight: 600; color: #8b8b93;
+    font-size: 0.65em; font-weight: 700; color: #a1a1aa;
   }
 
   /* Metric cards */
@@ -311,10 +311,11 @@
     margin-right: 14px; flex-shrink: 0;
   }
   .mem-info { flex: 1; }
-  .mem-label { font-size: 13px; font-weight: 500; color: #a1a1aa; }
-  .mem-sub { font-size: 10px; color: #7f7f86; font-weight: 500; }
+  .membership-title { font-size: 21px; letter-spacing: 0.2px; }
+  .mem-label { font-size: 16px; font-weight: 600; color: #d4d4d8; }
+  .mem-sub { font-size: 13px; color: #a1a1aa; font-weight: 600; }
   .mem-val {
-    font-size: 14px; font-weight: 700; color: #f4f4f5;
+    font-size: 19px; font-weight: 800; color: #f4f4f5;
     text-align: right;
   }
 
@@ -329,6 +330,13 @@
     .rings-wrap { flex-direction: column; gap: 16px; }
     .rings-legend { width: 100%; }
     .ring-row { justify-content: space-between; }
+    .ring-info-label { font-size: 14px; }
+    .ring-info-sub { font-size: 12px; }
+    .ring-val { font-size: 22px; }
+    .membership-title { font-size: 18px; }
+    .mem-label { font-size: 14px; }
+    .mem-sub { font-size: 12px; }
+    .mem-val { font-size: 16px; }
     .metric-val { font-size: 1.7rem; }
     .dash-day { padding: 8px 0 6px; border-radius: 10px; }
     .dash-day-num { font-size: 13px; }
@@ -410,11 +418,11 @@
         <div class="dash-hero-stat-label">Ukupno dolazaka</div>
       </div>
       <div class="dash-hero-stat">
-        <div class="dash-hero-stat-val">{{ floor($vrijemeUkupno->ukupno / 60) }}<small>h</small></div>
+        <div class="dash-hero-stat-val">{{ floor($vrijemeUkupno->ukupno / 60) }} <small>h</small></div>
         <div class="dash-hero-stat-label">Ukupno sati</div>
       </div>
       <div class="dash-hero-stat">
-        <div class="dash-hero-stat-val">{{ floor($vrijemeUkupno->prosjek) }}<small>min</small></div>
+        <div class="dash-hero-stat-val">{{ floor($vrijemeUkupno->prosjek) }} <small>min</small></div>
         <div class="dash-hero-stat-label">Prosjek treninga</div>
       </div>
       <div class="dash-hero-stat">
@@ -574,7 +582,7 @@
   {{-- ========== MEMBERSHIP ========== --}}
   <div class="dash-card">
     <div class="dash-card-head">
-      <div class="dash-card-title">
+      <div class="dash-card-title membership-title">
         <span class="icon" style="background:rgba(255,184,0,0.14);">
           <svg width="15" height="15" fill="none" stroke="#ffb800" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         </span>

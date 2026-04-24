@@ -35,12 +35,12 @@
     display: inline-flex; align-items: center; justify-content: center;
     margin-bottom: 8px;
   }
-  .stat-value { font-size: 1.4rem; font-weight: 800; color: var(--dash-text); margin: 0; }
+  .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--dash-text); margin: 0; }
   .stat-label {
     font-size: 10px; font-weight: 700; color: var(--dash-muted);
     text-transform: uppercase; letter-spacing: 0.8px;
   }
-  .stat-sub { font-size: 11px; color: var(--dash-subtle); font-weight: 500; margin-top: 2px; }
+  .stat-sub { font-size: 13px; color: var(--dash-subtle); font-weight: 600; margin-top: 3px; }
 
   .section-title {
     font-weight: 700; font-size: 15px; color: var(--dash-text);
@@ -67,7 +67,7 @@
     display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
   }
   .progress-title { font-weight: 700; font-size: 13px; color: var(--dash-text); }
-  .progress-value { font-weight: 800; font-size: 14px; }
+  .progress-value { font-weight: 800; font-size: 18px; }
   .progress-bar-bg {
     background: rgba(255,255,255,0.08); border-radius: 10px; height: 12px; overflow: hidden;
   }
@@ -76,7 +76,7 @@
   }
   .progress-bar-fill span {
     position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
-    font-size: 9px; font-weight: 700; color: #0a0a0a;
+    font-size: 11px; font-weight: 700; color: #0a0a0a;
   }
   .progress-msg { margin: 4px 0 0; font-size: 11px; font-weight: 600; }
 
@@ -86,7 +86,7 @@
   .month-row:last-child { border-bottom: none; }
   .month-name { font-size: 13px; font-weight: 600; color: var(--dash-muted); }
   .month-name.tekuci { color: var(--dash-accent-soft); font-weight: 700; }
-  .month-stats { font-size: 11px; color: var(--dash-subtle); font-weight: 500; }
+  .month-stats { font-size: 13px; color: var(--dash-subtle); font-weight: 600; }
   .month-bar-bg {
     background: rgba(255,255,255,0.08); border-radius: 6px; height: 6px; overflow: hidden; margin-top: 4px;
   }
@@ -95,17 +95,17 @@
   .week-card {
     background: linear-gradient(160deg, var(--dash-panel), #101013);
     border: 1px solid var(--dash-border);
-    border-radius: 12px; padding: 1rem; text-align: center;
+    border-radius: 12px; padding: 1.1rem; text-align: center;
     box-shadow: 0 10px 24px rgba(0,0,0,0.2);
   }
   .week-card.tekuca { border-color: rgba(255,184,0,0.45); background: rgba(255,184,0,0.08); }
-  .week-label { font-size: 11px; font-weight: 600; color: var(--dash-muted); margin-bottom: 6px; }
-  .week-value { font-size: 1.1rem; font-weight: 800; color: var(--dash-text); }
-  .week-sub { font-size: 10px; color: var(--dash-subtle); }
+  .week-label { font-size: 17px; font-weight: 800; color: var(--dash-muted); margin-bottom: 8px; }
+  .week-value { font-size: 1.6rem; font-weight: 800; color: var(--dash-text); }
+  .week-sub { font-size: 16px; color: var(--dash-subtle); font-weight: 700; }
 
   .year-table {
     width: 100%; border-collapse: separate; border-spacing: 0;
-    border-radius: 12px; overflow: hidden; font-size: 12px;
+    border-radius: 12px; overflow: hidden; font-size: 14px;
   }
   .year-table thead tr {
     background: linear-gradient(135deg, #151517, #0f0f11); color: var(--dash-text);
@@ -120,11 +120,13 @@
   }
 
   @media (max-width: 767.98px) {
-    .stat-value { font-size: 1.1rem; }
+    .stat-value { font-size: 1.35rem; }
     .stat-icon { width: 36px; height: 36px; }
     .stat-card { padding: 1rem 0.5rem; }
     .page-title { font-size: 1.1rem; }
-    .year-table { font-size: 10px; }
+    .week-label { font-size: 15px; }
+    .week-sub { font-size: 14px; }
+    .year-table { font-size: 11px; }
     .year-table th, .year-table td { padding: 6px 4px; }
     .hide-mobile { display: none !important; }
   }
@@ -246,21 +248,21 @@
     <div class="col-4">
       <div class="stat-card">
         <p class="stat-label">Ukupno</p>
-        <p class="stat-value" style="font-size:1.1rem;">{{ floor($vrijemeUkupno->ukupno / 60) }}h {{ $vrijemeUkupno->ukupno % 60 }}m</p>
+        <p class="stat-value" style="font-size:1.45rem;">{{ floor($vrijemeUkupno->ukupno / 60) }}h {{ $vrijemeUkupno->ukupno % 60 }}m</p>
         <p class="stat-sub">Prosjek: {{ floor($vrijemeUkupno->prosjek) }}min</p>
       </div>
     </div>
     <div class="col-4">
       <div class="stat-card">
         <p class="stat-label">Ovaj mjesec</p>
-        <p class="stat-value" style="font-size:1.1rem;">{{ floor($vrijemeTrenutni->ukupno / 60) }}h {{ $vrijemeTrenutni->ukupno % 60 }}m</p>
+        <p class="stat-value" style="font-size:1.45rem;">{{ floor($vrijemeTrenutni->ukupno / 60) }}h {{ $vrijemeTrenutni->ukupno % 60 }}m</p>
         <p class="stat-sub">Prosjek: {{ floor($vrijemeTrenutni->prosjek) }}min</p>
       </div>
     </div>
     <div class="col-4">
       <div class="stat-card">
         <p class="stat-label">Prethodni mjesec</p>
-        <p class="stat-value" style="font-size:1.1rem;">{{ floor($vrijemeProthodni->ukupno / 60) }}h {{ $vrijemeProthodni->ukupno % 60 }}m</p>
+        <p class="stat-value" style="font-size:1.45rem;">{{ floor($vrijemeProthodni->ukupno / 60) }}h {{ $vrijemeProthodni->ukupno % 60 }}m</p>
         <p class="stat-sub">Prosjek: {{ floor($vrijemeProthodni->prosjek) }}min</p>
       </div>
     </div>
@@ -277,7 +279,7 @@
       <div class="week-card {{ $sed['tekuca'] ? 'tekuca' : '' }}">
         <p class="week-label">
           {{ $sed['label'] }}
-          @if($sed['tekuca']) <span style="font-size:9px;background:#ffb800;color:#0a0a0a;padding:2px 6px;border-radius:5px;margin-left:2px;">Sada</span> @endif
+          @if($sed['tekuca']) <span style="font-size:13px;background:#ffb800;color:#0a0a0a;padding:2px 8px;border-radius:6px;margin-left:4px;">Sada</span> @endif
         </p>
         <p class="week-value">{{ $sed['dolasci'] }}</p>
         <p class="week-sub">{{ floor($sed['minuta'] / 60) }}h {{ $sed['minuta'] % 60 }}m</p>
@@ -323,13 +325,13 @@
         $percCilja = min(round(($mp['dolasci'] / $ciljDolazaka) * 100), 100);
       @endphp
       <div class="d-flex align-items-center gap-2 mt-1">
-        <span style="font-size:11px;font-weight:700;color:{{ $percCilja >= 80 ? '#ffdd8a' : ($percCilja >= 50 ? '#f4f4f5' : '#a1a1aa') }};min-width:32px;">{{ $percCilja }}%</span>
+        <span style="font-size:13px;font-weight:700;color:{{ $percCilja >= 80 ? '#ffdd8a' : ($percCilja >= 50 ? '#f4f4f5' : '#a1a1aa') }};min-width:36px;">{{ $percCilja }}%</span>
         <div class="month-bar-bg flex-grow-1">
           <div class="month-bar-fill" style="width:{{ $barPerc }}%;background:linear-gradient(90deg,{{ $mp['tekuci'] ? '#ffb800,#f59e0b' : '#71717a,#52525b' }});"></div>
         </div>
       </div>
       @if($mp['prosjek_minuta'] > 0)
-      <p style="margin:2px 0 0;font-size:10px;color:#8b8b93;">Prosjek po posjeti: {{ floor($mp['prosjek_minuta'] / 60) }}h {{ $mp['prosjek_minuta'] % 60 }}m</p>
+      <p style="margin:2px 0 0;font-size:12px;color:#8b8b93;">Prosjek po posjeti: {{ floor($mp['prosjek_minuta'] / 60) }}h {{ $mp['prosjek_minuta'] % 60 }}m</p>
       @endif
     </div>
     @endforeach
