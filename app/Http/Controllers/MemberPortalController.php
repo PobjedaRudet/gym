@@ -2,17 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use App\Models\Obavijest;
 use App\Models\PrijavaTreninga;
 use App\Models\TerminTreninga;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 
 class MemberPortalController extends Controller
 {
+    public function updatePhoto(Request $request)
+    {
+        /** @var Member $member */
+        $member = Auth::guard('member')->user();
+
+        $request->validate([
+            'profile_image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
+        ]);
+
+        $file = $request->file('profile_image');
+        $filename = 'member_' . $member->id . '_' . time() . '.jpg';
+        $path = public_path('images');
+        $maxFileSize = 1048576;
+
+        if (!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
+
+        $img = Image::make($file->getRealPath())->orientate();
+        $img->fit(600, 600, function ($constraint) {
+            $constraint->upsize();
+        });
+
+        $quality = 90;
+        $fullPath = $path . DIRECTORY_SEPARATOR . $filename;
+        $img->save($fullPath, $quality, 'jpg');
+
+        while (file_exists($fullPath) && filesize($fullPath) > $maxFileSize && $quality > 45) {
+            $quality -= 10;
+            $img->save($fullPath, $quality, 'jpg');
+        }
+
+        while (file_exists($fullPath) && filesize($fullPath) > $maxFileSize && $img->width() > 220) {
+            $img->resize((int) round($img->width() * 0.85), (int) round($img->height() * 0.85));
+            $img->save($fullPath, $quality, 'jpg');
+        }
+
+        if (file_exists($fullPath) && filesize($fullPath) > $maxFileSize) {
+            @unlink($fullPath);
+
+            return redirect()
+                ->route('member.profile')
+                ->withErrors(['profile_image' => 'Slika nije mogla biti umanjena ispod 1 MB. Odaberite manju ili kompresovanu sliku.']);
+        }
+
+        $member->image_path = $filename;
+        $member->save();
+
+        return redirect()->route('member.profile')->with('success', 'Profilna slika je uspješno ažurirana.');
+    }
+
     public function profile()
     {
+        /** @var Member $member */
         $member = Auth::guard('member')->user();
         $id = $member->id;
         $now = Carbon::now();
@@ -268,6 +323,7 @@ class MemberPortalController extends Controller
 
     public function obavijesti()
     {
+        /** @var Member $member */
         $member = Auth::guard('member')->user();
         $member->last_seen_obavijesti = now();
         $member->save();
@@ -278,6 +334,7 @@ class MemberPortalController extends Controller
 
     public function termini()
     {
+        /** @var Member $member */
         $member = Auth::guard('member')->user();
         $termini = TerminTreninga::withCount('prijave')
             ->orderBy('datum_od', 'desc')

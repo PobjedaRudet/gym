@@ -1,6 +1,19 @@
 @extends('member.layout')
+@section('styles')
+<style>
+    .register-page .auth-phone,
+    .register-page .auth-phone-inner {
+        min-height: 610px;
+    }
+
+    .register-page .auth-copy {
+        margin-top: 1.1rem;
+    }
+</style>
+@endsection
+
 @section('content')
-<div class="auth-hero-wrap">
+<div class="auth-hero-wrap register-page">
     <div class="auth-phone" style="background-image:url('{{ asset('site/img/hero/hero-1.jpg') }}');">
         <div class="auth-phone-inner">
             <div class="auth-brand">

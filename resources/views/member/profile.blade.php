@@ -38,19 +38,66 @@
     display: flex; align-items: center; gap: 18px;
     position: relative; z-index: 1;
   }
+  .dash-avatar-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
   .dash-avatar {
-    width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
-    border: 3px solid rgba(255,184,0,0.5);
+    width: 92px; height: 92px; border-radius: 50%; object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.9);
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     flex-shrink: 0;
   }
   .dash-avatar-init {
-    width: 72px; height: 72px; border-radius: 50%;
+    width: 92px; height: 92px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     background: linear-gradient(135deg, #ffb800, #ffd66b);
-    font-weight: 800; color: #fff; font-size: 22px;
+    font-weight: 800; color: #fff; font-size: 28px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     flex-shrink: 0;
+  }
+  .dash-avatar-form {
+    width: 100%;
+  }
+  .dash-avatar-input {
+    display: none;
+  }
+  .dash-avatar-btn {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.08);
+    color: #f4f4f5;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .dash-avatar-btn:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.28);
+  }
+  .dash-avatar-help {
+    margin-top: 6px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+  }
+  .dash-avatar-status {
+    margin-top: 6px;
+    font-size: 10px;
+    color: #ffdd8a;
+    text-align: center;
+    display: none;
   }
   .dash-hero-info { flex: 1; min-width: 0; }
   .dash-hero-name {
@@ -276,7 +323,9 @@
     .dash-hero { padding: 1.5rem; border-radius: 18px; }
     .dash-hero-name { font-size: 1.15rem; }
     .dash-hero-stat-val { font-size: 1.3rem; }
-    .dash-avatar, .dash-avatar-init { width: 56px; height: 56px; font-size: 18px; }
+    .dash-avatar, .dash-avatar-init { width: 68px; height: 68px; font-size: 22px; }
+    .dash-avatar-stack { width: 84px; }
+    .dash-avatar-btn { font-size: 10px; padding: 7px 8px; }
     .rings-wrap { flex-direction: column; gap: 16px; }
     .rings-legend { width: 100%; }
     .ring-row { justify-content: space-between; }
@@ -297,21 +346,41 @@
   $progresSati = $ciljMinuta > 0 ? min(round((($vrijemeTrenutni->ukupno ?? 0) / $ciljMinuta) * 100), 100) : 0;
   $promjena = $prethodniMjesec > 0 ? round((($trenutniMjesec - $prethodniMjesec) / $prethodniMjesec) * 100) : ($trenutniMjesec > 0 ? 100 : 0);
   $prosjekTrenutni = $vrijemeTrenutni->prosjek ?? 0;
-  $prosjekCilj = 60;
+  $prosjekCilj = 90;
   $progresProsjek = $prosjekCilj > 0 ? min(round(($prosjekTrenutni / $prosjekCilj) * 100), 100) : 0;
   $danaDoIsteka = $istekClanarine ? \Carbon\Carbon::parse($istekClanarine)->diffInDays($now, false) * -1 : 0;
 @endphp
 
 <div class="dash">
 
+  @if(session('success'))
+    <div class="dash-card" style="padding:0.95rem 1rem;border-color:rgba(255,184,0,0.26);background:linear-gradient(160deg, rgba(255,184,0,0.12), rgba(17,17,20,0.96));color:#f4f4f5;">
+      {{ session('success') }}
+    </div>
+  @endif
+
   {{-- ========== HERO BANNER ========== --}}
   <div class="dash-hero">
     <div class="dash-hero-top">
-      @if($member->image_path)
-        <img src="{{ asset('images/'.$member->image_path) }}" alt="" class="dash-avatar">
-      @else
-        <div class="dash-avatar-init">{{ mb_substr($member->name,0,1) }}{{ mb_substr($member->surname,0,1) }}</div>
-      @endif
+      <div class="dash-avatar-stack">
+        @if($member->image_path)
+          <img src="{{ asset('images/'.$member->image_path) }}" alt="" class="dash-avatar">
+        @else
+          <div class="dash-avatar-init">{{ mb_substr($member->name,0,1) }}{{ mb_substr($member->surname,0,1) }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('member.profile.photo') }}" enctype="multipart/form-data" class="dash-avatar-form">
+          @csrf
+          <input type="file" name="profile_image" id="profile_image" class="dash-avatar-input" accept="image/png,image/jpeg,image/jpg,image/webp">
+          <button type="button" class="dash-avatar-btn" onclick="openProfileImagePicker()">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Promijeni sliku
+          </button>
+          <div class="dash-avatar-help">JPG, PNG ili WEBP, automatski do 1 MB</div>
+          <div class="dash-avatar-status" id="profile-image-status">Upload u toku...</div>
+        </form>
+      </div>
+
       <div class="dash-hero-info">
         <h1 class="dash-hero-name">{{ $member->name }} {{ $member->surname }}</h1>
         <div class="dash-hero-email">{{ $member->email }}</div>
@@ -354,6 +423,12 @@
       </div>
     </div>
   </div>
+
+  @error('profile_image')
+    <div class="dash-card" style="padding:0.95rem 1rem;border-color:rgba(255,255,255,0.12);background:#151518;color:#d4d4d8;">
+      {{ $message }}
+    </div>
+  @enderror
 
   {{-- ========== WEEKLY STRIP ========== --}}
   <div class="dash-week">
@@ -600,4 +675,36 @@
   </div>
 
 </div>
+@endsection
+
+@section('scripts')
+<script>
+function openProfileImagePicker() {
+  var input = document.getElementById('profile_image');
+  if (input) {
+    input.click();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var input = document.getElementById('profile_image');
+  var status = document.getElementById('profile-image-status');
+
+  if (!input) {
+    return;
+  }
+
+  input.addEventListener('change', function () {
+    if (!input.files || !input.files.length) {
+      return;
+    }
+
+    if (status) {
+      status.style.display = 'block';
+    }
+
+    input.form.submit();
+  });
+});
+</script>
 @endsection

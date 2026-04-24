@@ -109,6 +109,7 @@ Route::prefix('portal')->group(function () {
 
     Route::middleware(['active.member'])->group(function () {
         Route::get('/profile', [MemberPortalController::class, 'profile'])->name('member.profile');
+      Route::post('/profile/photo', [MemberPortalController::class, 'updatePhoto'])->name('member.profile.photo');
         Route::get('/statistics', [MemberPortalController::class, 'statistics'])->name('member.statistics');
         Route::get('/live', [MemberPortalController::class, 'live'])->name('member.live');
         Route::get('/obavijesti', [MemberPortalController::class, 'obavijesti'])->name('member.obavijesti');

@@ -2,6 +2,36 @@
 
 @section('styles')
 <style>
+    body { background: #0a0a0a; color: #f4f4f5; }
+    .main-content { background: #0a0a0a; }
+
+    .page-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    .page-title {
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: #f4f4f5;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .page-title svg { color: #ffb800; }
+    .page-counter {
+        font-size: 13px;
+        color: #a1a1aa;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 999px;
+        padding: 7px 12px;
+    }
+
     .obavijesti-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -12,17 +42,19 @@
     }
 
     .ob-card {
-        background: #fff;
+        background: linear-gradient(160deg, #131316, #101012);
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 16px 36px rgba(0,0,0,0.28);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         display: flex;
         flex-direction: column;
     }
     .ob-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.32);
+        border-color: rgba(255,184,0,0.22);
     }
 
     /* Image hero section */
@@ -31,7 +63,7 @@
         width: 100%;
         padding-top: 40%; /* shorter ratio */
         overflow: hidden;
-        background: linear-gradient(135deg, #1C1C1E 0%, #2C2C2E 100%);
+        background: linear-gradient(135deg, #17171a 0%, #232329 100%);
     }
     .ob-image-wrap img {
         position: absolute;
@@ -62,23 +94,23 @@
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
     }
-    .ob-image-badge.info { background: rgba(90,200,250,0.85); color: #fff; }
-    .ob-image-badge.vazno { background: rgba(255,55,95,0.85); color: #fff; }
-    .ob-image-badge.upozorenje { background: rgba(255,159,10,0.85); color: #fff; }
+    .ob-image-badge.info { background: rgba(255,255,255,0.88); color: #111111; }
+    .ob-image-badge.vazno { background: rgba(255,184,0,0.92); color: #111111; }
+    .ob-image-badge.upozorenje { background: rgba(161,161,170,0.92); color: #111111; }
 
     /* NEW ribbon for fresh posts */
     .ob-new-ribbon {
         position: absolute;
         top: 14px; right: 14px;
-        background: #30D158;
-        color: #fff;
+        background: #ffb800;
+        color: #111111;
         font-size: 10px;
         font-weight: 800;
         padding: 3px 10px;
         border-radius: 8px;
         letter-spacing: 1px;
         text-transform: uppercase;
-        box-shadow: 0 2px 8px rgba(48,209,88,0.3);
+        box-shadow: 0 2px 8px rgba(255,184,0,0.3);
     }
 
     /* Card body */
@@ -100,20 +132,20 @@
         margin-top: 6px;
         flex-shrink: 0;
     }
-    .ob-type-dot.info { background: #5AC8FA; box-shadow: 0 0 6px rgba(90,200,250,0.4); }
-    .ob-type-dot.vazno { background: #FF375F; box-shadow: 0 0 6px rgba(255,55,95,0.4); }
-    .ob-type-dot.upozorenje { background: #FF9F0A; box-shadow: 0 0 6px rgba(255,159,10,0.4); }
+    .ob-type-dot.info { background: #f4f4f5; box-shadow: 0 0 6px rgba(244,244,245,0.28); }
+    .ob-type-dot.vazno { background: #ffb800; box-shadow: 0 0 6px rgba(255,184,0,0.35); }
+    .ob-type-dot.upozorenje { background: #a1a1aa; box-shadow: 0 0 6px rgba(161,161,170,0.28); }
 
     .ob-naslov {
         font-weight: 800;
         font-size: 18px;
-        color: #1C1C1E;
+        color: #f4f4f5;
         line-height: 1.3;
         margin: 0;
     }
     .ob-sadrzaj {
         font-size: 14px;
-        color: #555;
+        color: #d4d4d8;
         line-height: 1.7;
         flex: 1;
     }
@@ -123,11 +155,11 @@
         justify-content: space-between;
         margin-top: 1rem;
         padding-top: 0.75rem;
-        border-top: 1px solid rgba(0,0,0,0.04);
+        border-top: 1px solid rgba(255,255,255,0.08);
     }
     .ob-date {
         font-size: 12px;
-        color: #8E8E93;
+        color: #8b8b93;
         display: flex;
         align-items: center;
         gap: 4px;
@@ -139,17 +171,17 @@
         font-size: 11px;
         font-weight: 700;
     }
-    .ob-tip-inline.info { background: rgba(90,200,250,0.1); color: #5AC8FA; }
-    .ob-tip-inline.vazno { background: rgba(255,55,95,0.1); color: #FF375F; }
-    .ob-tip-inline.upozorenje { background: rgba(255,159,10,0.1); color: #FF9F0A; }
+    .ob-tip-inline.info { background: rgba(244,244,245,0.12); color: #f4f4f5; }
+    .ob-tip-inline.vazno { background: rgba(255,184,0,0.14); color: #ffdd8a; }
+    .ob-tip-inline.upozorenje { background: rgba(161,161,170,0.18); color: #d4d4d8; }
 
     /* No-image card style — with accent left border */
     .ob-card.no-image {
         border-left: 4px solid transparent;
     }
-    .ob-card.no-image.info-border { border-left-color: #5AC8FA; }
-    .ob-card.no-image.vazno-border { border-left-color: #FF375F; }
-    .ob-card.no-image.upozorenje-border { border-left-color: #FF9F0A; }
+    .ob-card.no-image.info-border { border-left-color: #f4f4f5; }
+    .ob-card.no-image.vazno-border { border-left-color: #ffb800; }
+    .ob-card.no-image.upozorenje-border { border-left-color: #a1a1aa; }
 
     /* Featured / large card for first item with image */
     .ob-featured {
@@ -167,29 +199,44 @@
 
     /* Empty state */
     .ob-empty {
-        background: #fff;
+        background: linear-gradient(160deg, #131316, #101012);
         border-radius: 20px;
         padding: 4rem 2rem;
         text-align: center;
-        border: 2px dashed rgba(0,0,0,0.06);
+        border: 1px dashed rgba(255,255,255,0.12);
+        color: #d4d4d8;
+    }
+    .ob-empty svg {
+        stroke: #6b7280;
+    }
+
+    .ob-pagination :is(.page-link) {
+        background: #131316;
+        color: #d4d4d8;
+        border-color: rgba(255,255,255,0.08);
+    }
+    .ob-pagination .active .page-link {
+        background: #ffb800;
+        color: #111111;
+        border-color: #ffb800;
     }
 </style>
 @endsection
 
 @section('content')
-<div class="d-flex align-items-center justify-content-between mb-4">
-    <h4 style="font-weight:800;color:#1C1C1E;margin:0;">
-        <svg width="24" height="24" fill="none" stroke="#FF375F" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-4px;margin-right:6px;"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+<div class="page-head">
+    <h4 class="page-title">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
         Obavijesti
     </h4>
-    <span style="font-size:13px;color:#8E8E93;">{{ $obavijesti->total() }} {{ $obavijesti->total() == 1 ? 'obavijest' : 'obavijesti' }}</span>
+    <span class="page-counter">{{ $obavijesti->total() }} {{ $obavijesti->total() == 1 ? 'obavijest' : 'obavijesti' }}</span>
 </div>
 
 @if($obavijesti->isEmpty())
 <div class="ob-empty">
-    <svg width="56" height="56" fill="none" stroke="#ddd" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-    <p style="color:#8E8E93;font-size:16px;font-weight:600;margin-top:1rem;">Nema obavijesti</p>
-    <p style="color:#bbb;font-size:13px;">Ovdje će se pojaviti nove obavijesti i promocije.</p>
+    <svg width="56" height="56" fill="none" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+    <p style="color:#d4d4d8;font-size:16px;font-weight:600;margin-top:1rem;">Nema obavijesti</p>
+    <p style="color:#8b8b93;font-size:13px;">Ovdje će se pojaviti nove obavijesti i promocije.</p>
 </div>
 @else
 <div class="obavijesti-grid">
@@ -237,6 +284,6 @@
     @endforeach
 </div>
 
-<div class="mt-4">{{ $obavijesti->links() }}</div>
+<div class="mt-4 ob-pagination">{{ $obavijesti->links() }}</div>
 @endif
 @endsection
