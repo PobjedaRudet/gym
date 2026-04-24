@@ -139,7 +139,8 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         @if (Auth::user()->name == 'Admir' || Auth::user()->name == 'admin')
                             <a class="dropdown-item" href="{{ route('members') }}">Početna</a>
-                            <a class="dropdown-item" href="{{ route('report') }}">Izvještaj</a>
+                          <a class="dropdown-item" href="{{ route('report') }}">Izvještaj</a>
+                          <a class="dropdown-item" href="{{ route('comparison') }}">Detaljna statistika</a>
                             <hr class="dropdown-divider mx-2">
                             <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -148,6 +149,8 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
                         @else
                             <a class="dropdown-item" href="{{ route('members') }}">Početna</a>
+                          <a class="dropdown-item" href="{{ route('report') }}">Izvještaj</a>
+                          <a class="dropdown-item" href="{{ route('comparison') }}">Detaljna statistika</a>
                             <a class="dropdown-item text-danger" href="{{ route('odjaviNeaktivne') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Odjavi neaktivne
@@ -170,8 +173,6 @@
         <a class="subnav-link {{ request()->routeIs('createMember') ? 'active' : '' }}" href="{{ route('createMember') }}">Kreiraj člana</a>
         <a class="subnav-link {{ request()->routeIs('attendance-live') ? 'active' : '' }}" href="{{ route('attendance-live') }}">Evidencije live</a>
         <a class="subnav-link {{ request()->routeIs('attendance-list') ? 'active' : '' }}" href="{{ route('attendance-list') }}">Evidencije članova</a>
-        <a class="subnav-link {{ request()->routeIs('report') ? 'active' : '' }}" href="{{ route('report') }}">Izvještaj</a>
-        <a class="subnav-link {{ request()->routeIs('comparison') ? 'active' : '' }}" href="{{ route('comparison') }}">Detaljna statistika</a>
         <a class="subnav-link highlight" href="{{ route('attendance') }}">Prijava</a>
         <span class="subnav-link disabled">Admin</span>
     </div>

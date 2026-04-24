@@ -12,11 +12,10 @@
                 <strong>Empower</strong> your mind
             </div>
 
-            <div class="auth-actions">
-                <a href="{{ route('member.login') }}" class="btn-auth-secondary">Login</a>
-            </div>
-
             <div class="auth-form-panel">
+                <div class="auth-form-title">Prijava člana</div>
+                <div class="auth-form-subtitle">Unesite svoje podatke za pristup portalu</div>
+
                 @if($errors->any())
                 <div class="alert-portal mb-3">
                     {{ $errors->first() }}
@@ -39,6 +38,10 @@
                     </div>
                     <button type="submit" class="btn-auth-primary">Prijavi se</button>
                 </form>
+
+                <div class="text-center mt-3 auth-muted" style="font-size:13px;">
+                    Nemate nalog? <a href="{{ route('member.register') }}" class="auth-link">Registrujte se</a>
+                </div>
             </div>
         </div>
     </div>

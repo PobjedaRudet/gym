@@ -13,6 +13,9 @@
             </div>
 
             <div class="auth-form-panel">
+                <div class="auth-form-title">Registracija člana</div>
+                <div class="auth-form-subtitle">Email mora biti isti kao pri upisu u teretanu</div>
+
                 @if($errors->any())
                 <div class="alert-portal mb-3">
                     {{ $errors->first() }}
@@ -30,10 +33,14 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">Email adresa</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="vas@email.com" required autofocus>
-                        <small style="font-size:12px;">Mora biti isti email koji ste dali pri upisu u teretanu</small>
+                        <small style="font-size:12px;">Potvrdite tačnu email adresu člana</small>
                     </div>
                     <button type="submit" class="btn-auth-primary">Pošalji lozinku na email</button>
                 </form>
+
+                <div class="text-center mt-3 auth-muted" style="font-size:13px;">
+                    Već imate nalog? <a href="{{ route('member.login') }}" class="auth-link">Prijavite se</a>
+                </div>
             </div>
         </div>
     </div>
