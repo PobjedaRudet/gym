@@ -27,7 +27,7 @@ class ActiveMember
 
         if (!$aktivanClan) {
             Auth::guard('member')->logout();
-            return redirect()->route('member.login')->withErrors(['email' => 'Vaša članarina je istekla. Obratite se recepciji za produljenje.']);
+            return redirect()->route('member.login')->withErrors(['email' => 'Vaša članarina je istekla. Obratite se recepciji za produženje.']);
         }
 
         return $next($request);

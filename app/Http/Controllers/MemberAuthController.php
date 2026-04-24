@@ -87,7 +87,7 @@ class MemberAuthController extends Controller
         $aktivanClan = $clanarina && Carbon::parse($clanarina->end)->gte(Carbon::now()->startOfDay());
 
         if (!$aktivanClan) {
-            return back()->withErrors(['email' => 'Vaša članarina je istekla. Obratite se recepciji za produljenje.'])->withInput();
+            return back()->withErrors(['email' => 'Vaša članarina je istekla. Obratite se recepciji za produženje.'])->withInput();
         }
 
         Auth::guard('member')->login($member, $request->filled('remember'));
