@@ -41,7 +41,10 @@
         box-shadow: 0 2px 15px rgba(0,0,0,0.15);
       }
       .modern-navbar .navbar-brand img {
-        height: 40px;
+        height: 34px;
+        width: auto;
+        max-width: 180px;
+        object-fit: contain;
         border-radius: 10px;
       }
       .modern-navbar .nav-user {

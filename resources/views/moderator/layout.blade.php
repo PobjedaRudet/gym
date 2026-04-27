@@ -89,6 +89,38 @@
         }
         .sidebar-link svg { flex-shrink: 0; }
 
+        .sidebar-submenu-toggle {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 1.25rem;
+            color: rgba(255,255,255,0.6);
+            background: none; border: none; border-left: 3px solid transparent;
+            width: 100%; text-align: left; font-size: 14px; font-weight: 500;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .sidebar-submenu-toggle:hover {
+            background: rgba(255,55,95,0.08);
+            color: #fff; border-left-color: rgba(255,55,95,0.3);
+        }
+        .sidebar-submenu-toggle.active {
+            background: rgba(255,55,95,0.12);
+            color: #FF375F; font-weight: 700;
+            border-left-color: #FF375F;
+        }
+        .sidebar-submenu-toggle .toggle-arrow {
+            margin-left: auto; transition: transform 0.25s;
+        }
+        .sidebar-submenu-toggle.expanded .toggle-arrow { transform: rotate(90deg); }
+
+        .sidebar-submenu {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0,0,0,0.15);
+        }
+        .sidebar-submenu.expanded { max-height: 300px; }
+        .sidebar-submenu .sidebar-link {
+            padding-left: 3rem; font-size: 13px;
+        }
+
         .sidebar-footer {
             padding: 1rem 1.25rem;
             border-top: 1px solid rgba(255,255,255,0.06);
@@ -206,14 +238,41 @@
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                 Početna
             </a>
-            <a href="{{ route('moderator.obavijesti') }}" class="sidebar-link {{ str_starts_with($currentRoute, 'moderator.obavijesti') ? 'active' : '' }}">
+            {{-- Obavijesti submenu --}}
+            <button class="sidebar-submenu-toggle {{ str_starts_with($currentRoute, 'moderator.obavijesti') ? 'active expanded' : '' }}"
+                    id="obavjestiToggle" onclick="toggleSubmenu('obavjestiToggle','obavjestiMenu')">
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
                 Obavijesti
-            </a>
-            <a href="{{ route('moderator.termini') }}" class="sidebar-link {{ str_starts_with($currentRoute, 'moderator.termini') ? 'active' : '' }}">
+                <svg class="toggle-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <div class="sidebar-submenu {{ str_starts_with($currentRoute, 'moderator.obavijesti') ? 'expanded' : '' }}" id="obavjestiMenu">
+                <a href="{{ route('moderator.obavijesti') }}" class="sidebar-link {{ $currentRoute == 'moderator.obavijesti' ? 'active' : '' }}">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                    Pregled obavijesti
+                </a>
+                <a href="{{ route('moderator.obavijesti.create') }}" class="sidebar-link {{ $currentRoute == 'moderator.obavijesti.create' ? 'active' : '' }}">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                    Kreiraj obavijest
+                </a>
+            </div>
+
+            {{-- Termini treninga submenu --}}
+            <button class="sidebar-submenu-toggle {{ str_starts_with($currentRoute, 'moderator.termini') ? 'active expanded' : '' }}"
+                    id="terminiToggle" onclick="toggleSubmenu('terminiToggle','terminiMenu')">
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
                 Termini treninga
-            </a>
+                <svg class="toggle-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <div class="sidebar-submenu {{ str_starts_with($currentRoute, 'moderator.termini') ? 'expanded' : '' }}" id="terminiMenu">
+                <a href="{{ route('moderator.termini') }}" class="sidebar-link {{ $currentRoute == 'moderator.termini' ? 'active' : '' }}">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                    Pregled termina
+                </a>
+                <a href="{{ route('moderator.termini.create') }}" class="sidebar-link {{ $currentRoute == 'moderator.termini.create' ? 'active' : '' }}">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                    Dodaj termin
+                </a>
+            </div>
         </nav>
 
         <div class="sidebar-footer">
@@ -253,6 +312,12 @@
     function toggleSidebar() {
         document.getElementById('sidebar').classList.toggle('open');
         document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+    function toggleSubmenu(toggleId, menuId) {
+        const toggle = document.getElementById(toggleId);
+        const menu = document.getElementById(menuId);
+        toggle.classList.toggle('expanded');
+        menu.classList.toggle('expanded');
     }
     </script>
     @else

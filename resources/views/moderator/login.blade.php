@@ -4,7 +4,7 @@
 <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f2f2f2;padding:1rem;">
     <div class="auth-card">
         <div style="text-align:center;margin-bottom:1.5rem;">
-            <img src="{{ asset('site/img/logo.png') }}" alt="BEG's" style="height:50px;">
+            <img src="{{ asset('site/img/logo.png') }}" alt="BEG's" style="height:44px;width:auto;max-width:100%;">
         </div>
         <h2 style="text-align:center;">Moderator Panel</h2>
         <p class="subtitle" style="text-align:center;">Prijavite se na moderatorski panel</p>

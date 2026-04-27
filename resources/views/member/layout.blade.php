@@ -113,6 +113,56 @@
             padding: 2px 8px; border-radius: 10px; min-width: 22px; text-align: center;
         }
 
+        /* ===== SUBMENU ===== */
+        .sidebar-submenu-toggle {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 1.25rem;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none; font-size: 14px; font-weight: 500;
+            transition: all 0.2s; border-left: 3px solid transparent;
+            cursor: pointer; background: none; border: none; width: 100%;
+            text-align: left;
+        }
+        .sidebar-submenu-toggle:hover {
+            background: rgba(200,168,78,0.08);
+            color: #fff; border-left-color: rgba(200,168,78,0.3);
+        }
+        .sidebar-submenu-toggle.active {
+            background: rgba(200,168,78,0.12);
+            color: #c8a84e; font-weight: 700;
+            border-left-color: #c8a84e;
+        }
+        .sidebar-submenu-toggle svg { flex-shrink: 0; }
+        .sidebar-submenu-toggle .toggle-arrow {
+            margin-left: auto; transition: transform 0.3s;
+        }
+        .sidebar-submenu-toggle.expanded .toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .sidebar-submenu {
+            display: none; flex-direction: column;
+            background: rgba(0,0,0,0.3);
+            border-left: 3px solid transparent;
+        }
+        .sidebar-submenu.expanded {
+            display: flex;
+        }
+        .sidebar-submenu .sidebar-link {
+            padding: 10px 1.25rem 10px 3.5rem;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+        .sidebar-submenu .sidebar-link:hover {
+            background: rgba(200,168,78,0.06);
+            color: #fff;
+        }
+        .sidebar-submenu .sidebar-link.active {
+            background: rgba(200,168,78,0.1);
+            color: #c8a84e;
+            border-left: none;
+        }
+
         .sidebar-footer {
             padding: 1rem 1.25rem;
             border-top: 1px solid rgba(255,255,255,0.06);
@@ -132,15 +182,15 @@
         /* ===== TOP BAR ===== */
         .topbar {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(255,255,255,0.95);
+            background: #0a0a0a;
             backdrop-filter: blur(12px);
             padding: 10px 1.25rem;
             display: flex; align-items: center; justify-content: space-between;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         .topbar-left { display: flex; align-items: center; gap: 14px; }
         .hamburger {
-            background: none; border: none; color: #1a1a1a; cursor: pointer;
+            background: none; border: none; color: #f4f4f5; cursor: pointer;
             padding: 4px; display: flex; align-items: center;
         }
         .topbar-logo img {
@@ -272,8 +322,9 @@
             margin-top: 0.2rem;
         }
         .auth-brand img {
-            height: 76px;
+            height: 58px;
             width: auto;
+            border-radius: 14px;
             filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
         }
         .auth-copy {
@@ -449,6 +500,29 @@
                 @endif
             </a>
 
+            @if($authMember->is_admin)
+            <div class="sidebar-section" style="margin-top:1.5rem;">Administracija</div>
+
+            <button class="sidebar-submenu-toggle" id="adminToggle" onclick="toggleAdminMenu()">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33-1.82l-2.5-4.3a1.65 1.65 0 00-1.41-.84h-2.94a1.65 1.65 0 00-1.41.84l-2.5 4.3a1.65 1.65 0 00.33 1.82m9.44-6a2.41 2.41 0 00-1.16-2.13l-3.84-2.21a2.41 2.41 0 00-2.46 0l-3.84 2.21A2.41 2.41 0 004.6 9a2.41 2.41 0 00.88 2.13l3.84 2.21a2.41 2.41 0 002.46 0l3.84-2.21A2.41 2.41 0 0019.44 9z"/></svg>
+                Admin panel
+                <span class="toggle-arrow">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+            </button>
+
+            <div class="sidebar-submenu" id="adminMenu">
+                <a href="{{ route('member.obavijesti.create') }}" class="sidebar-link {{ $currentRoute == 'member.obavijesti.create' ? 'active' : '' }}">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                    Kreiraj obavijest
+                </a>
+                <a href="{{ route('member.termini.create') }}" class="sidebar-link {{ $currentRoute == 'member.termini.create' ? 'active' : '' }}">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                    Dodaj termin
+                </a>
+            </div>
+            @endif
+
             <div class="sidebar-section" style="margin-top:1.5rem;">Postavke</div>
 
             <a href="{{ route('member.password') }}" class="sidebar-link {{ $currentRoute == 'member.password' ? 'active' : '' }}">
@@ -489,6 +563,13 @@
     function toggleSidebar() {
         document.getElementById('sidebar').classList.toggle('open');
         document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+
+    function toggleAdminMenu() {
+        const toggle = document.getElementById('adminToggle');
+        const menu = document.getElementById('adminMenu');
+        toggle.classList.toggle('expanded');
+        menu.classList.toggle('expanded');
     }
     </script>
     @else

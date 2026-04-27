@@ -118,6 +118,21 @@ Route::prefix('portal')->group(function () {
         Route::post('/termini/{termin}/odjava', [MemberPortalController::class, 'odjaviSe'])->name('member.termini.odjava');
         Route::get('/change-password', [MemberAuthController::class, 'showChangePasswordForm'])->name('member.password');
         Route::post('/change-password', [MemberAuthController::class, 'changePassword'])->name('member.password.update');
+
+        // Admin routes for members with is_admin = true
+        Route::middleware(['admin.member'])->group(function () {
+            Route::get('/obavijesti/kreiraj', [MemberPortalController::class, 'createObavijest'])->name('member.obavijesti.create');
+            Route::post('/obavijesti', [MemberPortalController::class, 'storeObavijest'])->name('member.obavijesti.store');
+            Route::get('/obavijesti/{obavijest}/uredi', [MemberPortalController::class, 'editObavijest'])->name('member.obavijesti.edit');
+            Route::put('/obavijesti/{obavijest}', [MemberPortalController::class, 'updateObavijest'])->name('member.obavijesti.update');
+            Route::delete('/obavijesti/{obavijest}', [MemberPortalController::class, 'deleteObavijest'])->name('member.obavijesti.delete');
+
+            Route::get('/termini/kreiraj', [MemberPortalController::class, 'createTermin'])->name('member.termini.create');
+            Route::post('/termini', [MemberPortalController::class, 'storeTermin'])->name('member.termini.store');
+            Route::get('/termini/{termin}/uredi', [MemberPortalController::class, 'editTermin'])->name('member.termini.edit');
+            Route::put('/termini/{termin}', [MemberPortalController::class, 'updateTermin'])->name('member.termini.update');
+            Route::delete('/termini/{termin}', [MemberPortalController::class, 'deleteTermin'])->name('member.termini.delete');
+        });
     });
 });
 

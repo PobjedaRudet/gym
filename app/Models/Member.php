@@ -27,6 +27,7 @@ class Member extends Authenticatable
         'password',
         'last_seen_obavijesti',
         'last_seen_termini',
+        'is_admin',
     ];
 
     protected $hidden = [

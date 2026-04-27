@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
         'active.member' => \App\Http\Middleware\ActiveMember::class,
         'auth.moderator' => \App\Http\Middleware\AuthenticateModerator::class,
+        'admin.member' => \App\Http\Middleware\AdminMember::class,
     ];
 }

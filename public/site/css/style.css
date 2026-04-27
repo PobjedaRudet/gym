@@ -337,6 +337,19 @@ ol {
 	display: inline-block;
 }
 
+.logo a img {
+	height: 54px;
+	width: auto;
+	max-width: 100%;
+	object-fit: contain;
+}
+
+@media only screen and (max-width: 767px) {
+	.logo a img {
+		height: 44px;
+	}
+}
+
 .nav-menu {
 	text-align: center;
 }
