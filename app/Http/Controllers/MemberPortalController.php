@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use Throwable;
 
@@ -20,10 +21,11 @@ class MemberPortalController extends Controller
         /** @var Member $member */
         $member = Auth::guard('member')->user();
 
-        if (!function_exists('finfo_open')) {
+        if (!function_exists('finfo_open') || !function_exists('finfo_buffer')) {
+            Log::error('MemberPortalController::updatePhoto - fileinfo ekstenzija nije dostupna na serveru.');
             return redirect()
                 ->route('member.profile')
-                ->withErrors(['profile_image' => 'Server trenutno nema omogućenu PHP ekstenziju fileinfo. Kontaktirajte administratora.']);
+                ->with('photo_error', 'Server nema omogućenu PHP fileinfo ekstenziju. Kontaktirajte administratora.');
         }
 
         $request->validate([
@@ -59,9 +61,13 @@ class MemberPortalController extends Controller
                 $img->save($fullPath, $quality, 'jpg');
             }
         } catch (Throwable $e) {
+            Log::error('MemberPortalController::updatePhoto - greška pri obradi slike: ' . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+            ]);
             return redirect()
                 ->route('member.profile')
-                ->withErrors(['profile_image' => 'Došlo je do greške pri obradi slike. Pokušajte ponovo ili kontaktirajte administratora.']);
+                ->with('photo_error', 'Greška pri obradi slike: ' . $e->getMessage());
         }
 
         if (file_exists($fullPath) && filesize($fullPath) > $maxFileSize) {

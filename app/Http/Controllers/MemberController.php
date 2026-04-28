@@ -52,8 +52,9 @@ class MemberController extends Controller
         if ($request->hasFile('image')) {
             Log::info('Ima slika');
             Log::info($request);
-            if (!function_exists('finfo_open')) {
-                return redirect()->back()->withInput()->with('error', 'Server trenutno nema omogućenu PHP ekstenziju fileinfo. Kontaktirajte administratora.');
+            if (!function_exists('finfo_open') || !function_exists('finfo_buffer')) {
+                Log::error('MemberController::updateMember - fileinfo ekstenzija nije dostupna na serveru.');
+                return redirect()->back()->withInput()->with('error', 'Server nema omogućenu PHP fileinfo ekstenziju. Kontaktirajte administratora.');
             }
 
             if($request->status == NULL){
@@ -80,7 +81,11 @@ class MemberController extends Controller
                     $img->save($path . $filename, $quality);
                 }
             } catch (Throwable $e) {
-                return redirect()->back()->withInput()->with('error', 'Došlo je do greške pri obradi slike. Pokušajte ponovo ili kontaktirajte administratora.');
+                Log::error('MemberController::updateMember - greška pri obradi slike: ' . $e->getMessage(), [
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine(),
+                ]);
+                return redirect()->back()->withInput()->with('error', 'Greška pri obradi slike: ' . $e->getMessage());
             }
 
             Member::where('id', $request->id)

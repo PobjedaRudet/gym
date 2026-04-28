@@ -367,6 +367,12 @@
     </div>
   @endif
 
+  @if(session('photo_error') || $errors->has('profile_image'))
+    <div class="dash-card" style="padding:0.95rem 1rem;border-color:rgba(220,38,38,0.35);background:linear-gradient(160deg, rgba(220,38,38,0.10), rgba(17,17,20,0.96));color:#fca5a5;">
+      {{ session('photo_error') ?? $errors->first('profile_image') }}
+    </div>
+  @endif
+
   {{-- ========== HERO BANNER ========== --}}
   <div class="dash-hero">
     <div class="dash-hero-top">
