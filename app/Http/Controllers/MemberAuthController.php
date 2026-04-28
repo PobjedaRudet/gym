@@ -68,13 +68,15 @@ class MemberAuthController extends Controller
             'password' => 'required',
         ]);
 
-        $member = Member::where('email', $request->email)->first();
+        $credentials = $request->only('email', 'password');
+
+        $member = Member::where('email', $credentials['email'])->first();
 
         if (!$member || !$member->password) {
             return back()->withErrors(['email' => 'Neispravan email ili lozinka.'])->withInput();
         }
 
-        if (!Hash::check($request->password, $member->password)) {
+        if (!Hash::check($credentials['password'], $member->password)) {
             return back()->withErrors(['email' => 'Neispravan email ili lozinka.'])->withInput();
         }
 
@@ -90,16 +92,9 @@ class MemberAuthController extends Controller
             return back()->withErrors(['email' => 'Vaša članarina je istekla. Obratite se recepciji za produženje.'])->withInput();
         }
 
-        $remember = $request->boolean('remember');
+        Auth::guard('member')->login($member, $request->boolean('remember'));
 
-        Auth::guard('member')->login($member, $remember);
-
-        if ($remember) {
-            // Proširujemo session cookie na 1 godinu kada korisnik odabere "Zapamti me".
-            // StartSession middleware čita ovu vrijednost pri slanju response-a,
-            // pa će session cookie imati expiry 1 godinu od sada.
-            config(['session.lifetime' => 525600]);
-        }
+        $request->session()->regenerate();
 
         return redirect()->route('member.profile');
     }

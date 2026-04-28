@@ -22,19 +22,15 @@
                 </div>
                 @endif
 
-                <form method="POST" action="{{ route('member.login.submit') }}">
+                <form method="POST" action="{{ route('member.login.submit') }}" autocomplete="on">
                     @csrf
                     <div class="mb-2">
                         <label for="email" class="form-label">Email adresa</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="vas@email.com" required autofocus>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="vas@email.com" autocomplete="username" required autofocus>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-4">
                         <label for="password" class="form-label">Lozinka</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Unesite lozinku" required>
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="remember" name="remember" style="background:#16161a;border-color:#3f3f46;">
-                        <label class="form-check-label" for="remember" style="font-size:13px;text-transform:none;letter-spacing:0;">Zapamti me</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Unesite lozinku" autocomplete="current-password" required>
                     </div>
                     <button type="submit" class="btn-auth-primary">Prijavi se</button>
                 </form>

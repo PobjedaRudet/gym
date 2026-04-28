@@ -418,6 +418,25 @@
         .auth-form-panel label {
             margin-bottom: 0.32rem;
         }
+        .auth-form-panel .form-check-input {
+            width: 1.1em;
+            height: 1.1em;
+            margin-top: 0.2em;
+            background-color: #16161a;
+            border: 1px solid #52525b;
+            cursor: pointer;
+        }
+        .auth-form-panel .form-check-input:focus {
+            border-color: #ffb800;
+            box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.18);
+        }
+        .auth-form-panel .form-check-input:checked {
+            background-color: #ffb800;
+            border-color: #ffb800;
+        }
+        .auth-form-panel .form-check-label {
+            cursor: pointer;
+        }
         .auth-legal {
             margin-top: auto;
             text-align: center;
