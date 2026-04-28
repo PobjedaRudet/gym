@@ -2,15 +2,17 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\FeeController;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberAuthController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemberPortalController;
 use App\Http\Controllers\ModeratorAuthController;
 use App\Http\Controllers\ModeratorController;
-use App\Http\Controllers\HomeController;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------

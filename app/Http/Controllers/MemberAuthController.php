@@ -90,14 +90,25 @@ class MemberAuthController extends Controller
             return back()->withErrors(['email' => 'Vaša članarina je istekla. Obratite se recepciji za produženje.'])->withInput();
         }
 
-        Auth::guard('member')->login($member, $request->filled('remember'));
+        $remember = $request->boolean('remember');
+
+        Auth::guard('member')->login($member, $remember);
+
+        if ($remember) {
+            // Proširujemo session cookie na 1 godinu kada korisnik odabere "Zapamti me".
+            // StartSession middleware čita ovu vrijednost pri slanju response-a,
+            // pa će session cookie imati expiry 1 godinu od sada.
+            config(['session.lifetime' => 525600]);
+        }
 
         return redirect()->route('member.profile');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::guard('member')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('member.login');
     }
 
