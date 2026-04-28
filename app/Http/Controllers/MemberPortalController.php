@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
+use Throwable;
 
 class MemberPortalController extends Controller
 {
@@ -18,6 +19,12 @@ class MemberPortalController extends Controller
     {
         /** @var Member $member */
         $member = Auth::guard('member')->user();
+
+        if (!function_exists('finfo_open')) {
+            return redirect()
+                ->route('member.profile')
+                ->withErrors(['profile_image' => 'Server trenutno nema omogućenu PHP ekstenziju fileinfo. Kontaktirajte administratora.']);
+        }
 
         $request->validate([
             'profile_image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
@@ -32,23 +39,29 @@ class MemberPortalController extends Controller
             mkdir($path, 0755, true);
         }
 
-        $img = Image::make($file->getRealPath())->orientate();
-        $img->fit(600, 600, function ($constraint) {
-            $constraint->upsize();
-        });
+        try {
+            $img = Image::make($file->getRealPath())->orientate();
+            $img->fit(600, 600, function ($constraint) {
+                $constraint->upsize();
+            });
 
-        $quality = 90;
-        $fullPath = $path . DIRECTORY_SEPARATOR . $filename;
-        $img->save($fullPath, $quality, 'jpg');
-
-        while (file_exists($fullPath) && filesize($fullPath) > $maxFileSize && $quality > 45) {
-            $quality -= 10;
+            $quality = 90;
+            $fullPath = $path . DIRECTORY_SEPARATOR . $filename;
             $img->save($fullPath, $quality, 'jpg');
-        }
 
-        while (file_exists($fullPath) && filesize($fullPath) > $maxFileSize && $img->width() > 220) {
-            $img->resize((int) round($img->width() * 0.85), (int) round($img->height() * 0.85));
-            $img->save($fullPath, $quality, 'jpg');
+            while (file_exists($fullPath) && filesize($fullPath) > $maxFileSize && $quality > 45) {
+                $quality -= 10;
+                $img->save($fullPath, $quality, 'jpg');
+            }
+
+            while (file_exists($fullPath) && filesize($fullPath) > $maxFileSize && $img->width() > 220) {
+                $img->resize((int) round($img->width() * 0.85), (int) round($img->height() * 0.85));
+                $img->save($fullPath, $quality, 'jpg');
+            }
+        } catch (Throwable $e) {
+            return redirect()
+                ->route('member.profile')
+                ->withErrors(['profile_image' => 'Došlo je do greške pri obradi slike. Pokušajte ponovo ili kontaktirajte administratora.']);
         }
 
         if (file_exists($fullPath) && filesize($fullPath) > $maxFileSize) {

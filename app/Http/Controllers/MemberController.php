@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
+use Throwable;
 
 class MemberController extends Controller
 {
@@ -51,6 +52,10 @@ class MemberController extends Controller
         if ($request->hasFile('image')) {
             Log::info('Ima slika');
             Log::info($request);
+            if (!function_exists('finfo_open')) {
+                return redirect()->back()->withInput()->with('error', 'Server trenutno nema omogućenu PHP ekstenziju fileinfo. Kontaktirajte administratora.');
+            }
+
             if($request->status == NULL){
                 $status = 'off';
                  }else{
@@ -60,18 +65,22 @@ class MemberController extends Controller
             $filename = date('YmdHi') . $file->getClientOriginalName();
             $path = public_path() . '/images/';
 
-            $img = Image::make($file->getRealPath());
-            $quality = 90;
-            $img->save($path . $filename, $quality);
-
-            while (filesize($path . $filename) > 1048576 && $quality > 10) {
-                $quality -= 10;
+            try {
+                $img = Image::make($file->getRealPath());
+                $quality = 90;
                 $img->save($path . $filename, $quality);
-            }
 
-            if (filesize($path . $filename) > 1048576) {
-                $img->resize($img->width() / 2, $img->height() / 2);
-                $img->save($path . $filename, $quality);
+                while (filesize($path . $filename) > 1048576 && $quality > 10) {
+                    $quality -= 10;
+                    $img->save($path . $filename, $quality);
+                }
+
+                if (filesize($path . $filename) > 1048576) {
+                    $img->resize($img->width() / 2, $img->height() / 2);
+                    $img->save($path . $filename, $quality);
+                }
+            } catch (Throwable $e) {
+                return redirect()->back()->withInput()->with('error', 'Došlo je do greške pri obradi slike. Pokušajte ponovo ili kontaktirajte administratora.');
             }
 
             Member::where('id', $request->id)
