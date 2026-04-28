@@ -37,9 +37,20 @@ class MemberPortalController extends Controller
         $path = public_path('images');
         $maxFileSize = 1048576;
 
+        // Kreiraj direktorij ako ne postoji, s eksplicitnim logom ako ne uspije
         if (!is_dir($path)) {
-            mkdir($path, 0755, true);
+            if (!mkdir($path, 0755, true)) {
+                Log::error('MemberPortalController::updatePhoto - ne mogu kreirati direktorij: ' . $path);
+                return redirect()
+                    ->route('member.profile')
+                    ->with('photo_error', 'Greška: direktorij za slike nije dostupan. Kontaktirajte administratora.');
+            }
         }
+
+        // $fullPath definišemo IZVAN try bloka da bude uvijek dostupan
+        $fullPath = $path . DIRECTORY_SEPARATOR . $filename;
+
+        Log::info('MemberPortalController::updatePhoto - čuvanje slike na: ' . $fullPath);
 
         try {
             $img = Image::make($file->getRealPath())->orientate();
@@ -48,8 +59,10 @@ class MemberPortalController extends Controller
             });
 
             $quality = 90;
-            $fullPath = $path . DIRECTORY_SEPARATOR . $filename;
             $img->save($fullPath, $quality, 'jpg');
+
+            // Postavi permisije 0644 da web server (Apache/Nginx) može čitati fajl
+            @chmod($fullPath, 0644);
 
             while (file_exists($fullPath) && filesize($fullPath) > $maxFileSize && $quality > 45) {
                 $quality -= 10;
@@ -62,17 +75,29 @@ class MemberPortalController extends Controller
             }
         } catch (Throwable $e) {
             Log::error('MemberPortalController::updatePhoto - greška pri obradi slike: ' . $e->getMessage(), [
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
+                'exception_file' => $e->getFile(),
+                'line'           => $e->getLine(),
+                'save_path'      => $fullPath,
             ]);
+            // Obriši eventualno djelimično kreiran fajl
+            if (file_exists($fullPath)) {
+                @unlink($fullPath);
+            }
             return redirect()
                 ->route('member.profile')
                 ->with('photo_error', 'Greška pri obradi slike: ' . $e->getMessage());
         }
 
-        if (file_exists($fullPath) && filesize($fullPath) > $maxFileSize) {
-            @unlink($fullPath);
+        // Provjeri da fajl stvarno postoji i ima sadržaj PRIJE ažuriranja baze
+        if (!file_exists($fullPath) || filesize($fullPath) === 0) {
+            Log::error('MemberPortalController::updatePhoto - fajl nije sačuvan na: ' . $fullPath);
+            return redirect()
+                ->route('member.profile')
+                ->with('photo_error', 'Slika nije mogla biti sačuvana na serveru. Kontaktirajte administratora.');
+        }
 
+        if (filesize($fullPath) > $maxFileSize) {
+            @unlink($fullPath);
             return redirect()
                 ->route('member.profile')
                 ->withErrors(['profile_image' => 'Slika nije mogla biti umanjena ispod 1 MB. Odaberite manju ili kompresovanu sliku.']);
@@ -80,6 +105,8 @@ class MemberPortalController extends Controller
 
         $member->image_path = $filename;
         $member->save();
+
+        Log::info('MemberPortalController::updatePhoto - uspješno sačuvano, image_path: ' . $filename);
 
         return redirect()->route('member.profile')->with('success', 'Profilna slika je uspješno ažurirana.');
     }
