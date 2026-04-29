@@ -97,6 +97,7 @@
     .ob-image-badge.info { background: rgba(255,255,255,0.88); color: #111111; }
     .ob-image-badge.vazno { background: rgba(255,184,0,0.92); color: #111111; }
     .ob-image-badge.upozorenje { background: rgba(161,161,170,0.92); color: #111111; }
+    .ob-image-badge.promo { background: rgba(236,72,153,0.92); color: #ffffff; }
 
     /* NEW ribbon for fresh posts */
     .ob-new-ribbon {
@@ -135,6 +136,7 @@
     .ob-type-dot.info { background: #f4f4f5; box-shadow: 0 0 6px rgba(244,244,245,0.28); }
     .ob-type-dot.vazno { background: #ffb800; box-shadow: 0 0 6px rgba(255,184,0,0.35); }
     .ob-type-dot.upozorenje { background: #a1a1aa; box-shadow: 0 0 6px rgba(161,161,170,0.28); }
+    .ob-type-dot.promo { background: #ec4899; box-shadow: 0 0 6px rgba(236,72,153,0.35); }
 
     .ob-naslov {
         font-weight: 800;
@@ -174,6 +176,7 @@
     .ob-tip-inline.info { background: rgba(244,244,245,0.12); color: #f4f4f5; }
     .ob-tip-inline.vazno { background: rgba(255,184,0,0.14); color: #ffdd8a; }
     .ob-tip-inline.upozorenje { background: rgba(161,161,170,0.18); color: #d4d4d8; }
+    .ob-tip-inline.promo { background: rgba(236,72,153,0.18); color: #fbcfe8; }
 
     /* No-image card style — with accent left border */
     .ob-card.no-image {
@@ -182,6 +185,7 @@
     .ob-card.no-image.info-border { border-left-color: #f4f4f5; }
     .ob-card.no-image.vazno-border { border-left-color: #ffb800; }
     .ob-card.no-image.upozorenje-border { border-left-color: #a1a1aa; }
+    .ob-card.no-image.promo-border { border-left-color: #ec4899; }
 
     /* Featured / large card for first item with image */
     .ob-featured {
@@ -249,7 +253,15 @@
             <img src="{{ asset('images/obavijesti/' . $o->slika) }}" alt="{{ $o->naslov }}" loading="lazy">
             <div class="ob-image-overlay"></div>
             <span class="ob-image-badge {{ $o->tip }}">
-                @if($o->tip === 'info') Info @elseif($o->tip === 'vazno') Važno @else Upozorenje @endif
+                @if($o->tip === 'info')
+                    Info
+                @elseif($o->tip === 'vazno')
+                    Važno
+                @elseif($o->tip === 'promo')
+                    Promo
+                @else
+                    Upozorenje
+                @endif
             </span>
             @if($o->created_at->diffInDays(now()) < 3)
             <span class="ob-new-ribbon">NOVO</span>
@@ -275,7 +287,15 @@
                 </span>
                 @if(!$o->slika)
                 <span class="ob-tip-inline {{ $o->tip }}">
-                    @if($o->tip === 'info') Info @elseif($o->tip === 'vazno') Važno @else Upozorenje @endif
+                    @if($o->tip === 'info')
+                        Info
+                    @elseif($o->tip === 'vazno')
+                        Važno
+                    @elseif($o->tip === 'promo')
+                        Promo
+                    @else
+                        Upozorenje
+                    @endif
                 </span>
                 @endif
             </div>

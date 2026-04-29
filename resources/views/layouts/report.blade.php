@@ -144,6 +144,11 @@
                             <a class="dropdown-item" href="{{ route('members') }}">Početna</a>
                           <a class="dropdown-item" href="{{ route('report') }}">Izvještaj</a>
                           <a class="dropdown-item" href="{{ route('comparison') }}">Detaljna statistika</a>
+                            @if(Auth::user()->email === 'admin@begsfit.ba')
+                            <hr class="dropdown-divider mx-2">
+                            <a class="dropdown-item" href="{{ route('admin.portal.obavijesti') }}">Portal obavijesti</a>
+                            <a class="dropdown-item" href="{{ route('admin.portal.termini') }}">Portal termini</a>
+                            @endif
                             <hr class="dropdown-divider mx-2">
                             <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

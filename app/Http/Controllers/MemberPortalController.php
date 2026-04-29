@@ -475,7 +475,7 @@ class MemberPortalController extends Controller
         $request->validate([
             'naslov' => 'required|string|max:255',
             'sadrzaj' => 'required|string',
-            'tip' => 'required|in:info,vazno,upozorenje',
+            'tip' => 'required|in:info,vazno,upozorenje,promo',
             'slika' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);
 
@@ -516,7 +516,7 @@ class MemberPortalController extends Controller
         $request->validate([
             'naslov' => 'required|string|max:255',
             'sadrzaj' => 'required|string',
-            'tip' => 'required|in:info,vazno,upozorenje',
+            'tip' => 'required|in:info,vazno,upozorenje,promo',
             'slika' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);
 

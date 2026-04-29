@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AdminPortalObavijestController;
+use App\Http\Controllers\AdminPortalTerminController;
 use App\Http\Controllers\FeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberAuthController;
@@ -98,6 +100,16 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
   Route::middleware(['auth'])->get('/comparison', [AttendanceController::class, 'comparison'])->name('comparison');
   Route::middleware(['auth'])->post('/insertFee', [FeeController::class, 'insertFee'])->name('insertFee');
   Route::middleware(['auth'])->post('/odjaviNeaktivne', [AttendanceController::class, 'odjaviNeaktivne'])->name('odjaviNeaktivne');
+  Route::middleware(['auth'])->get('/admin/portal-obavijesti', [AdminPortalObavijestController::class, 'index'])->name('admin.portal.obavijesti');
+  Route::middleware(['auth'])->post('/admin/portal-obavijesti', [AdminPortalObavijestController::class, 'store'])->name('admin.portal.obavijesti.store');
+  Route::middleware(['auth'])->get('/admin/portal-obavijesti/{obavijest}/edit', [AdminPortalObavijestController::class, 'edit'])->name('admin.portal.obavijesti.edit');
+  Route::middleware(['auth'])->put('/admin/portal-obavijesti/{obavijest}', [AdminPortalObavijestController::class, 'update'])->name('admin.portal.obavijesti.update');
+  Route::middleware(['auth'])->delete('/admin/portal-obavijesti/{obavijest}', [AdminPortalObavijestController::class, 'destroy'])->name('admin.portal.obavijesti.destroy');
+  Route::middleware(['auth'])->get('/admin/portal-termini', [AdminPortalTerminController::class, 'index'])->name('admin.portal.termini');
+  Route::middleware(['auth'])->post('/admin/portal-termini', [AdminPortalTerminController::class, 'store'])->name('admin.portal.termini.store');
+  Route::middleware(['auth'])->get('/admin/portal-termini/{termin}/edit', [AdminPortalTerminController::class, 'edit'])->name('admin.portal.termini.edit');
+  Route::middleware(['auth'])->put('/admin/portal-termini/{termin}', [AdminPortalTerminController::class, 'update'])->name('admin.portal.termini.update');
+  Route::middleware(['auth'])->delete('/admin/portal-termini/{termin}', [AdminPortalTerminController::class, 'destroy'])->name('admin.portal.termini.destroy');
 
 
 });

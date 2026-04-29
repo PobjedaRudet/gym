@@ -27,6 +27,7 @@
                 <option value="info" {{ old('tip', $obavijest->tip) == 'info' ? 'selected' : '' }}>Info</option>
                 <option value="vazno" {{ old('tip', $obavijest->tip) == 'vazno' ? 'selected' : '' }}>Važno</option>
                 <option value="upozorenje" {{ old('tip', $obavijest->tip) == 'upozorenje' ? 'selected' : '' }}>Upozorenje</option>
+                <option value="promo" {{ old('tip', $obavijest->tip) == 'promo' ? 'selected' : '' }}>Promo</option>
             </select>
         </div>
         <div class="mb-3">

@@ -534,7 +534,7 @@
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
                 Obavijesti
                 @if($neprocitaneObavijesti > 0)
-                <span class="link-badge" style="background:rgba(255,55,95,0.2);color:#FF375F;">{{ $neprocitaneObavijesti }}</span>
+                <span class="link-badge" style="background:rgba(255,184,0,0.2);color:#ffb800;">{{ $neprocitaneObavijesti }}</span>
                 @endif
             </a>
             <a href="{{ route('member.termini') }}" class="sidebar-link {{ $currentRoute == 'member.termini' ? 'active' : '' }}">
