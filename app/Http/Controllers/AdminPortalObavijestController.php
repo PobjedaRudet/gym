@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Obavijest;
 use App\Models\Moderator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -15,7 +16,17 @@ class AdminPortalObavijestController extends Controller
     {
         $this->authorizeAdminEmail();
 
-        $obavijesti = Obavijest::orderBy('created_at', 'desc')->paginate(12);
+        $obavijesti = Obavijest::query()
+            ->select([
+                'id',
+                'naslov',
+                'tip',
+                'slika',
+                'created_at',
+                DB::raw('LEFT(sadrzaj, 220) as sadrzaj_preview'),
+            ])
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
 
         return view('admin.portal-obavijesti', compact('obavijesti'));
     }
@@ -26,7 +37,7 @@ class AdminPortalObavijestController extends Controller
 
         $validated = $request->validate([
             'naslov' => ['required', 'string', 'max:255'],
-            'sadrzaj' => ['required', 'string'],
+            'sadrzaj' => ['required', 'string', 'max:5000'],
             'tip' => ['required', 'in:info,vazno,upozorenje,promo'],
             'slika' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
         ]);
@@ -67,7 +78,7 @@ class AdminPortalObavijestController extends Controller
 
         $validated = $request->validate([
             'naslov' => ['required', 'string', 'max:255'],
-            'sadrzaj' => ['required', 'string'],
+            'sadrzaj' => ['required', 'string', 'max:5000'],
             'tip' => ['required', 'in:info,vazno,upozorenje,promo'],
             'slika' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
         ]);

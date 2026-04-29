@@ -68,7 +68,7 @@
                             <strong style="color:#111827;">{{ $obavijest->naslov }}</strong>
                             <span style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:#eef2ff;color:#4338ca;">{{ strtoupper($obavijest->tip) }}</span>
                         </div>
-                        <p style="margin:0.5rem 0 0.55rem;color:#4b5563;">{{ \Illuminate\Support\Str::limit($obavijest->sadrzaj, 180) }}</p>
+                        <p style="margin:0.5rem 0 0.55rem;color:#4b5563;">{{ $obavijest->sadrzaj_preview }}</p>
                         <small style="color:#9ca3af;">{{ $obavijest->created_at ? $obavijest->created_at->format('d.m.Y H:i') : '' }}</small>
                         <div style="margin-top:0.65rem;display:flex;gap:8px;flex-wrap:wrap;">
                             <a href="{{ route('admin.portal.obavijesti.edit', $obavijest) }}" style="display:inline-block;background:#eef2ff;color:#3730a3;text-decoration:none;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;">Uredi</a>
