@@ -134,6 +134,9 @@
 @endsection
 
 @section('content')
+@php
+  $ciljSatiPrikaz = fmod(round($ciljMinuta / 60, 1), 1.0) === 0.0 ? number_format(round($ciljMinuta / 60, 1), 0) : number_format(round($ciljMinuta / 60, 1), 1);
+@endphp
 <div style="max-width:1000px;">
 
   <div class="page-title">
@@ -221,7 +224,7 @@
         <div class="progress-wrap">
           <div class="progress-header">
             <span class="progress-title">Sati u teretani ovog mjeseca</span>
-            <span class="progress-value" style="color:#f4f4f5;">{{ floor($vrijemeTrenutni->ukupno / 60) }}h / {{ floor($ciljMinuta / 60) }}h</span>
+            <span class="progress-value" style="color:#f4f4f5;">{{ floor($vrijemeTrenutni->ukupno / 60) }}h / {{ $ciljSatiPrikaz }}h</span>
           </div>
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" style="width:{{ $progresVrijeme }}%;background:linear-gradient(90deg,#f4f4f5,#d4d4d8);">

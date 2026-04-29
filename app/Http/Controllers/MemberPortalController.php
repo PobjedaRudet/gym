@@ -16,6 +16,36 @@ use Throwable;
 
 class MemberPortalController extends Controller
 {
+    public function settings()
+    {
+        /** @var Member $member */
+        $member = Auth::guard('member')->user();
+
+        $ciljDolazaka = max((int) ($member->monthly_goal_visits ?? 20), 1);
+        $ciljMinuta = max((int) ($member->monthly_goal_minutes ?? 1800), 1);
+
+        return view('member.settings', compact('member', 'ciljDolazaka', 'ciljMinuta'));
+    }
+
+    public function updateSettings(Request $request)
+    {
+        /** @var Member $member */
+        $member = Auth::guard('member')->user();
+
+        $validated = $request->validate([
+            'monthly_goal_visits' => ['required', 'integer', 'min:1', 'max:60'],
+            'monthly_goal_hours' => ['required', 'integer', 'min:1', 'max:300'],
+        ]);
+
+        $member->monthly_goal_visits = (int) $validated['monthly_goal_visits'];
+        $member->monthly_goal_minutes = (int) $validated['monthly_goal_hours'] * 60;
+        $member->save();
+
+        return redirect()
+            ->route('member.settings')
+            ->with('success', 'Postavke su uspjesno sacuvane.');
+    }
+
     public function updatePhoto(Request $request)
     {
         /** @var Member $member */
@@ -155,9 +185,9 @@ class MemberPortalController extends Controller
         $istekClanarine = $clanarina ? $clanarina->end : null;
         $aktivanClan = $istekClanarine && Carbon::parse($istekClanarine)->gte($now->copy()->startOfDay());
 
-        // Goals
-        $ciljDolazaka = 20;
-        $ciljMinuta = 1800; // 30h
+        // Goals (per-member, fallback for older rows)
+        $ciljDolazaka = max((int) ($member->monthly_goal_visits ?? 20), 1);
+        $ciljMinuta = max((int) ($member->monthly_goal_minutes ?? 1800), 1);
 
         // Weekly attendance (Mon-Sun current week)
         $weekStart = $now->copy()->startOfWeek(Carbon::MONDAY);
@@ -270,8 +300,8 @@ class MemberPortalController extends Controller
             ]);
         }
 
-        $ciljDolazaka = 20;
-        $ciljMinuta = 1800;
+        $ciljDolazaka = max((int) ($member->monthly_goal_visits ?? 20), 1);
+        $ciljMinuta = max((int) ($member->monthly_goal_minutes ?? 1800), 1);
 
         // Godisnji pregled
         $trenutnaGodina = Carbon::now()->year;

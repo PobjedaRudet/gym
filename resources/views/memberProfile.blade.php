@@ -227,6 +227,22 @@
 
 <div class="container" style="max-width:1100px;padding-top:1.5rem;padding-bottom:2rem;">
 
+  @php
+    $ciljSatiPrikaz = fmod(round($ciljMinuta / 60, 1), 1.0) === 0.0 ? number_format(round($ciljMinuta / 60, 1), 0) : number_format(round($ciljMinuta / 60, 1), 1);
+  @endphp
+
+  @if(session('success'))
+    <div style="margin-bottom:1rem;padding:0.85rem 1rem;border-radius:12px;background:#ecfdf3;border:1px solid #a7f3d0;color:#065f46;font-weight:600;">
+      {{ session('success') }}
+    </div>
+  @endif
+
+  @if($errors->any())
+    <div style="margin-bottom:1rem;padding:0.85rem 1rem;border-radius:12px;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;font-weight:600;">
+      {{ $errors->first() }}
+    </div>
+  @endif
+
   <!-- Hero profil -->
   <div class="profile-hero">
     <div class="row align-items-center">
@@ -299,6 +315,45 @@
             <span class="info-value">{{ $member->city ?? '—' }}</span>
           </div>
         </div>
+      </div>
+
+      <div class="info-card mt-3">
+        <div class="card-header-custom">
+          <svg width="18" height="18" fill="none" stroke="#11998e" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 113 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+          Postavke ciljeva
+        </div>
+        <form method="POST" action="{{ route('memberProfile.settings', ['id' => $member->id]) }}" style="padding:1rem 1.25rem;">
+          @csrf
+          <div style="margin-bottom:12px;">
+            <label for="monthly_goal_visits" style="display:block;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;">Mjesečni cilj dolazaka</label>
+            <input
+              type="number"
+              id="monthly_goal_visits"
+              name="monthly_goal_visits"
+              min="1"
+              max="60"
+              value="{{ old('monthly_goal_visits', $ciljDolazaka) }}"
+              style="width:100%;border:1px solid #d1d5db;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2937;"
+              required
+            >
+          </div>
+          <div style="margin-bottom:14px;">
+            <label for="monthly_goal_hours" style="display:block;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;">Mjesečni cilj vremena (sati)</label>
+            <input
+              type="number"
+              id="monthly_goal_hours"
+              name="monthly_goal_hours"
+              min="1"
+              max="300"
+              value="{{ old('monthly_goal_hours', (int) round($ciljMinuta / 60)) }}"
+              style="width:100%;border:1px solid #d1d5db;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2937;"
+              required
+            >
+          </div>
+          <button type="submit" style="border:none;background:linear-gradient(135deg,#11998e,#38ef7d);color:#fff;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;">
+            Sačuvaj postavke
+          </button>
+        </form>
       </div>
     </div>
 
@@ -426,7 +481,7 @@
               <div style="background:#f0fdf4;border-radius:14px;padding:1.25rem;">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
                   <span style="font-weight:700;font-size:14px;color:#1a1a2e;">Sati u teretani ovog mjeseca</span>
-                  <span style="font-weight:800;font-size:18px;color:#11998e;">{{ floor($vrijemeTrenutni->ukupno / 60) }}h / {{ floor($ciljMinuta / 60) }}h</span>
+                  <span style="font-weight:800;font-size:18px;color:#11998e;">{{ floor($vrijemeTrenutni->ukupno / 60) }}h / {{ $ciljSatiPrikaz }}h</span>
                 </div>
                 @php $progresVrijeme = min(round(($vrijemeTrenutni->ukupno / $ciljMinuta) * 100), 100); @endphp
                 <div style="background:#d1fae5;border-radius:10px;height:14px;overflow:hidden;">
@@ -444,7 +499,7 @@
                   @else
                     <span style="color:#e74c3c;font-weight:600;">Provedite više vremena na treningu.</span>
                   @endif
-                  Cilj: {{ floor($ciljMinuta / 60) }} sati mjesečno
+                  Cilj: {{ $ciljSatiPrikaz }} sati mjesečno
                 </p>
               </div>
             </div>

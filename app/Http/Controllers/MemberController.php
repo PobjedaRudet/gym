@@ -213,10 +213,9 @@ class MemberController extends Controller
             ]);
         }
 
-        // Cilj: 20 dolazaka mjesečno (otprilike 5x sedmično)
-        $ciljDolazaka = 20;
-        // Cilj: 30 sati mjesečno (otprilike 1.5h x 20 treninga)
-        $ciljMinuta = 1800;
+        // Per-member ciljevi sa podrazumijevanim vrijednostima za starije zapise
+        $ciljDolazaka = max((int) ($member->monthly_goal_visits ?? 20), 1);
+        $ciljMinuta = max((int) ($member->monthly_goal_minutes ?? 1800), 1);
 
         // Godišnji pregled: trenutna i prethodna godina (svih 12 mjeseci)
         $trenutnaGodina = Carbon::now()->year;
@@ -269,6 +268,24 @@ class MemberController extends Controller
         Log::info($member);
 
         return view('editMember', ['member' => $member]);
+    }
+
+    public function updateProfileSettings(Request $request, $id)
+    {
+        $member = Member::findOrFail($id);
+
+        $validated = $request->validate([
+            'monthly_goal_visits' => ['required', 'integer', 'min:1', 'max:60'],
+            'monthly_goal_hours' => ['required', 'integer', 'min:1', 'max:300'],
+        ]);
+
+        $member->monthly_goal_visits = (int) $validated['monthly_goal_visits'];
+        $member->monthly_goal_minutes = (int) $validated['monthly_goal_hours'] * 60;
+        $member->save();
+
+        return redirect()
+            ->route('memberProfile', ['id' => $member->id])
+            ->with('success', 'Postavke ciljeva su uspjesno sacuvane.');
     }
     public function search(Request $request)
     {

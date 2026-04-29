@@ -167,16 +167,42 @@
             padding: 1rem 1.25rem;
             border-top: 1px solid rgba(255,255,255,0.06);
         }
-        .sidebar-footer .logout-btn {
-            display: flex; align-items: center; gap: 10px;
-            width: 100%; padding: 10px 14px;
-            background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.15);
-            color: #ef4444; border-radius: 12px;
-            font-size: 13px; font-weight: 600; cursor: pointer;
-            transition: all 0.2s;
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px 14px;
+            background: linear-gradient(180deg, rgba(157,33,33,0.18) 0%, rgba(110,22,22,0.26) 100%);
+            border: 1px solid rgba(239,68,68,0.22);
+            color: #ffe2e2;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 8px 22px rgba(0,0,0,0.18);
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
         }
-        .sidebar-footer .logout-btn:hover {
-            background: rgba(239,68,68,0.15);
+        .logout-btn svg {
+            color: #ff8f8f;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .logout-btn:hover {
+            background: linear-gradient(180deg, rgba(185,40,40,0.24) 0%, rgba(128,26,26,0.34) 100%);
+            border-color: rgba(248,113,113,0.4);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 12px 26px rgba(80,10,10,0.22);
+        }
+        .logout-btn:hover svg {
+            color: #ffc1c1;
+            transform: translateX(1px);
+        }
+        .logout-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(248,113,113,0.18), inset 0 1px 0 rgba(255,255,255,0.05), 0 10px 24px rgba(80,10,10,0.2);
         }
 
         /* ===== TOP BAR ===== */
@@ -544,21 +570,24 @@
 
             <div class="sidebar-section" style="margin-top:1.5rem;">Postavke</div>
 
+            <a href="{{ route('member.settings') }}" class="sidebar-link {{ $currentRoute == 'member.settings' ? 'active' : '' }}">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33h0A1.65 1.65 0 0010 3.09V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51h0a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82v0a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                Ciljevi treninga
+            </a>
+
             <a href="{{ route('member.password') }}" class="sidebar-link {{ $currentRoute == 'member.password' ? 'active' : '' }}">
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
                 Promijeni lozinku
             </a>
-        </nav>
 
-        <div class="sidebar-footer">
-            <form action="{{ route('member.logout') }}" method="POST">
+            <form action="{{ route('member.logout') }}" method="POST" style="padding:8px 1.25rem 0;">
                 @csrf
-                <button type="submit" class="logout-btn">
+                <button type="submit" class="logout-btn" style="width:100%;">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
                     Odjava
                 </button>
             </form>
-        </div>
+        </nav>
     </aside>
 
     <!-- Main wrapper -->

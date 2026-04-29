@@ -28,6 +28,8 @@ class Member extends Authenticatable
         'last_seen_obavijesti',
         'last_seen_termini',
         'is_admin',
+        'monthly_goal_visits',
+        'monthly_goal_minutes',
     ];
 
     protected $hidden = [

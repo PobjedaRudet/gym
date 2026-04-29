@@ -350,11 +350,12 @@
   $progresDolasci = $ciljDolazaka > 0 ? min(round(($trenutniMjesec / $ciljDolazaka) * 100), 100) : 0;
   $satTrenutni = floor(($vrijemeTrenutni->ukupno ?? 0) / 60);
   $minTrenutni = ($vrijemeTrenutni->ukupno ?? 0) % 60;
-  $ciljSati = floor($ciljMinuta / 60);
+  $ciljSati = round($ciljMinuta / 60, 1);
+  $ciljSatiPrikaz = fmod($ciljSati, 1.0) === 0.0 ? number_format($ciljSati, 0) : number_format($ciljSati, 1);
   $progresSati = $ciljMinuta > 0 ? min(round((($vrijemeTrenutni->ukupno ?? 0) / $ciljMinuta) * 100), 100) : 0;
   $promjena = $prethodniMjesec > 0 ? round((($trenutniMjesec - $prethodniMjesec) / $prethodniMjesec) * 100) : ($trenutniMjesec > 0 ? 100 : 0);
   $prosjekTrenutni = $vrijemeTrenutni->prosjek ?? 0;
-  $prosjekCilj = 90;
+  $prosjekCilj = $ciljDolazaka > 0 ? max((int) round($ciljMinuta / $ciljDolazaka), 1) : 90;
   $progresProsjek = $prosjekCilj > 0 ? min(round(($prosjekTrenutni / $prosjekCilj) * 100), 100) : 0;
   $danaDoIsteka = $istekClanarine ? \Carbon\Carbon::parse($istekClanarine)->diffInDays($now, false) * -1 : 0;
 @endphp
@@ -501,7 +502,7 @@
           <span class="ring-color" style="background:#f4f4f5;"></span>
           <div class="ring-info">
             <div class="ring-info-label">Vrijeme</div>
-            <div class="ring-info-sub">Cilj: {{ $ciljSati }} sati</div>
+            <div class="ring-info-sub">Cilj: {{ $ciljSatiPrikaz }} sati</div>
           </div>
           <div class="ring-val" style="color:#f4f4f5;">{{ $satTrenutni }}<small>h</small></div>
         </div>

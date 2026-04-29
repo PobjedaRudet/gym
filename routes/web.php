@@ -82,6 +82,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
   Route::middleware(['auth'])->get('/editMember/{id}', [MemberController::class, 'editMember'])->name('editMember');
   Route::middleware(['auth'])->get('/editFee/{id}', [FeeController::class, 'editFee'])->name('editFee');
   Route::middleware(['auth'])->get('/memberProfile/{id}', [MemberController::class, 'memberProfile'])->name('memberProfile');
+  Route::middleware(['auth'])->post('/memberProfile/{id}/settings', [MemberController::class, 'updateProfileSettings'])->name('memberProfile.settings');
   Route::middleware(['auth'])->get('/feesDelete/{id}', [FeeController::class, 'destroy'])->name('feesDelete');
   Route::middleware(['auth'])->get('/attendance-list', [AttendanceController::class, 'index'])->name('attendance-list');
   Route::middleware(['auth'])->get('/attendance-live', [AttendanceController::class, 'live'])->name('attendance-live');
@@ -112,6 +113,8 @@ Route::prefix('portal')->group(function () {
     Route::middleware(['active.member'])->group(function () {
         Route::get('/profile', [MemberPortalController::class, 'profile'])->name('member.profile');
       Route::post('/profile/photo', [MemberPortalController::class, 'updatePhoto'])->name('member.profile.photo');
+        Route::get('/settings', [MemberPortalController::class, 'settings'])->name('member.settings');
+        Route::post('/settings', [MemberPortalController::class, 'updateSettings'])->name('member.settings.update');
         Route::get('/statistics', [MemberPortalController::class, 'statistics'])->name('member.statistics');
         Route::get('/live', [MemberPortalController::class, 'live'])->name('member.live');
         Route::get('/obavijesti', [MemberPortalController::class, 'obavijesti'])->name('member.obavijesti');
