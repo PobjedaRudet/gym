@@ -16,6 +16,11 @@ use Throwable;
 
 class MemberPortalController extends Controller
 {
+    public function rules()
+    {
+        return view('member.pravila');
+    }
+
     public function settings()
     {
         /** @var Member $member */

@@ -22,7 +22,7 @@ class FeeController extends Controller
         ->join("fees", "fees.member_id", "=", "members.id")
         ->where([
             ['members.id', '=', $id],
-            
+
         ])
         ->get(); */
         $test = Member::find($id);
@@ -33,16 +33,16 @@ class FeeController extends Controller
     }
 
     public function fees($id){
-    
+
         /* $member = Member::select('*')
             ->join("fees", "fees.member_id", "=", "members.id")
             ->where([
                 ['members.id', '=', $id],
-                
+
             ])->orderBy('fees.id', 'DESC')
             ->get(); */
             $member = Member::join('fees', 'fees.member_id', '=', 'members.id')
-            ->select('members.*', 'fees.id as fees_id', 'fees.start as start','fees.end as end')
+            ->select('members.*', 'fees.id as fees_id', 'fees.date as date', 'fees.start as start','fees.end as end')
             ->where('members.id', $id)
             ->orderBy('fees.id', 'desc')
             ->get();
@@ -62,7 +62,7 @@ class FeeController extends Controller
             'end'=> $request->end,
             'comment' => $request->comment,
             'member_id' => $request->member_id,
-        ]); 
+        ]);
 
         return redirect()->route('members');
 
@@ -113,7 +113,7 @@ class FeeController extends Controller
         ->where('fees.id', $id)
         ->get();
 
-        
+
 
         return view('editFee', ['test' => $member]);
     }
@@ -146,7 +146,7 @@ class FeeController extends Controller
         Fee::where('id', $request->fees_id)
         ->update([
             'amount' => $request->amount,
-           
+
         ]);
         return redirect('members');
 

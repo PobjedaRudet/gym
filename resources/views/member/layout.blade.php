@@ -544,6 +544,10 @@
                 <span class="link-badge" style="background:rgba(48,209,88,0.2);color:#30D158;">{{ $noviTermini }}</span>
                 @endif
             </a>
+            <a href="{{ route('member.rules') }}" class="sidebar-link {{ $currentRoute == 'member.rules' ? 'active' : '' }}">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+                Pravila
+            </a>
 
             @if($authMember->is_admin)
             <div class="sidebar-section" style="margin-top:1.5rem;">Administracija</div>
