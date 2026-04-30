@@ -6,6 +6,7 @@ use App\Models\Fee;
 use App\Http\Requests\StoreFeeRequest;
 use App\Http\Requests\UpdateFeeRequest;
 use App\Models\Member;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
@@ -58,8 +59,8 @@ class FeeController extends Controller
         Fee::create([
             'amount' => $request->amount,
             'date' => $request->date,
-            'start'=> $request->start,
-            'end'=> $request->end,
+            'start'=> Carbon::createFromFormat('d-m-Y', $request->start)->format('Y-m-d'),
+            'end'=> Carbon::createFromFormat('d-m-Y', $request->end)->format('Y-m-d'),
             'comment' => $request->comment,
             'member_id' => $request->member_id,
         ]);

@@ -185,13 +185,13 @@
 <script>
 $(function () {
     $('#start').datepicker({
-        format: 'yyyy-mm-dd',
+        format: 'dd-mm-yyyy',
         autoclose: true,
         todayHighlight: true
     }).datepicker('update', new Date());
 
     $('#end').datepicker({
-        format: 'yyyy-mm-dd',
+        format: 'dd-mm-yyyy',
         autoclose: true,
         todayHighlight: true
     }).datepicker('update', new Date());

@@ -189,7 +189,7 @@
         </div>
         <div class="col-md-3 d-flex align-items-end">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="status" name="status" required>
+            <input class="form-check-input" type="checkbox" id="status" name="status" checked>
             <label class="form-check-label" for="status">Aktiviraj člana</label>
           </div>
         </div>
