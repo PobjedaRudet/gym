@@ -7,6 +7,7 @@ use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
 use App\Models\Member;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -30,13 +31,16 @@ class AttendanceController extends Controller
 
     public function odjaviNeaktivne()
     {
-	$attendances = Attendance::whereNull('out')->get();
+	$attendances = Attendance::whereNull('out')
+            ->where('status', 1)
+            ->get();
 
         foreach ($attendances as $attendance) {
             $timeLoggedIn = Carbon::parse($attendance->in)->diffInHours(Carbon::now());
 
-            if ($timeLoggedIn > 3) {
-                $attendance->out = Carbon::parse($attendance->in)->addHours(2);
+            if ($timeLoggedIn >= 3) {
+                $attendance->out = Carbon::now();
+                $attendance->status = 0;
                 $attendance->save();
                 // You can perform additional actions here, like sending notifications, etc.
             }

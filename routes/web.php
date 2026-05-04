@@ -116,6 +116,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
 // ===== Member Portal Routes =====
 Route::prefix('portal')->group(function () {
+  Route::get('/forgot-password', [MemberAuthController::class, 'showForgotPasswordForm'])->name('member.password.forgot');
+  Route::post('/forgot-password', [MemberAuthController::class, 'sendResetLink'])->name('member.password.email');
+  Route::get('/reset-password/{token}', [MemberAuthController::class, 'showResetPasswordForm'])->name('member.password.reset');
+  Route::post('/reset-password', [MemberAuthController::class, 'resetPassword'])->name('member.password.store');
+
     Route::get('/login', [MemberAuthController::class, 'showLoginForm'])->name('member.login');
     Route::post('/login', [MemberAuthController::class, 'login'])->name('member.login.submit');
     Route::get('/register', [MemberAuthController::class, 'showRegisterForm'])->name('member.register');

@@ -22,6 +22,12 @@
                 </div>
                 @endif
 
+                @if(session('success'))
+                <div class="mb-3" style="background:#1a1a1a;border:1px solid #525252;color:#f4f4f5;border-radius:12px;padding:12px 16px;font-size:14px;">
+                    {{ session('success') }}
+                </div>
+                @endif
+
                 <form method="POST" action="{{ route('member.login.submit') }}" autocomplete="on">
                     @csrf
                     <div class="mb-2">
@@ -31,6 +37,9 @@
                     <div class="mb-4">
                         <label for="password" class="form-label">Lozinka</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Unesite lozinku" autocomplete="current-password" required>
+                    </div>
+                    <div class="text-end mb-3" style="font-size:13px;">
+                        <a href="{{ route('member.password.forgot') }}" class="auth-link">Zaboravili ste lozinku?</a>
                     </div>
                     <button type="submit" class="btn-auth-primary">Prijavi se</button>
                 </form>

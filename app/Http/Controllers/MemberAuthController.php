@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MemberResetPasswordMail;
 use App\Mail\MemberPasswordMail;
 use App\Models\Member;
 use Carbon\Carbon;
@@ -59,6 +60,96 @@ class MemberAuthController extends Controller
     public function showLoginForm()
     {
         return view('member.login');
+    }
+
+    public function showForgotPasswordForm()
+    {
+        return view('member.forgot-password');
+    }
+
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $member = Member::where('email', $request->email)->first();
+
+        if (!$member || !$member->password) {
+            return back()->withErrors([
+                'email' => 'Nije pronađen aktivan član sa ovom email adresom.',
+            ])->withInput();
+        }
+
+        $token = Str::random(64);
+
+        DB::table('password_resets')->updateOrInsert(
+            ['email' => $member->email],
+            [
+                'token' => Hash::make($token),
+                'created_at' => Carbon::now(),
+            ]
+        );
+
+        $resetUrl = route('member.password.reset', [
+            'token' => $token,
+            'email' => $member->email,
+        ]);
+
+        Mail::to($member->email)->send(new MemberResetPasswordMail($member, $resetUrl));
+
+        return back()->with('success', 'Poslali smo link za reset lozinke na Vaš email.');
+    }
+
+    public function showResetPasswordForm(Request $request, string $token)
+    {
+        return view('member.reset-password', [
+            'token' => $token,
+            'email' => $request->query('email', ''),
+        ]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'token' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $resetRow = DB::table('password_resets')->where('email', $request->email)->first();
+
+        if (!$resetRow || !Hash::check($request->token, $resetRow->token)) {
+            return back()->withErrors([
+                'email' => 'Link za reset lozinke nije validan.',
+            ])->withInput($request->only('email'));
+        }
+
+        $expireMinutes = (int) config('auth.passwords.members.expire', 60);
+        $createdAt = Carbon::parse($resetRow->created_at);
+
+        if ($createdAt->addMinutes($expireMinutes)->isPast()) {
+            DB::table('password_resets')->where('email', $request->email)->delete();
+
+            return back()->withErrors([
+                'email' => 'Link za reset lozinke je istekao. Zatražite novi link.',
+            ])->withInput($request->only('email'));
+        }
+
+        $member = Member::where('email', $request->email)->first();
+
+        if (!$member) {
+            return back()->withErrors([
+                'email' => 'Član nije pronađen.',
+            ])->withInput($request->only('email'));
+        }
+
+        $member->password = Hash::make($request->password);
+        $member->save();
+
+        DB::table('password_resets')->where('email', $request->email)->delete();
+
+        return redirect()->route('member.login')->with('success', 'Lozinka je uspješno resetovana. Prijavite se novom lozinkom.');
     }
 
     public function login(Request $request)
