@@ -148,6 +148,10 @@
           <input type="text" class="form-control" id="code" name="code" required>
         </div>
         <div class="col-md-4">
+          <label class="form-label">JMBG</label>
+          <input type="text" class="form-control" id="jmbg" name="jmbg" required>
+        </div>
+        <div class="col-md-4">
           <label class="form-label">E-mail</label>
           <input type="text" class="form-control" id="email" name="email">
         </div>
