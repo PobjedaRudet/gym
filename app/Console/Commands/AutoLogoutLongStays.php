@@ -15,7 +15,7 @@ class AutoLogoutLongStays extends Command
 
     public function handle(): int
     {
-        $cutoff = Carbon::now()->subHours(3);
+        $cutoff = Carbon::now()->subHours(2)->subMinutes(30);
 
         $updated = Attendance::whereNull('out')
             ->where('status', 1)
@@ -27,7 +27,7 @@ class AutoLogoutLongStays extends Command
 
         $message = "Auto odjava zavrsena. Broj odjavljenih: {$updated}";
         $this->info($message);
-        Log::channel('daily')->info("[AutoLogout] {$message}");
+        Log::channel('daily')->info("[AutoLogout] Pokrenuto u: " . Carbon::now()->toDateTimeString() . " | {$message}");
 
         return self::SUCCESS;
     }
