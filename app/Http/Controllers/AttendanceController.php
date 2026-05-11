@@ -185,6 +185,9 @@ Log::info($prisutni);
 
     public function report(){
 
+        $now = Carbon::now();
+        $lastMonth = Carbon::now()->subMonth();
+
         // Ukupno članova (svi članovi) i ukupni iznos svih članarina
         $ukupno = Member::select(
             DB::raw('count(distinct members.id) as ukupniBroj'),
@@ -193,66 +196,57 @@ Log::info($prisutni);
         ->leftJoin("fees", "fees.member_id", "=", "members.id")
         ->get();
 
-        // Aktivni članovi (imaju barem jednu članarinu koja nije istekla)
-        $aktivni = Member::select(
-            DB::raw('count(distinct members.id) as Aktivni'),
-            DB::raw('COALESCE(sum(fees.amount), 0) as Iznos')
-        )
-        ->join("fees", "fees.member_id", "=", "members.id")
-        ->where('fees.end', '>=', DB::raw('CURDATE()'))
-        ->get();
+        // Aktivni članovi = unique članovi koji su uplatili članarinu u tekućem mjesecu
+        $aktivni = DB::table('fees')
+            ->selectRaw('COUNT(DISTINCT fees.member_id) as Aktivni, COALESCE(SUM(fees.amount), 0) as Iznos')
+            ->whereYear('fees.start', $now->year)
+            ->whereMonth('fees.start', $now->month)
+            ->get();
 
-        // Neaktivni članovi (nemaju nijednu aktivnu članarinu)
-        $ne = Member::select(DB::raw('count(distinct members.id) as N'))
-        ->whereNotIn('members.id', function($query) {
-            $query->select('fees.member_id')
-                ->from('fees')
-                ->where('fees.end', '>=', DB::raw('CURDATE()'));
-        })
-        ->get();
+        // Neaktivni članovi = ukupno članova - članovi sa uplatom u tekućem mjesecu
+        $ukupnoBroj = (int) ($ukupno->first()->ukupniBroj ?? 0);
+        $aktivniBroj = (int) ($aktivni->first()->Aktivni ?? 0);
+        $ne = collect([(object) [
+            'N' => max($ukupnoBroj - $aktivniBroj, 0),
+        ]]);
 
-        // Prošli mjesec - članovi čija je članarina istekla prošlog mjeseca
-        $lastMonth = Carbon::now()->subMonth();
-        $prosli_mjesec = Member::select(DB::raw('count(distinct members.id) as NP'))
-        ->join("fees", "fees.member_id", "=", "members.id")
-        ->whereYear('fees.end', $lastMonth->year)
-        ->whereMonth('fees.end', $lastMonth->month)
-        ->get();
+        // Prošli mjesec - unique članovi sa uplatom u prošlom mjesecu
+        $prosli_mjesec = DB::table('fees')
+            ->selectRaw('COUNT(DISTINCT fees.member_id) as NP')
+            ->whereYear('fees.start', $lastMonth->year)
+            ->whereMonth('fees.start', $lastMonth->month)
+            ->get();
 
-        $prosli_mjesec_iznos = Member::select(DB::raw('COALESCE(sum(fees.amount), 0) as IznosP'))
-        ->join("fees", "fees.member_id", "=", "members.id")
-        ->whereYear('fees.end', $lastMonth->year)
-        ->whereMonth('fees.end', $lastMonth->month)
-        ->get();
+        $prosli_mjesec_iznos = DB::table('fees')
+            ->selectRaw('COALESCE(SUM(fees.amount), 0) as IznosP')
+            ->whereYear('fees.start', $lastMonth->year)
+            ->whereMonth('fees.start', $lastMonth->month)
+            ->get();
 
         // Odabrana godina za grafikon (default: trenutna)
         $selectedYear = request('year', Carbon::now()->year);
 
-        // Dostupne godine iz baze
+        // Dostupne godine iz uplata članarina
         $dostupneGodine = DB::table('fees')
             ->selectRaw('DISTINCT YEAR(fees.start) as godina')
-            ->unionAll(
-                DB::table('fees')->selectRaw('DISTINCT YEAR(fees.end) as godina')
-            )
             ->orderBy('godina', 'desc')
             ->pluck('godina')
             ->unique()
             ->sort()
             ->values();
 
-        // Mjesečni pregled aktivnih članova za odabranu godinu (1 upit)
+        // Mjesečni pregled aktivnih članova za odabranu godinu (uplata u tom mjesecu)
         $feesAll = DB::table('fees')
-            ->selectRaw('YEAR(fees.start) as s_god, MONTH(fees.start) as s_mj, YEAR(fees.end) as e_god, MONTH(fees.end) as e_mj, member_id')
-            ->get();
+            ->selectRaw('MONTH(fees.start) as mj, COUNT(DISTINCT fees.member_id) as broj')
+            ->whereYear('fees.start', $selectedYear)
+            ->groupByRaw('MONTH(fees.start)')
+            ->get()
+            ->keyBy('mj');
 
         $mjesecni = collect();
         for ($m = 1; $m <= 12; $m++) {
             $date = Carbon::createFromDate($selectedYear, $m, 1);
-            $cnt = $feesAll->filter(function($f) use ($selectedYear, $m) {
-                $startBefore = ($f->s_god < $selectedYear) || ($f->s_god == $selectedYear && $f->s_mj <= $m);
-                $endAfter = ($f->e_god > $selectedYear) || ($f->e_god == $selectedYear && $f->e_mj >= $m);
-                return $startBefore && $endAfter;
-            })->pluck('member_id')->unique()->count();
+            $cnt = (int) ($feesAll->get($m)->broj ?? 0);
             $mjesecni->push([
                 'mjesec' => $date->translatedFormat('M'),
                 'broj' => $cnt,
@@ -264,11 +258,21 @@ Log::info($prisutni);
 
     public function comparison()
     {
-        // Dostupne godine iz attendances tabele
-        $dostupneGodine = DB::table('attendances')
+        // Dostupne godine iz dolazaka i uplata članarina
+        $godineDolasci = DB::table('attendances')
             ->selectRaw('DISTINCT YEAR(`in`) as godina')
-            ->orderBy('godina', 'asc')
             ->pluck('godina');
+
+        $godineUplate = DB::table('fees')
+            ->selectRaw('DISTINCT YEAR(fees.start) as godina')
+            ->pluck('godina');
+
+        $dostupneGodine = $godineDolasci
+            ->merge($godineUplate)
+            ->filter()
+            ->unique()
+            ->sort()
+            ->values();
 
         $mjesecnaImena = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
 
@@ -322,20 +326,21 @@ Log::info($prisutni);
             ];
         }
 
-        // 1 upit: sve fees rasponima za aktivne članove
+        // 1 upit: aktivni članovi po mjesecu = unique uplate u tom mjesecu
         $feesRaw = DB::table('fees')
-            ->selectRaw('YEAR(fees.start) as s_god, MONTH(fees.start) as s_mj, YEAR(fees.end) as e_god, MONTH(fees.end) as e_mj, member_id')
+            ->selectRaw('YEAR(fees.start) as god, MONTH(fees.start) as mj, COUNT(DISTINCT fees.member_id) as aktivni')
+            ->groupByRaw('YEAR(fees.start), MONTH(fees.start)')
+            ->orderBy('god')
+            ->orderBy('mj')
             ->get();
+        $feesByYear = $feesRaw->groupBy('god');
 
         $aktivniPoGodinama = [];
         foreach ($dostupneGodine as $godina) {
+            $godFees = isset($feesByYear[$godina]) ? $feesByYear[$godina]->keyBy('mj') : collect();
             $aktivniMjeseci = [];
             for ($m = 1; $m <= 12; $m++) {
-                $cnt = $feesRaw->filter(function($f) use ($godina, $m) {
-                    $startBefore = ($f->s_god < $godina) || ($f->s_god == $godina && $f->s_mj <= $m);
-                    $endAfter = ($f->e_god > $godina) || ($f->e_god == $godina && $f->e_mj >= $m);
-                    return $startBefore && $endAfter;
-                })->pluck('member_id')->unique()->count();
+                $cnt = (int) ($godFees->get($m)->aktivni ?? 0);
                 $aktivniMjeseci[] = $cnt;
             }
             $aktivniPoGodinama[$godina] = $aktivniMjeseci;
