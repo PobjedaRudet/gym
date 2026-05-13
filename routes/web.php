@@ -34,10 +34,10 @@ Route::get('begsfit', function () {
     return view('welcome');
 });
 
-Route::post('/slanje2',[MemberController::class, 'slanje'])->name('slanje');
+Route::post('/slanje',[MemberController::class, 'slanje'])->name('slanje');
 
   Route::get('/attendance2', [MemberController::class, 'attendance2'])->name('attendance2');
-  Route::post('/slanje', [MemberController::class, 'slanje'])->name('slanje');
+
 Route::group([
 
     'excluded_middleware' => ['auth'],
@@ -90,7 +90,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
   Route::middleware(['auth'])->get('/attendance-live', [AttendanceController::class, 'live'])->name('attendance-live');
   Route::middleware(['auth'])->get('/fees/{id}', [FeeController::class, 'fees'])->name('fees');
   Route::middleware(['auth'])->post('/logoutAll', [AttendanceController::class, 'logoutAll'])->name('logoutAll');
- // Route::middleware(['auth'])->post('/slanje', [MemberController::class, 'slanje'])->name('slanje');
+  Route::middleware(['auth'])->post('/slanje', [MemberController::class, 'slanje'])->name('slanje');
   Route::middleware(['auth'])->post('live', [AttendanceController::class, 'live2'])->name('live');
     Route::middleware(['auth'])->get('/search', [MemberController::class, 'search'])->name('search');
   Route::middleware(['auth'])->delete('/deleteMember/{member}', [MemberController::class, 'destroy'])->name('deleteMember');

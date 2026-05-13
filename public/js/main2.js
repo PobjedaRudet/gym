@@ -25,7 +25,7 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     var postObj = {
       id: $("#sifra").val(),
-      gym: 2,
+      gym: 1,
       title: "What is AJAX",
       body: "AJAX stands for Asynchronous JavaScript..."
     };
@@ -105,6 +105,11 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
           $("#status").text('ČLANARINA JE ISTEKLA');
           $("#inout").text('NE MOŽETE SE PRIJAVITI').addClass("bg-danger text-white font-weight-bold rounded");
         }
+        
+        // Reset stranice nakon 2 sekunde
+        setTimeout(function(){
+          location.reload();
+        }, 2000);
       }
     });
   }

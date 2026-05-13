@@ -455,8 +455,8 @@ class MemberController extends Controller
 
     public function slanje(Request $request){
 
-        $id = $request->postObj['id'];
-        $gym = $request->postObj['gym'];
+        $id = $request->input('postObj.id');
+        $gym = $request->input('postObj.gym');
         Log::info($gym);
         $date = Carbon::today()->toDateString();
       $end = Member::select("fees.end as rok")

@@ -6,7 +6,7 @@
           var idss = String($("#sifra").val().trim());
           console.log(idss);
           var id = idss.replace(/\&/g, '/');
-            
+
           $("#sifra").val("");
       }
   });
@@ -22,6 +22,7 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
 
     let postObj = {
       id: $("#sifra").val(),
+      gym: 1,
       title: "What is AJAX",
       body: "AJAX stands for Asynchronous JavaScript..."
     }
@@ -40,8 +41,8 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
       success: function (data) {
         console.log(data);
 
-      
-        
+
+
         var id = data['id'];
         if (id == 0 || id == 1) {
 
@@ -81,7 +82,7 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
               $("#name").text(name + ' ' + surname);
               console.log(name);
               $("#pic").attr('src', 'images/' + picture);
-              
+
             }
             else if (id == 1) {
               $("#status").text('');
@@ -97,7 +98,7 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
 
             }
 
-          } 
+          }
 
         }
         else {
@@ -114,9 +115,11 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
 
         }
 
+        // Reset stranice nakon 2 sekunde
+        setTimeout(function(){
+          location.reload();
+        }, 2000);
 
-
-       
 
       }
     });
