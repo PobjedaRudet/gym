@@ -25,7 +25,7 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     var postObj = {
       id: $("#sifra").val(),
-      gym: 1,
+      gym: 2,
       title: "What is AJAX",
       body: "AJAX stands for Asynchronous JavaScript..."
     };
