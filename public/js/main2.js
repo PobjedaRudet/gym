@@ -11,7 +11,7 @@ var __webpack_exports__ = {};
           var idss = String($("#sifra").val().trim());
           console.log(idss);
           var id = idss.replace(/\&/g, '/');
-            
+
           $("#sifra").val("");
       }
   });
@@ -105,7 +105,7 @@ document.querySelector('#sifra').addEventListener('keypress', function (e) {
           $("#status").text('ČLANARINA JE ISTEKLA');
           $("#inout").text('NE MOŽETE SE PRIJAVITI').addClass("bg-danger text-white font-weight-bold rounded");
         }
-        
+
         // Reset stranice nakon 2 sekunde
         setTimeout(function(){
           location.reload();
