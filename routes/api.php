@@ -16,8 +16,10 @@ use App\Http\Controllers\MemberController;
 
 Route::get('/test2', [MemberController::class, 'test2']);
 
+Route::post('/slanje', [MemberController::class, 'slanje']);
+
 Route::post('/login', function (Request $request) {
- 
+
     return response()->json(['status' => 'OK'], 200);
 });
 
