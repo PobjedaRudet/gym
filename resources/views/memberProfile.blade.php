@@ -258,6 +258,12 @@
           @else
             <span class="profile-badge badge-neaktivan">Neaktivan</span>
           @endif
+          <form method="POST" action="{{ route('memberProfile.password.reset', ['id' => $member->id]) }}" onsubmit="return confirm('Da li ste sigurni da želite poništiti lozinku ovog člana?');" style="margin:0;">
+            @csrf
+            <button type="submit" style="border:none;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border-radius:30px;padding:6px 16px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.4px;">
+              Ponovna registracija
+            </button>
+          </form>
           <span style="font-size:13px;color:rgba(255,255,255,0.6);">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;margin-right:4px;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
             Članarina do: <strong style="color:{{ $aktivanClan ? '#6ea8fe' : '#f1aeb5' }};">{{ $istekClanarine ? \Carbon\Carbon::parse($istekClanarine)->format('d.m.Y') : 'Nema' }}</strong>
@@ -354,6 +360,7 @@
             Sačuvaj postavke
           </button>
         </form>
+
       </div>
     </div>
 

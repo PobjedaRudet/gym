@@ -6,6 +6,7 @@ use App\Mail\MemberResetPasswordMail;
 use App\Mail\MemberPasswordMail;
 use App\Models\Member;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,19 @@ class MemberAuthController extends Controller
         $member->password = Hash::make($plainPassword);
         $member->save();
 
-        Mail::to($member->email)->send(new MemberPasswordMail($member, $plainPassword));
+        try {
+            Mail::to($member->email)->send(new MemberPasswordMail($member, $plainPassword));
+        } catch (Exception $e) {
+            // Do not keep an unknown password if email delivery failed.
+            $member->password = null;
+            $member->save();
+
+            report($e);
+
+            return back()->withErrors([
+                'email' => 'Trenutno nije moguće poslati email za registraciju. Pokušajte ponovo za par minuta ili kontaktirajte recepciju.',
+            ])->withInput();
+        }
 
         return redirect()->route('member.login')->with('success', 'Lozinka je poslana na Vaš email. Provjerite inbox.');
     }
@@ -96,7 +109,15 @@ class MemberAuthController extends Controller
             'email' => $member->email,
         ]);
 
-        Mail::to($member->email)->send(new MemberResetPasswordMail($member, $resetUrl));
+        try {
+            Mail::to($member->email)->send(new MemberResetPasswordMail($member, $resetUrl));
+        } catch (Exception $e) {
+            report($e);
+
+            return back()->withErrors([
+                'email' => 'Trenutno nije moguće poslati reset link. Pokušajte ponovo kasnije.',
+            ])->withInput();
+        }
 
         return back()->with('success', 'Poslali smo link za reset lozinke na Vaš email.');
     }

@@ -85,6 +85,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
   Route::middleware(['auth'])->get('/editFee/{id}', [FeeController::class, 'editFee'])->name('editFee');
   Route::middleware(['auth'])->get('/memberProfile/{id}', [MemberController::class, 'memberProfile'])->name('memberProfile');
   Route::middleware(['auth'])->post('/memberProfile/{id}/settings', [MemberController::class, 'updateProfileSettings'])->name('memberProfile.settings');
+  Route::middleware(['auth'])->post('/memberProfile/{id}/password/reset', [MemberController::class, 'resetMemberPassword'])->name('memberProfile.password.reset');
   Route::middleware(['auth'])->get('/feesDelete/{id}', [FeeController::class, 'destroy'])->name('feesDelete');
   Route::middleware(['auth'])->get('/attendance-list', [AttendanceController::class, 'index'])->name('attendance-list');
   Route::middleware(['auth'])->get('/attendance-live', [AttendanceController::class, 'live'])->name('attendance-live');

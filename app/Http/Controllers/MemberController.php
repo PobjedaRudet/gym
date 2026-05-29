@@ -287,6 +287,20 @@ class MemberController extends Controller
             ->route('memberProfile', ['id' => $member->id])
             ->with('success', 'Postavke ciljeva su uspjesno sacuvane.');
     }
+
+    public function resetMemberPassword($id)
+    {
+        $member = Member::findOrFail($id);
+
+        $member->password = null;
+        $member->remember_token = null;
+        $member->save();
+
+        return redirect()
+            ->route('memberProfile', ['id' => $member->id])
+            ->with('success', 'Lozinka clana je ponistena. Potrebno je postaviti novu lozinku putem reset linka.');
+    }
+
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
