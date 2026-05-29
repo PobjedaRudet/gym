@@ -35,6 +35,7 @@ Route::get('begsfit', function () {
 });
 
 Route::post('/slanje',[MemberController::class, 'slanje'])->name('slanje');
+Route::post('/slanje2',[MemberController::class, 'slanje'])->name('slanje');
 
   Route::get('/attendance2', [MemberController::class, 'attendance2'])->name('attendance2');
 

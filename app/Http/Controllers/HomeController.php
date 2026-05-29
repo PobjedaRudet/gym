@@ -32,12 +32,8 @@ class HomeController extends Controller
     {
         return view('izvjestaj');
     }
-   
 
-    public function test(Request $request)
-    {
-        file_put_contents("post2.log", print_r($request, true));
-    }
+
 }
 
 

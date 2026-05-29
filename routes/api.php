@@ -14,7 +14,6 @@ use App\Http\Controllers\MemberController;
 |
 */
 
-Route::get('/test2', [MemberController::class, 'test2']);
 
 Route::post('/slanje', [MemberController::class, 'slanje']);
 
