@@ -32,7 +32,15 @@ Route::get('/', function () {
 });
 Route::get('begsfit', function () {
     return view('welcome');
-});
+})->name('begsfit');
+
+Route::get('/about-us.html', function () {
+    return view('about-us');
+})->name('about-us');
+
+Route::get('/portal-clanova.html', function () {
+    return view('member-portal-info');
+})->name('portal-info');
 
 Route::post('/slanje',[MemberController::class, 'slanje'])->name('slanje');
 Route::post('/slanje2',[MemberController::class, 'slanje'])->name('slanje');
