@@ -81,9 +81,10 @@
             <ul>
                 <li><a href="{{ route('begsfit') }}"><i class="fa fa-home"></i>Početna</a></li>
                 <li><a class="active" href="{{ route('about-us') }}"><i class="fa fa-info-circle"></i>O nama</a></li>
-                <li><a href="./classes.html"><i class="fa fa-calendar"></i>Treninzi</a></li>
-                <li><a href="./services.html"><i class="fa fa-star"></i>Usluge</a></li>
-                <li><a href="./team.html"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('treninzi') }}"><i class="fa fa-calendar"></i>Treninzi</a></li>
+                <li><a href="{{ route('usluge') }}"><i class="fa fa-star"></i>Usluge</a></li>
+                <li><a href="{{ route('team') }}"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('galerija') }}"><i class="fa fa-picture-o"></i>Galerija</a></li>
                 <li><a href="{{ route('kontakt') }}"><i class="fa fa-envelope"></i>Kontakt</a></li>
                 <li><a class="nav-link" href="{{ route('portal-info') }}"><i class="fa fa-user-circle"></i>Portal za članove</a></li>
 
@@ -115,9 +116,10 @@
                         <ul>
                             <li><a href="{{ route('begsfit') }}">Početna</a></li>
                             <li class="active"><a href="{{ route('about-us') }}">O nama</a></li>
-                            <li><a href="./class-details.html">Treninzi</a></li>
-                            <li><a href="./services.html">Usluge</a></li>
-                            <li><a href="./team.html">Naš tim</a></li>
+                            <li><a href="{{ route('treninzi') }}">Treninzi</a></li>
+                            <li><a href="{{ route('usluge') }}">Usluge</a></li>
+                            <li><a href="{{ route('team') }}">Naš tim</a></li>
+                            <li><a href="{{ route('galerija') }}">Galerija</a></li>
                             <li><a href="{{ route('kontakt') }}">Kontakt</a></li>
                             <li><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
                         </ul>

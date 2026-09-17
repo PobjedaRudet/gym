@@ -489,6 +489,69 @@ ol {
 	margin-left: 15px;
 }
 
+/* --- Moderniji header: navigacija uvijek u jednom redu (flexbox umjesto fiksnih kolona) --- */
+.header-section .container-fluid > .row {
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+
+.header-section .container-fluid > .row > .col-lg-3,
+.header-section .container-fluid > .row > .col-lg-6 {
+	width: auto;
+	max-width: none;
+	flex: 0 0 auto;
+}
+
+.header-section .container-fluid > .row > .col-lg-6 {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.nav-menu ul {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	margin: 0;
+	padding: 0;
+}
+
+.nav-menu ul li {
+	margin-right: 28px;
+	white-space: nowrap;
+}
+
+.nav-menu ul li a {
+	font-size: 14px;
+	letter-spacing: 0.6px;
+}
+
+.nav-menu ul li a:after {
+	top: auto;
+	bottom: 4px;
+	left: 50%;
+	right: auto;
+	width: 0;
+	height: 2px;
+	background: #ECD008;
+	transform: translateX(-50%);
+	transition: width 0.3s ease;
+}
+
+.nav-menu ul li.active>a:after,
+.nav-menu ul li:hover>a:after {
+	width: 100%;
+	opacity: 1;
+}
+
+.top-option {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	white-space: nowrap;
+}
+
 .offcanvas-menu-wrapper {
 	display: none;
 }

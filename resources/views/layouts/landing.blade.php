@@ -50,6 +50,18 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
         }
 
+        /* --- Hero: tamni gradient overlay sa desne strane (gdje je tekst) radi citljivosti --- */
+        .hs-item { position: relative; }
+        .hs-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 22%, rgba(0, 0, 0, .18) 40%, rgba(0, 0, 0, .65) 68%, rgba(0, 0, 0, .85) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hs-item > .container { position: relative; z-index: 2; }
+
         /* --- Hero: moderniji naglasak i staklene stat-kartice --- */
         .hi-text span {
             display: inline-flex;
@@ -378,9 +390,10 @@
             <ul>
                 <li><a class="{{ request()->routeIs('begsfit') ? 'active' : '' }}" href="{{ route('begsfit') }}"><i class="fa fa-home"></i>Početna</a></li>
                 <li><a href="{{ route('about-us') }}"><i class="fa fa-info-circle"></i>O nama</a></li>
-                <li><a href="./classes.html"><i class="fa fa-calendar"></i>Treninzi</a></li>
-                <li><a href="./services.html"><i class="fa fa-star"></i>Usluge</a></li>
-                <li><a href="./team.html"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('treninzi') }}"><i class="fa fa-calendar"></i>Treninzi</a></li>
+                <li><a href="{{ route('usluge') }}"><i class="fa fa-star"></i>Usluge</a></li>
+                <li><a href="{{ route('team') }}"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('galerija') }}"><i class="fa fa-picture-o"></i>Galerija</a></li>
                 <li><a href="{{ route('kontakt') }}"><i class="fa fa-envelope"></i>Kontakt</a></li>
                 <li><a class="nav-link" href="{{ route('portal-info') }}"><i class="fa fa-user-circle"></i>Portal za članove</a></li>
 
@@ -412,9 +425,10 @@
                         <ul>
                             <li class="{{ request()->routeIs('begsfit') ? 'active' : '' }}"><a href="{{ route('begsfit') }}">Početna</a></li>
                             <li><a href="{{ route('about-us') }}">O nama</a></li>
-                            <li><a href="./class-details.html">Treninzi</a></li>
-                            <li><a href="./services.html">Usluge</a></li>
-                            <li><a href="./team.html">Naš tim</a></li>
+                            <li><a href="{{ route('treninzi') }}">Treninzi</a></li>
+                            <li><a href="{{ route('usluge') }}">Usluge</a></li>
+                            <li><a href="{{ route('team') }}">Naš tim</a></li>
+                            <li><a href="{{ route('galerija') }}">Galerija</a></li>
                             <li><a href="{{ route('kontakt') }}">Kontakt</a></li>
                             <li><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
                         </ul>
@@ -701,22 +715,6 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
     </section>
     <!-- ChoseUs Section End -->
 
-    <!-- Banner Section Begin -->
-    <section class="banner-section modern-banner set-bg" data-setbg="{{ asset('site/img/banner-bg.jpg') }}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="bs-text reveal">
-                        <h2>Za više informacija</h2>
-                        <div class="bt-tips">Gdje se zdravlje, ljepota i izgleda upoznaju.</div>
-                        <a href="{{ route('about-us') }}" class="primary-btn btn-normal">Više informacija <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Banner Section End -->
-
     <!-- Pricing Section Begin -->
     <section id="pricing" class="pricing-section modern-section spad">
         <div class="container">
@@ -842,79 +840,6 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
         </div>
     </section>
     <!-- Pricing Section End -->
-
-    <!-- Gallery Section Begin -->
-    <div class="gallery-section">
-        <div class="gallery">
-            <div class="grid-sizer"></div>
-            <div class="gs-item modern-gallery grid-wide set-bg" data-setbg="{{ asset('site/img/gallery/teretana.jpg') }}">
-                <a href="{{ asset('site/img/gallery/teretana.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item modern-gallery set-bg" data-setbg="{{ asset('site/img/gallery/sampion.jpg') }}">
-                <a href="{{ asset('site/img/gallery/sampion.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item modern-gallery set-bg" data-setbg="{{ asset('site/img/gallery/latte.jpg') }}">
-                <a href="{{ asset('site/img/gallery/gallery-3.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item modern-gallery set-bg" data-setbg="{{ asset('site/img/gallery/igraonavanjska.jpg') }}">
-                <a href="{{ asset('site/img/gallery/igraonavanjska.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item modern-gallery set-bg" data-setbg="{{ asset('site/img/gallery/sank.jpg') }}">
-                <a href="{{ asset('site/img/gallery/sank.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item modern-gallery grid-wide set-bg" data-setbg="{{ asset('site/img/gallery/begstim.jpg') }}">
-                <a href="{{ asset('site/img/gallery/begstim.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-        </div>
-    </div>
-    <!-- Gallery Section End -->
-
-    <!-- Team Section Begin -->
-    <section class="team-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="team-title reveal">
-                        <div class="section-title">
-                            <span>Naš tim</span>
-                            <h2>Trenirajte sa profesionalcima</h2>
-                        </div>
-                     
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                
-                    <div class="col-lg-4 reveal d1">
-                        <div class="ts-item modern-team set-bg" data-setbg="{{ asset('site/img/team/emir.jpg') }}">
-                            <div class="ts_text">
-                                <h4>Emir Begović</h4>
-                                <span>Licencirani kik boks trener</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 reveal d2">
-                        <div class="ts-item modern-team set-bg" data-setbg="{{ asset('site/img/team/lejs.jpg') }}">
-                            <div class="ts_text">
-                                <h4>Lejs Begović</h4>
-                                <span>Licencirani kik boks trener</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 reveal d3">
-                        <div class="ts-item modern-team set-bg" data-setbg="{{ asset('site/img/team/adnan.jpg') }}">
-                            <div class="ts_text">
-                                <h4>Adnan Kadić</h4>
-                                <span>Kik boks trener</span>
-                           
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Team Section End -->
 
     <!-- Get In Touch Section Begin -->
     <div class="gettouch-section modern-touch" id="kontakt">

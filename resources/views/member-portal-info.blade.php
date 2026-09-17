@@ -54,6 +54,32 @@
         .portal-cta .primary-btn:hover { background: #000; }
         .portal-cta .primary-btn.outline { background: transparent; border: 2px solid #fff; color: #fff; }
         .portal-cta .primary-btn.outline:hover { background: rgba(255,255,255,.12); }
+
+        .screens-section { background: #000; padding: 90px 0; }
+        .screen-card {
+            background: #111; border-radius: 18px; padding: 16px 16px 22px;
+            border: 1px solid rgba(255, 255, 255, .06); height: 100%;
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+        .screen-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0, 0, 0, .4); border-color: rgba(236, 208, 8, .3); }
+        .screen-card .screen-frame {
+            border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .08);
+            background: #000; margin-bottom: 16px;
+        }
+        .screen-card .screen-frame img { width: 100%; height: auto; display: block; }
+        .screen-card .screen-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 26px; height: 26px; border-radius: 50%; background: #ECD008; color: #111;
+            font-weight: 800; font-size: 12px; font-family: 'Oswald', sans-serif; margin-right: 8px;
+        }
+        .screen-card h5 { color: #fff; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; display: inline-flex; align-items: center; margin-bottom: 10px; }
+        .screen-card p { color: #a9a9a9; font-size: 13px; line-height: 1.7; margin: 0; }
+        .screen-card .screen-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: #ECD008; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px;
+            margin-top: 14px; transition: gap .25s ease, color .25s ease;
+        }
+        .screen-card .screen-link:hover { gap: 10px; color: #fff; }
     </style>
 </head>
 
@@ -79,9 +105,10 @@
             <ul>
                 <li><a href="{{ route('begsfit') }}"><i class="fa fa-home"></i>Početna</a></li>
                 <li><a href="{{ route('about-us') }}"><i class="fa fa-info-circle"></i>O nama</a></li>
-                <li><a href="./classes.html"><i class="fa fa-calendar"></i>Treninzi</a></li>
-                <li><a href="./services.html"><i class="fa fa-star"></i>Usluge</a></li>
-                <li><a href="./team.html"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('treninzi') }}"><i class="fa fa-calendar"></i>Treninzi</a></li>
+                <li><a href="{{ route('usluge') }}"><i class="fa fa-star"></i>Usluge</a></li>
+                <li><a href="{{ route('team') }}"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('galerija') }}"><i class="fa fa-picture-o"></i>Galerija</a></li>
                 <li><a href="{{ route('kontakt') }}"><i class="fa fa-envelope"></i>Kontakt</a></li>
                 <li><a class="nav-link" href="{{ route('portal-info') }}"><i class="fa fa-user-circle"></i>Portal za članove</a></li>
 
@@ -113,9 +140,10 @@
                         <ul>
                             <li><a href="{{ route('begsfit') }}">Početna</a></li>
                             <li><a href="{{ route('about-us') }}">O nama</a></li>
-                            <li><a href="./class-details.html">Treninzi</a></li>
-                            <li><a href="./services.html">Usluge</a></li>
-                            <li><a href="./team.html">Naš tim</a></li>
+                            <li><a href="{{ route('treninzi') }}">Treninzi</a></li>
+                            <li><a href="{{ route('usluge') }}">Usluge</a></li>
+                            <li><a href="{{ route('team') }}">Naš tim</a></li>
+                            <li><a href="{{ route('galerija') }}">Galerija</a></li>
                             <li><a href="{{ route('kontakt') }}">Kontakt</a></li>
                             <li class="active"><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
                         </ul>
@@ -259,6 +287,61 @@
     </section>
     <!-- Steps Section End -->
 
+    <!-- Screens Section Begin -->
+    <section class="screens-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title reveal">
+                        <span>Pogledaj unaprijed</span>
+                        <h2>Kako izgleda portal za članove</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 reveal d1">
+                    <div class="screen-card">
+                        <div class="screen-frame">
+                            <img src="{{ asset('site/img/portal-screens/portal-1-registracija.png') }}" alt="Registracija na portal za članove">
+                        </div>
+                        <h5><span class="screen-num">1</span>Registracija</h5>
+                        <p>Unosite email koji ste ostavili na recepciji - sistem vam šalje lozinku za prvu prijavu.</p>
+                        <a href="https://begsfit-fight.ba/portal/register" class="screen-link">Idi na registraciju <i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 reveal d2">
+                    <div class="screen-card">
+                        <div class="screen-frame">
+                            <img src="{{ asset('site/img/portal-screens/portal-2-prijava.png') }}" alt="Prijava na portal za članove">
+                        </div>
+                        <h5><span class="screen-num">2</span>Prijava</h5>
+                        <p>Prijava emailom i lozinkom, uz opciju "Zaboravili ste lozinku?" ako vam zatreba nova.</p>
+                        <a href="https://begsfit-fight.ba/portal/login" class="screen-link">Idi na prijavu <i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 reveal d3">
+                    <div class="screen-card">
+                        <div class="screen-frame">
+                            <img src="{{ asset('site/img/portal-screens/portal-3-profil.png') }}" alt="Profil, dolasci i mjesečni ciljevi na portalu">
+                        </div>
+                        <h5><span class="screen-num">3</span>Profil i statistika</h5>
+                        <p>Pregled dolazaka, ukupnih sati, prosjeka treninga i napretka prema mjesečnim ciljevima.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 reveal d4">
+                    <div class="screen-card">
+                        <div class="screen-frame">
+                            <img src="{{ asset('site/img/portal-screens/portal-4-meni.png') }}" alt="Meni portala - termini, obavijesti i postavke">
+                        </div>
+                        <h5><span class="screen-num">4</span>Meni portala</h5>
+                        <p>Brz pristup terminima treninga, obavijestima, pravilima centra i postavkama naloga.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Screens Section End -->
+
     <!-- FAQ Section Begin -->
     <section class="faq-section spad">
         <div class="container">
@@ -301,8 +384,8 @@
         <div class="container">
             <h3>Spremni da pristupite portalu?</h3>
             <p>Registrujte se ako ovo radite prvi put, ili se prijavite ako već imate nalog.</p>
-            <a href="{{ route('member.register') }}" class="primary-btn btn-normal">Registruj se</a>
-            <a href="{{ route('member.login') }}" class="primary-btn btn-normal outline">Prijavi se</a>
+            <a href="https://begsfit-fight.ba/portal/register" class="primary-btn btn-normal">Registruj se</a>
+            <a href="https://begsfit-fight.ba/portal/login" class="primary-btn btn-normal outline">Prijavi se</a>
         </div>
     </div>
     <!-- Portal CTA End -->

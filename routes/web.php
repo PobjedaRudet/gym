@@ -47,6 +47,24 @@ Route::get('/about-us.html', function () {
     return view('about-us');
 })->name('about-us');
 
+Route::get('/treninzi.html', function () {
+    return view('treninzi', [
+        'sedmicniRaspored' => TerminTreninga::sedmicniRaspored(),
+    ]);
+})->name('treninzi');
+
+Route::get('/team.html', function () {
+    return view('team');
+})->name('team');
+
+Route::get('/galerija.html', function () {
+    return view('galerija');
+})->name('galerija');
+
+Route::get('/services.html', function () {
+    return view('usluge');
+})->name('usluge');
+
 Route::get('/contact.html', [ContactController::class, 'show'])->name('kontakt');
 Route::post('/contact', [ContactController::class, 'send'])->name('kontakt.submit');
 
