@@ -13,10 +13,16 @@ class Obavijest extends Model
 
     protected $fillable = [
         'moderator_id',
+        'fb_post_id',
         'naslov',
         'sadrzaj',
         'slika',
         'tip',
+        'javno',
+    ];
+
+    protected $casts = [
+        'javno' => 'boolean',
     ];
 
     public function moderator()

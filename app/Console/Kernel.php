@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('attendance:auto-logout-long-stays')->everyFifteenMinutes();
+        $schedule->command('facebook:sync-posts')->hourly();
     }
 
     /**

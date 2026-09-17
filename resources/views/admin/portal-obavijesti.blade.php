@@ -51,6 +51,13 @@
                         <input id="slika" name="slika" type="file" accept="image/jpeg,image/jpg,image/png,image/gif,image/webp" style="width:100%;border:1px solid #d1d5db;border-radius:10px;padding:8px;">
                     </div>
 
+                    <div style="margin-bottom:14px;">
+                        <label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#374151;cursor:pointer;">
+                            <input type="checkbox" name="javno" value="1" {{ old('javno') ? 'checked' : '' }}>
+                            Prikazi i na naslovnoj stranici (javno)
+                        </label>
+                    </div>
+
                     <button type="submit" style="border:none;background:linear-gradient(135deg,#4f46e5,#6366f1);color:#fff;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;">
                         Objavi obavijest
                     </button>
@@ -66,7 +73,12 @@
                     <div style="border:1px solid #e5e7eb;border-radius:12px;padding:0.9rem;margin-bottom:0.75rem;">
                         <div style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;">
                             <strong style="color:#111827;">{{ $obavijest->naslov }}</strong>
-                            <span style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:#eef2ff;color:#4338ca;">{{ strtoupper($obavijest->tip) }}</span>
+                            <span style="display:inline-flex;gap:6px;">
+                                <span style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:#eef2ff;color:#4338ca;">{{ strtoupper($obavijest->tip) }}</span>
+                                @if($obavijest->javno)
+                                    <span style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:#fef9c3;color:#854d0e;">NASLOVNA</span>
+                                @endif
+                            </span>
                         </div>
                         <p style="margin:0.5rem 0 0.55rem;color:#4b5563;">{{ $obavijest->sadrzaj_preview }}</p>
                         <small style="color:#9ca3af;">{{ $obavijest->created_at ? $obavijest->created_at->format('d.m.Y H:i') : '' }}</small>

@@ -22,6 +22,7 @@ class AdminPortalObavijestController extends Controller
                 'naslov',
                 'tip',
                 'slika',
+                'javno',
                 'created_at',
                 DB::raw('LEFT(sadrzaj, 220) as sadrzaj_preview'),
             ])
@@ -58,6 +59,7 @@ class AdminPortalObavijestController extends Controller
             'sadrzaj' => $validated['sadrzaj'],
             'tip' => $validated['tip'],
             'slika' => $slikaPath,
+            'javno' => $request->boolean('javno'),
         ]);
 
         return redirect()
@@ -87,6 +89,7 @@ class AdminPortalObavijestController extends Controller
             'naslov' => $validated['naslov'],
             'sadrzaj' => $validated['sadrzaj'],
             'tip' => $validated['tip'],
+            'javno' => $request->boolean('javno'),
         ];
 
         if ($request->hasFile('slika')) {

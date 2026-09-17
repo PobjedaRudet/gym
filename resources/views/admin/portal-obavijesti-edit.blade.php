@@ -54,6 +54,13 @@
                 </div>
             @endif
 
+            <div style="margin-bottom:14px;">
+                <label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#374151;cursor:pointer;">
+                    <input type="checkbox" name="javno" value="1" {{ old('javno', $obavijest->javno) ? 'checked' : '' }}>
+                    Prikazi i na naslovnoj stranici (javno)
+                </label>
+            </div>
+
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
                 <button type="submit" style="border:none;background:linear-gradient(135deg,#4f46e5,#6366f1);color:#fff;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;">Sacuvaj izmjene</button>
                 <a href="{{ route('admin.portal.obavijesti') }}" style="text-decoration:none;background:#f3f4f6;color:#374151;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:700;">Odustani</a>

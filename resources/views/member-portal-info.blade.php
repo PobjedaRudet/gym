@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" type="text/css">
 
     <style>
-        /* --- Portal za članove: koristi istu paletu kao naslovna/O nama: #f36100 --- */
+        /* --- Portal za članove: koristi istu paletu kao naslovna/O nama: #ECD008 (zuta iz loga) --- */
         .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
         .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -34,25 +34,25 @@
         .steps-section { background: #0a0a0a; }
         .step-card { background: #151515; border-radius: 14px; padding: 34px 26px; height: 100%; position: relative; transition: transform .3s ease, background .3s ease; }
         .step-card:hover { transform: translateY(-6px); background: #1b1b1b; }
-        .step-card .step-num { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #f36100; color: #fff; font-weight: 800; font-family: 'Oswald', sans-serif; font-size: 18px; margin-bottom: 18px; }
+        .step-card .step-num { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #ECD008; color: #111111; font-weight: 800; font-family: 'Oswald', sans-serif; font-size: 18px; margin-bottom: 18px; }
         .step-card h4 { color: #fff; text-transform: uppercase; font-size: 15px; margin-bottom: 10px; letter-spacing: .5px; }
         .step-card p { color: #b7b7b7; font-size: 13px; margin: 0; line-height: 1.7; }
 
         .portal-note { background: #1b1400; border: 1px solid #3a2a00; border-radius: 10px; padding: 16px 20px; margin-top: 28px; }
         .portal-note p { color: #e8b877; font-size: 13px; margin: 0; line-height: 1.7; }
-        .portal-note i { color: #f36100; margin-right: 8px; }
+        .portal-note i { color: #ECD008; margin-right: 8px; }
 
         .faq-section { background: #111; }
         .faq-item { background: #151515; border-radius: 12px; padding: 24px 26px; margin-bottom: 18px; }
-        .faq-item h4 { color: #f36100; font-size: 14px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+        .faq-item h4 { color: #ECD008; font-size: 14px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
         .faq-item p { color: #b7b7b7; font-size: 13px; margin: 0; line-height: 1.7; }
 
-        .portal-cta { background: linear-gradient(135deg, #f36100, #c94e00); padding: 55px 0; text-align: center; }
+        .portal-cta { background: linear-gradient(135deg, #6b5100, #241b00); padding: 55px 0; text-align: center; }
         .portal-cta h3 { color: #fff; font-size: 26px; font-weight: 800; margin-bottom: 10px; }
         .portal-cta p { color: rgba(255,255,255,.92); margin-bottom: 26px; }
-        .portal-cta .primary-btn { background: #111; margin: 0 8px 10px; }
+        .portal-cta .primary-btn { background: #111; color: #fff; margin: 0 8px 10px; }
         .portal-cta .primary-btn:hover { background: #000; }
-        .portal-cta .primary-btn.outline { background: transparent; border: 2px solid #fff; }
+        .portal-cta .primary-btn.outline { background: transparent; border: 2px solid #fff; color: #fff; }
         .portal-cta .primary-btn.outline:hover { background: rgba(255,255,255,.12); }
     </style>
 </head>
@@ -66,6 +66,9 @@
     <!-- Offcanvas Menu Section Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas-logo">
+            <img src="{{ asset('site/img/logo.png') }}" alt="">
+        </div>
         <div class="canvas-close">
             <i class="fa fa-close"></i>
         </div>
@@ -74,13 +77,13 @@
         </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
-                <li><a href="{{ route('begsfit') }}">Početna</a></li>
-                <li><a href="{{ route('about-us') }}">O nama</a></li>
-                <li><a href="./classes.html">Treninzi</a></li>
-                <li><a href="./services.html">Usluge</a></li>
-                <li><a href="./team.html">Naš tim</a></li>
-                <li><a href="./contact.html">Kontakt</a></li>
-                <li><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
+                <li><a href="{{ route('begsfit') }}"><i class="fa fa-home"></i>Početna</a></li>
+                <li><a href="{{ route('about-us') }}"><i class="fa fa-info-circle"></i>O nama</a></li>
+                <li><a href="./classes.html"><i class="fa fa-calendar"></i>Treninzi</a></li>
+                <li><a href="./services.html"><i class="fa fa-star"></i>Usluge</a></li>
+                <li><a href="./team.html"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('kontakt') }}"><i class="fa fa-envelope"></i>Kontakt</a></li>
+                <li><a class="nav-link" href="{{ route('portal-info') }}"><i class="fa fa-user-circle"></i>Portal za članove</a></li>
 
             </ul>
         </nav>
@@ -113,7 +116,7 @@
                             <li><a href="./class-details.html">Treninzi</a></li>
                             <li><a href="./services.html">Usluge</a></li>
                             <li><a href="./team.html">Naš tim</a></li>
-                            <li><a href="./contact.html">Kontakt</a></li>
+                            <li><a href="{{ route('kontakt') }}">Kontakt</a></li>
                             <li class="active"><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
                         </ul>
                     </nav>

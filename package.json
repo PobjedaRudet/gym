@@ -24,5 +24,8 @@
     },
     "dependencies": {
         "vue-loader": "^17.0.1"
+    },
+    "overrides": {
+        "yargs": "17.7.3"
     }
 }

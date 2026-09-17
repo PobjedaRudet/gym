@@ -26,9 +26,9 @@
     <style>
         /* =======================================================
            MODERNI SLOJ - naslovna stranica (dodatak preko style.css)
-           Ista paleta kao naslovna/about-us: akcent #f36100
+           Ista paleta kao naslovna/about-us: akcent #ECD008 (zuta iz loga)
         ========================================================== */
-        :root { --accent: #f36100; --accent-2: #ff8a3d; }
+        :root { --accent: #ECD008; --accent-2: #6b5100; --brand-yellow: #ECD008; }
 
         html { scroll-behavior: smooth; }
 
@@ -55,9 +55,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(243, 97, 0, .12);
-            border: 1px solid rgba(243, 97, 0, .4);
-            color: var(--accent-2) !important;
+            background: rgba(236, 208, 8, .12);
+            border: 1px solid rgba(236, 208, 8, .4);
+            color: var(--brand-yellow) !important;
             padding: 7px 18px;
             border-radius: 30px;
             font-size: 13px !important;
@@ -66,7 +66,7 @@
             text-transform: uppercase;
         }
         .hi-text h1 { letter-spacing: -1px; }
-        .hi-text h1 strong { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+        .hi-text h1 strong { color: var(--brand-yellow); -webkit-text-fill-color: var(--brand-yellow); }
         .hi-text .hero-sub { color: #d8d8d8; font-size: 16px; max-width: 460px; margin: 18px 0 26px; line-height: 1.7; }
         .hi-text .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
         .hi-text .btn-ghost {
@@ -88,7 +88,7 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
         }
         .hero-stat-card .num { font-family: 'Oswald', sans-serif; font-size: 30px; font-weight: 700; color: #fff; line-height: 1; }
-        .hero-stat-card .num span { color: var(--accent); }
+        .hero-stat-card .num span { color: var(--brand-yellow); }
         .hero-stat-card .lbl { color: #cfcfcf; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
         .scroll-cue {
@@ -116,9 +116,9 @@
         .cs-item.modern-card:hover { transform: translateY(-8px); background: #1a1a1a; box-shadow: 0 20px 40px rgba(0, 0, 0, .35); }
         .cs-icon-badge {
             width: 70px; height: 70px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), #c94e00);
+            background: linear-gradient(135deg, var(--accent-2), #241b00);
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 22px; box-shadow: 0 10px 24px rgba(243, 97, 0, .35);
+            margin: 0 auto 22px; box-shadow: 0 10px 24px rgba(184, 150, 11, .35);
         }
         .cs-icon-badge span { font-size: 30px; color: #fff; display: block; }
         .cs-item.modern-card:hover span { color: #fff; }
@@ -148,12 +148,12 @@
             transition: transform .35s ease, box-shadow .35s ease;
         }
         .ps-item.modern-price:hover { transform: translateY(-10px); box-shadow: 0 24px 50px rgba(0, 0, 0, .4); }
-        .ps-item.modern-price.featured { border: 1px solid rgba(243, 97, 0, .55); }
+        .ps-item.modern-price.featured { border: 1px solid rgba(236, 208, 8, .55); }
         .ps-item.modern-price .popular-badge {
             position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
             background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
-            padding: 7px 18px; border-radius: 30px; box-shadow: 0 8px 18px rgba(243, 97, 0, .45); white-space: nowrap;
+            color: #111111; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+            padding: 7px 18px; border-radius: 30px; box-shadow: 0 8px 18px rgba(236, 208, 8, .45); white-space: nowrap;
         }
         .ps-item.modern-price ul li { position: relative; padding-left: 22px; }
         .ps-item.modern-price ul li::before {
@@ -177,7 +177,7 @@
         }
         .gettouch-section.modern-touch .gt-text i {
             width: 52px; height: 52px; min-width: 52px; border-radius: 50%;
-            background: rgba(243, 97, 0, .12); border: 1px solid rgba(243, 97, 0, .35);
+            background: rgba(236, 208, 8, .12); border: 1px solid rgba(236, 208, 8, .35);
             display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accent);
         }
 
@@ -187,16 +187,172 @@
         .footer-section.modern-footer p, .footer-section.modern-footer li { color: #a9a9a9; font-size: 14px; line-height: 2; }
         .footer-section.modern-footer ul { list-style: none; padding: 0; margin: 0; }
         .footer-section.modern-footer ul li a { color: #a9a9a9; transition: color .25s ease; }
-        .footer-section.modern-footer ul li a:hover { color: var(--accent); }
+        .footer-section.modern-footer ul li a:hover { color: var(--brand-yellow); }
         .footer-section.modern-footer .fw-social a {
             display: inline-flex; align-items: center; justify-content: center;
             width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, .06);
             color: #cfcfcf; margin-right: 10px; transition: all .25s ease;
         }
-        .footer-section.modern-footer .fw-social a:hover { background: var(--accent); color: #fff; }
+        .footer-section.modern-footer .fw-social a:hover { background: var(--accent); color: #111111; }
         .footer-section.modern-footer .fw-divider { border-top: 1px solid rgba(255, 255, 255, .08); margin: 40px 0 22px; }
         .footer-section.modern-footer .copyright-text { text-align: center; }
         .footer-section.modern-footer .copyright-text p { font-size: 13px; }
+
+        /* --- "Sljedeći trening" kartica (inspirisano modernim gym/martial-arts predlošcima) --- */
+        .next-training-wrap { position: relative; z-index: 6; margin-top: -110px; margin-bottom: 40px; }
+        .next-training-card {
+            position: relative; overflow: hidden;
+            background:
+                linear-gradient(90deg, rgba(26, 26, 26, .97) 0%, rgba(26, 26, 26, .92) 32%, rgba(26, 26, 26, .55) 62%, rgba(26, 26, 26, .22) 100%),
+                url('{{ asset('site/img/gallery/gallery-1.jpg') }}') center/cover no-repeat;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 20px;
+            padding: 44px 46px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, .45);
+        }
+        .next-training-card .ntc-decor {
+            position: absolute; right: -90px; top: -90px; width: 340px; height: 340px;
+            border-radius: 50%; pointer-events: none;
+            background: repeating-radial-gradient(circle, rgba(236, 208, 8, .10) 0 2px, transparent 2px 28px);
+        }
+        .ntc-title {
+            color: #fff; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;
+            font-size: 26px; margin-bottom: 10px; position: relative;
+        }
+        .ntc-sub { color: #b7b7b7; font-size: 15px; margin-bottom: 24px; position: relative; max-width: 480px; }
+        .ntc-meta { display: flex; flex-wrap: wrap; gap: 34px; position: relative; }
+        .ntc-meta-item { display: flex; align-items: center; gap: 14px; }
+        .ntc-icon {
+            width: 48px; height: 48px; min-width: 48px; border-radius: 50%;
+            background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1);
+            display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 18px;
+        }
+        .ntc-text { color: #eaeaea; font-weight: 700; font-size: 15px; }
+        .ntc-btn {
+            position: relative; margin-top: 26px; width: 100%; text-align: center;
+        }
+        @media (min-width: 992px) {
+            .ntc-btn { margin-top: 0; width: auto; }
+        }
+        @media (max-width: 767px) {
+            .next-training-wrap { margin-top: -60px; }
+            .next-training-card { padding: 32px 24px; }
+            .ntc-meta { gap: 20px; }
+        }
+
+        /* --- "Vijesti" - javne obavijesti / Facebook objave --- */
+        .news-section.modern-section { background: #0a0a0a; }
+        .news-card {
+            background: #141414; border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .05); cursor: pointer;
+            transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
+            height: 100%; display: flex; flex-direction: column;
+        }
+        .news-card:hover { transform: translateY(-8px); background: #1a1a1a; box-shadow: 0 20px 40px rgba(0, 0, 0, .35); }
+        .news-card .nc-img { width: 100%; height: 180px; object-fit: cover; display: block; background: #1a1a1a; }
+        .news-card .nc-body { padding: 22px 24px 26px; flex: 1 1 auto; display: flex; flex-direction: column; }
+        .news-card .nc-date { color: var(--brand-yellow); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .news-card .nc-title { color: #fff; font-size: 18px; font-weight: 800; margin-bottom: 10px; line-height: 1.35; }
+        .news-card .nc-excerpt { color: #a9a9a9; font-size: 14px; line-height: 1.7; flex: 1 1 auto; margin-bottom: 0; }
+        .news-card .nc-more { color: var(--brand-yellow); font-size: 13px; font-weight: 700; margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; }
+        .news-empty { color: #a9a9a9; text-align: center; padding: 10px; }
+
+        /* --- Detalj vijesti - modal --- */
+        .news-modal-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, .75);
+            opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease;
+            z-index: 1300; display: flex; align-items: center; justify-content: center; padding: 24px;
+        }
+        .news-modal-overlay.active { opacity: 1; visibility: visible; }
+        .news-modal {
+            background: #141414; border: 1px solid rgba(255, 255, 255, .08); border-radius: 20px;
+            max-width: 620px; width: 100%; max-height: 86vh; overflow-y: auto;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, .55);
+            transform: translateY(30px); opacity: 0; transition: transform .35s ease, opacity .35s ease;
+        }
+        .news-modal-overlay.active .news-modal { transform: translateY(0); opacity: 1; }
+        .news-modal .nm-img { width: 100%; max-height: 320px; object-fit: cover; display: block; }
+        .news-modal .nm-body { padding: 28px 30px 32px; }
+        .news-modal .nm-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+        .news-modal .nm-date { color: var(--brand-yellow); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .news-modal .nm-title { color: #fff; font-size: 22px; font-weight: 800; line-height: 1.3; margin: 0; }
+        .news-modal .nm-close {
+            width: 38px; height: 38px; min-width: 38px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12);
+            color: #eaeaea; cursor: pointer; transition: all .25s ease; font-size: 15px;
+        }
+        .news-modal .nm-close:hover { background: var(--accent); border-color: var(--accent); color: #111111; }
+        .news-modal .nm-text { color: #cfcfcf; font-size: 15px; line-height: 1.8; white-space: pre-line; }
+        body.news-modal-open { overflow: hidden; }
+        @media (max-width: 480px) {
+            .news-modal { border-radius: 14px; max-height: 92vh; }
+            .news-modal .nm-body { padding: 22px 20px 26px; }
+        }
+
+        /* --- "Sljedeci termini" - klizni panel --- */
+        .schedule-panel-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, .65);
+            opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s ease;
+            z-index: 1200;
+        }
+        .schedule-panel-overlay.active { opacity: 1; visibility: visible; }
+
+        .schedule-panel {
+            position: fixed; top: 0; right: 0; height: 100%; width: 420px; max-width: 92vw;
+            background:
+                linear-gradient(180deg, rgba(26, 26, 26, .65) 0%, rgba(26, 26, 26, .9) 26%, rgba(24, 24, 24, .98) 45%, #1a1a1a 60%),
+                url('{{ asset('site/img/gallery/gallery-7.jpg') }}') top center/cover no-repeat;
+            border-left: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: -30px 0 60px rgba(0, 0, 0, .5);
+            z-index: 1201;
+            transform: translateX(100%);
+            transition: transform .4s cubic-bezier(.4, 0, .2, 1);
+            display: flex; flex-direction: column;
+        }
+        .schedule-panel.active { transform: translateX(0); }
+
+        .sp-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 28px 30px 20px; border-bottom: 1px solid rgba(255, 255, 255, .07);
+        }
+        .sp-header h3 {
+            color: #fff; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;
+            font-size: 20px; margin: 0;
+        }
+        .sp-close {
+            width: 40px; height: 40px; min-width: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12);
+            color: #eaeaea; cursor: pointer; transition: all .25s ease; font-size: 16px;
+        }
+        .sp-close:hover { background: var(--accent); border-color: var(--accent); color: #111111; }
+
+        .sp-body { flex: 1 1 auto; overflow-y: auto; padding: 24px 30px; }
+        .sp-day { margin-bottom: 26px; }
+        .sp-day:last-child { margin-bottom: 0; }
+        .sp-day-title {
+            color: var(--brand-yellow); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;
+            font-size: 13px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+        .sp-chip {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; transition: all .25s ease;
+        }
+        .sp-chip:hover { background: rgba(236, 208, 8, .1); border-color: rgba(236, 208, 8, .35); }
+        .sp-chip-name { color: #eee; font-weight: 700; font-size: 14px; }
+        .sp-chip-time { color: var(--brand-yellow); font-weight: 700; font-size: 13px; white-space: nowrap; margin-left: 10px; }
+        .sp-empty { color: #a9a9a9; font-size: 14px; text-align: center; padding: 50px 10px; }
+
+        .sp-footer { padding: 22px 30px 28px; border-top: 1px solid rgba(255, 255, 255, .07); }
+        .sp-footer .primary-btn { width: 100%; text-align: center; }
+
+        body.schedule-panel-open { overflow: hidden; }
+
+        @media (max-width: 480px) {
+            .schedule-panel { width: 100%; max-width: 100%; }
+        }
     </style>
 </head>
 
@@ -209,6 +365,9 @@
     <!-- Offcanvas Menu Section Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas-logo">
+            <img src="{{ asset('site/img/logo.png') }}" alt="">
+        </div>
         <div class="canvas-close">
             <i class="fa fa-close"></i>
         </div>
@@ -217,13 +376,13 @@
         </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
-                <li><a href="{{ route('begsfit') }}">Početna</a></li>
-                <li><a href="{{ route('about-us') }}">O nama</a></li>
-                <li><a href="./classes.html">Treninzi</a></li>
-                <li><a href="./services.html">Usluge</a></li>
-                <li><a href="./team.html">Naš tim</a></li>
-                <li><a href="./contact.html">Kontakt</a></li>
-                <li><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
+                <li><a class="{{ request()->routeIs('begsfit') ? 'active' : '' }}" href="{{ route('begsfit') }}"><i class="fa fa-home"></i>Početna</a></li>
+                <li><a href="{{ route('about-us') }}"><i class="fa fa-info-circle"></i>O nama</a></li>
+                <li><a href="./classes.html"><i class="fa fa-calendar"></i>Treninzi</a></li>
+                <li><a href="./services.html"><i class="fa fa-star"></i>Usluge</a></li>
+                <li><a href="./team.html"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('kontakt') }}"><i class="fa fa-envelope"></i>Kontakt</a></li>
+                <li><a class="nav-link" href="{{ route('portal-info') }}"><i class="fa fa-user-circle"></i>Portal za članove</a></li>
 
             </ul>
         </nav>
@@ -256,7 +415,7 @@
                             <li><a href="./class-details.html">Treninzi</a></li>
                             <li><a href="./services.html">Usluge</a></li>
                             <li><a href="./team.html">Naš tim</a></li>
-                            <li><a href="./contact.html">Kontakt</a></li>
+                            <li><a href="{{ route('kontakt') }}">Kontakt</a></li>
                             <li><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
                         </ul>
                     </nav>
@@ -333,6 +492,91 @@
         <div class="scroll-cue"></div>
     </section>
     <!-- Hero Section End -->
+
+    <!-- Next Training Section Begin -->
+    <div class="next-training-wrap reveal">
+        <div class="container">
+            <div class="next-training-card">
+                <div class="ntc-decor"></div>
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <h3 class="ntc-title">Sljedeći trening</h3>
+                        @if($sljedeciTermin)
+                            <p class="ntc-sub">{{ $sljedeciTermin['termin']->naziv }}</p>
+                        @else
+                            <p class="ntc-sub">Novi termini treninga se uskoro objavljuju - pratite nas ili nas kontaktirajte za detalje.</p>
+                        @endif
+                        <div class="ntc-meta">
+                            <div class="ntc-meta-item">
+                                <span class="ntc-icon"><i class="fa fa-hourglass-half"></i></span>
+                                <span class="ntc-text">
+                                    @if($sljedeciTermin)
+                                        {{ $sljedeciTermin['danNaziv'] }}: {{ $sljedeciTermin['kada']->format('H:i') }}
+                                    @else
+                                        Uskoro
+                                    @endif
+                                </span>
+                            </div>
+                            <div class="ntc-meta-item">
+                                <span class="ntc-icon"><i class="fa fa-calendar"></i></span>
+                                <span class="ntc-text">
+                                    @if($sljedeciTermin)
+                                        {{ $sljedeciTermin['datumNaziv'] }}
+                                    @else
+                                        -
+                                    @endif
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 text-lg-right">
+                        <a href="#" class="primary-btn btn-normal ntc-btn" id="openSchedulePanel">Provjeri raspored</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Next Training Section End -->
+
+    @if($vijesti->count())
+    <!-- Vijesti Section Begin -->
+    <section class="news-section modern-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title reveal">
+                        <span>Novosti</span>
+                        <h2>VIJESTI I OBAVJESTI</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach($vijesti as $v)
+                    <div class="col-lg-4 col-md-6 reveal">
+                        <div class="news-card"
+                             data-news-open
+                             data-title="{{ $v->naslov }}"
+                             data-text="{{ $v->sadrzaj }}"
+                             data-date="{{ $v->created_at ? $v->created_at->translatedFormat('d.m.Y.') : '' }}"
+                             data-img="{{ $v->slika ? asset('images/obavijesti/' . $v->slika) : '' }}"
+                             tabindex="0" role="button">
+                            @if($v->slika)
+                                <img class="nc-img" src="{{ asset('images/obavijesti/' . $v->slika) }}" alt="{{ $v->naslov }}">
+                            @endif
+                            <div class="nc-body">
+                                <div class="nc-date">{{ $v->created_at ? $v->created_at->translatedFormat('d.m.Y.') : '' }}</div>
+                                <h4 class="nc-title">{{ $v->naslov }}</h4>
+                                <p class="nc-excerpt">{{ \Illuminate\Support\Str::limit($v->sadrzaj, 120) }}</p>
+                                <span class="nc-more">Procitaj vise <i class="fa fa-long-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- Vijesti Section End -->
+    @endif
 
     <!-- ChoseUs Section Begin -->
     <section class="choseus-section modern-section spad">
@@ -673,7 +917,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
     <!-- Team Section End -->
 
     <!-- Get In Touch Section Begin -->
-    <div class="gettouch-section modern-touch">
+    <div class="gettouch-section modern-touch" id="kontakt">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 reveal d1">
@@ -768,6 +1012,54 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
     </div>
     <!-- Search model end -->
 
+    <!-- Sljedeci termini Panel Begin -->
+    <div class="schedule-panel-overlay" id="schedulePanelOverlay"></div>
+    <div class="schedule-panel" id="schedulePanel" aria-hidden="true">
+        <div class="sp-header">
+            <h3>Sljedeci termini</h3>
+            <div class="sp-close" id="schedulePanelClose"><i class="fa fa-close"></i></div>
+        </div>
+        <div class="sp-body">
+            @if(count($sedmicniRaspored ?? []))
+                @foreach($sedmicniRaspored as $dan)
+                    <div class="sp-day">
+                        <div class="sp-day-title">{{ $dan['danNaziv'] }}</div>
+                        @foreach($dan['stavke'] as $stavka)
+                            <div class="sp-chip">
+                                <span class="sp-chip-name">{{ $stavka->naziv }}</span>
+                                <span class="sp-chip-time">{{ \Carbon\Carbon::parse($stavka->vrijeme_od)->format('H:i') }} - {{ \Carbon\Carbon::parse($stavka->vrijeme_do)->format('H:i') }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
+            @else
+                <p class="sp-empty">Novi termini treninga se uskoro objavljuju - pratite nas ili nas kontaktirajte za detalje.</p>
+            @endif
+        </div>
+        <div class="sp-footer">
+            <a href="#kontakt" class="primary-btn btn-normal" id="schedulePanelContact">Kontaktiraj nas</a>
+        </div>
+    </div>
+    <!-- Sljedeci termini Panel End -->
+
+    <!-- Vijesti Modal Begin -->
+    <div class="news-modal-overlay" id="newsModalOverlay">
+        <div class="news-modal" id="newsModal">
+            <img class="nm-img" id="newsModalImg" src="" alt="" style="display:none;">
+            <div class="nm-body">
+                <div class="nm-header">
+                    <div>
+                        <div class="nm-date" id="newsModalDate"></div>
+                        <h3 class="nm-title" id="newsModalTitle"></h3>
+                    </div>
+                    <div class="nm-close" id="newsModalClose"><i class="fa fa-close"></i></div>
+                </div>
+                <div class="nm-text" id="newsModalText"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Vijesti Modal End -->
+
     <!-- Js Plugins -->
     <script src="{{ asset('site/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
@@ -804,6 +1096,93 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 });
             }, { threshold: 0.12 });
             els.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+
+    <script>
+        // Klizni panel "Sljedeci termini"
+        (function () {
+            var openBtn = document.getElementById('openSchedulePanel');
+            var closeBtn = document.getElementById('schedulePanelClose');
+            var overlay = document.getElementById('schedulePanelOverlay');
+            var panel = document.getElementById('schedulePanel');
+            if (!openBtn || !panel || !overlay) return;
+
+            function openPanel(e) {
+                if (e) e.preventDefault();
+                panel.classList.add('active');
+                overlay.classList.add('active');
+                panel.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('schedule-panel-open');
+            }
+
+            function closePanel() {
+                panel.classList.remove('active');
+                overlay.classList.remove('active');
+                panel.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('schedule-panel-open');
+            }
+
+            openBtn.addEventListener('click', openPanel);
+            if (closeBtn) closeBtn.addEventListener('click', closePanel);
+            overlay.addEventListener('click', closePanel);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && panel.classList.contains('active')) closePanel();
+            });
+
+            var contactBtn = document.getElementById('schedulePanelContact');
+            if (contactBtn) {
+                contactBtn.addEventListener('click', function () { closePanel(); });
+            }
+        })();
+    </script>
+
+    <script>
+        // Vijesti - modal za detalj obavijesti
+        (function () {
+            var overlay = document.getElementById('newsModalOverlay');
+            if (!overlay) return;
+            var modalImg = document.getElementById('newsModalImg');
+            var modalDate = document.getElementById('newsModalDate');
+            var modalTitle = document.getElementById('newsModalTitle');
+            var modalText = document.getElementById('newsModalText');
+            var closeBtn = document.getElementById('newsModalClose');
+
+            function openModal(card) {
+                var img = card.getAttribute('data-img');
+                if (img) {
+                    modalImg.src = img;
+                    modalImg.style.display = 'block';
+                } else {
+                    modalImg.removeAttribute('src');
+                    modalImg.style.display = 'none';
+                }
+                modalDate.textContent = card.getAttribute('data-date') || '';
+                modalTitle.textContent = card.getAttribute('data-title') || '';
+                modalText.textContent = card.getAttribute('data-text') || '';
+                overlay.classList.add('active');
+                document.body.classList.add('news-modal-open');
+            }
+
+            function closeModal() {
+                overlay.classList.remove('active');
+                document.body.classList.remove('news-modal-open');
+            }
+
+            document.querySelectorAll('[data-news-open]').forEach(function (card) {
+                card.addEventListener('click', function () { openModal(card); });
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); }
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) closeModal();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
+            });
         })();
     </script>
 

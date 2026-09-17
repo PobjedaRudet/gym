@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AdminPortalObavijestController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdminPortalTerminController;
 use App\Http\Controllers\FeeController;
 use App\Http\Controllers\HomeController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\MemberPortalController;
 use App\Http\Controllers\ModeratorAuthController;
 use App\Http\Controllers\ModeratorController;
 use App\Models\Attendance;
+use App\Models\TerminTreninga;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -31,12 +33,22 @@ Route::get('/', function () {
     return view('home');
 });
 Route::get('begsfit', function () {
-    return view('welcome');
+    return view('welcome', [
+        'sljedeciTermin' => TerminTreninga::sljedeciTermin(),
+        'sedmicniRaspored' => TerminTreninga::sedmicniRaspored(),
+        'vijesti' => \App\Models\Obavijest::where('javno', true)
+            ->orderBy('created_at', 'desc')
+            ->limit(3)
+            ->get(),
+    ]);
 })->name('begsfit');
 
 Route::get('/about-us.html', function () {
     return view('about-us');
 })->name('about-us');
+
+Route::get('/contact.html', [ContactController::class, 'show'])->name('kontakt');
+Route::post('/contact', [ContactController::class, 'send'])->name('kontakt.submit');
 
 Route::get('/portal-clanova.html', function () {
     return view('member-portal-info');

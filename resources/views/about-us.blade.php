@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" type="text/css">
 
     <style>
-        /* --- Moderni dodaci za "O nama" stranicu (koristi istu paletu kao naslovna: #f36100) --- */
+        /* --- Moderni dodaci za "O nama" stranicu (koristi istu paletu kao naslovna: #ECD008 - zuta iz loga) --- */
         .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
         .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -33,12 +33,12 @@
 
         .stats-strip { background: #0d0d0d; padding: 55px 0; border-top: 1px solid #1c1c1c; border-bottom: 1px solid #1c1c1c; }
         .stat-card { text-align: center; padding: 10px 15px; }
-        .stat-card .num { font-size: 40px; font-weight: 800; color: #f36100; line-height: 1; margin-bottom: 8px; font-family: 'Oswald', sans-serif; }
+        .stat-card .num { font-size: 40px; font-weight: 800; color: #ECD008; line-height: 1; margin-bottom: 8px; font-family: 'Oswald', sans-serif; }
         .stat-card .lbl { color: #c4c4c4; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
 
         .value-card { background: #151515; border-radius: 14px; padding: 34px 26px; height: 100%; transition: transform .3s ease, background .3s ease; }
         .value-card:hover { transform: translateY(-6px); background: #1b1b1b; }
-        .value-card .vc-icon { font-size: 30px; color: #f36100; margin-bottom: 16px; }
+        .value-card .vc-icon { font-size: 30px; color: #ECD008; margin-bottom: 16px; }
         .value-card h4 { color: #fff; text-transform: uppercase; font-size: 15px; margin-bottom: 10px; letter-spacing: .5px; }
         .value-card p { color: #b7b7b7; font-size: 13px; margin: 0; line-height: 1.6; }
 
@@ -47,11 +47,15 @@
         .space-card:hover img { transform: scale(1.08); }
         .space-card .sc-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 20px; background: linear-gradient(0deg, rgba(0,0,0,.85), rgba(0,0,0,0)); color: #fff; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: .6px; }
 
-        .about-cta { background: linear-gradient(135deg, #f36100, #c94e00); padding: 55px 0; text-align: center; }
+        .about-cta { background: linear-gradient(135deg, #6b5100, #241b00); padding: 55px 0; text-align: center; }
         .about-cta h3 { color: #fff; font-size: 26px; font-weight: 800; margin-bottom: 10px; }
         .about-cta p { color: rgba(255,255,255,.92); margin-bottom: 22px; }
-        .about-cta .primary-btn { background: #111; }
+        .about-cta .primary-btn { background: #111; color: #fff; }
         .about-cta .primary-btn:hover { background: #000; }
+
+        .about-intro-section { background: #0d0d0d; padding: 90px 0 40px; }
+        .about-intro-text p { color: #b7b7b7; font-size: 15px; line-height: 1.9; margin-bottom: 18px; }
+        .about-intro-text p:last-child { margin-bottom: 0; }
     </style>
 </head>
 
@@ -64,6 +68,9 @@
     <!-- Offcanvas Menu Section Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas-logo">
+            <img src="{{ asset('site/img/logo.png') }}" alt="">
+        </div>
         <div class="canvas-close">
             <i class="fa fa-close"></i>
         </div>
@@ -72,13 +79,13 @@
         </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
-                <li><a href="{{ route('begsfit') }}">Početna</a></li>
-                <li><a href="{{ route('about-us') }}">O nama</a></li>
-                <li><a href="./classes.html">Treninzi</a></li>
-                <li><a href="./services.html">Usluge</a></li>
-                <li><a href="./team.html">Naš tim</a></li>
-                <li><a href="./contact.html">Kontakt</a></li>
-                <li><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
+                <li><a href="{{ route('begsfit') }}"><i class="fa fa-home"></i>Početna</a></li>
+                <li><a class="active" href="{{ route('about-us') }}"><i class="fa fa-info-circle"></i>O nama</a></li>
+                <li><a href="./classes.html"><i class="fa fa-calendar"></i>Treninzi</a></li>
+                <li><a href="./services.html"><i class="fa fa-star"></i>Usluge</a></li>
+                <li><a href="./team.html"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('kontakt') }}"><i class="fa fa-envelope"></i>Kontakt</a></li>
+                <li><a class="nav-link" href="{{ route('portal-info') }}"><i class="fa fa-user-circle"></i>Portal za članove</a></li>
 
             </ul>
         </nav>
@@ -111,7 +118,7 @@
                             <li><a href="./class-details.html">Treninzi</a></li>
                             <li><a href="./services.html">Usluge</a></li>
                             <li><a href="./team.html">Naš tim</a></li>
-                            <li><a href="./contact.html">Kontakt</a></li>
+                            <li><a href="{{ route('kontakt') }}">Kontakt</a></li>
                             <li><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
                         </ul>
                     </nav>
@@ -153,6 +160,26 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
+
+    <!-- O Nama Intro Section Begin -->
+    <section class="about-intro-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 text-center reveal">
+                    <div class="section-title">
+                        <span>Ko smo mi</span>
+                        <h2>O Nama</h2>
+                    </div>
+                    <div class="about-intro-text">
+                        <p>Beg's fit&amp;fight je osnovan 2022. godine s ciljem da postane vodeći fitness i borilački centar u regiji. Naša misija je pružiti vrhunske usluge i stvoriti zajednicu posvećenu zdravom načinu života.</p>
+                        <p>Naš tim čine profesionalni treneri i instruktori s višegodišnjim iskustvom u borilačkim vještinama. Ponosni smo na našu modernu opremu i prostorije koje pružaju idealne uvjete za trening.</p>
+                        <p>Uz teretanu i kikboks, naš kompleks uključuje i cafe bar gdje možete uživati u zdravim napicima i obrocima nakon treninga, družiti se s prijateljima ili jednostavno se opustiti u ugodnoj atmosferi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- O Nama Intro Section End -->
 
     <!-- About Section Begin -->
     <section class="about-section">
