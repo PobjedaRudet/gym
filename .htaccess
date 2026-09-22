@@ -1,4 +1,64 @@
+# =====================================================================
+# Document root ove domene je korijen Laravel projekta, a ne public/.
+# Zato ovdje mora stajati zastita - bez nje su .env, logovi i izvorni
+# kod dostupni preko preglednika.
+#
+# Blokade ispod NE zavise od mod_rewrite. Ako rewrite ikada zakaze
+# (iskljucen modul, promjena na serveru), zastita i dalje vazi.
+# =====================================================================
+
+# --- 1. Svi fajlovi koji pocinju tackom: .env, .gitignore, .cpanel.yml ... ---
+# Odnosi se samo na fajlove, ne na foldere, pa .well-known ostaje dostupan
+# (treba za obnovu SSL certifikata).
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# --- 2. Osjetljivi fajlovi u korijenu projekta ---
+<FilesMatch "^(composer\.(json|lock)|package(-lock)?\.json|artisan|server\.php|webpack\.mix\.js|phpunit\.xml|README\.md)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# --- 3. Fajlovi sa osjetljivim ekstenzijama bilo gdje ---
+<FilesMatch "\.(env|log|sql|sqlite|yml|yaml|ini|bak|backup|old|swp)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule ^(.*)$ public/$1 [L]
+    RewriteEngine On
+
+    # --- 4a. .well-known mora ostati dostupan iz korijena ---
+    # Tu Let's Encrypt / cPanel ostavlja fajl za provjeru vlasnistva pri
+    # obnovi SSL certifikata. Bez ovog izuzetka rewrite bi ga poslao u
+    # public/ gdje ga nema, pa bi obnova certifikata pala.
+    RewriteRule ^\.well-known/ - [L]
+
+    # --- 4. Aplikacijski folderi nisu za web ---
+    # storage/ je siguran za blokadu jer se upload-i cuvaju u public/images,
+    # nema public/storage symlinka.
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$) - [F,L]
+
+    # --- 5. Sve ostalo ide u public/ (originalno ponasanje) ---
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+# Ne izlistavaj sadrzaj foldera
+Options -Indexes
