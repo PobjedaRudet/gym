@@ -69,7 +69,7 @@
             gap: 8px;
             background: rgba(236, 208, 8, .12);
             border: 1px solid rgba(236, 208, 8, .4);
-            color: var(--brand-yellow) !important;
+            color: #fff !important;
             padding: 7px 18px;
             border-radius: 30px;
             font-size: 13px !important;
