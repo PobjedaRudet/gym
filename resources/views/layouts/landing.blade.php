@@ -139,7 +139,7 @@
         /* --- Klase / "Šta nudimo": zaobljene slike + zoom na hover --- */
         .class-item.modern-card { border-radius: 16px; overflow: hidden; }
         .class-item.modern-card .ci-pic { border-radius: 16px; overflow: hidden; }
-        .class-item.modern-card .ci-pic img { transition: transform .6s ease; }
+        .class-item.modern-card .ci-pic img { transition: transform .6s ease; aspect-ratio: 3 / 2; width: 100%; height: auto; object-fit: cover; }
         .class-item.modern-card:hover .ci-pic img { transform: scale(1.1); }
 
         /* --- Banner: tamniji overlay za bolji kontrast + veći CTA --- */
@@ -462,9 +462,9 @@
                     <div class="row">
                         <div class="col-lg-7 offset-lg-7">
                             <div class="hi-text">
-                                <span><i class="fa fa-bolt"></i> Fitness &amp; Kik boks centar - Goražde</span>
+                                <span><i class="fa fa-bolt"></i> <strong>Fitness &amp; Kik boks centar - Goražde</strong></span>
                                 <h1>Budi<strong> jak</strong>, treniraj snažno</h1>
-                                <p class="hero-sub">Moderna teretana, kik boks klub sa licenciranim trenerima i zajednica koja te gura naprijed - sve na jednom mjestu.</p>
+                                <p class="hero-sub"><strong>Moderna teretana, kik boks klub sa licenciranim trenerima i zajednica koja te gura naprijed - sve na jednom mjestu.</strong></p>
                                 <div class="hero-btns">
                                     <a href="{{ route('about-us') }}" class="primary-btn">Više informacija</a>
                                     <a href="#pricing" class="btn-ghost">Pogledaj članarine</a>
@@ -479,9 +479,9 @@
                     <div class="row">
                         <div class="col-lg-6 offset-lg-6">
                             <div class="hi-text">
-                                <span><i class="fa fa-bolt"></i> Fitness &amp; Kik boks centar - Goražde</span>
+                                <span><i class="fa fa-bolt"></i> <strong>Fitness &amp; Kik boks centar - Goražde</strong></span>
                                 <h1>Budi <strong>jak</strong>, treniraj snažno</h1>
-                                <p class="hero-sub">Moderna teretana, kik boks klub sa licenciranim trenerima i zajednica koja te gura naprijed - sve na jednom mjestu.</p>
+                                <p class="hero-sub"><strong>Moderna teretana, kik boks klub sa licenciranim trenerima i zajednica koja te gura naprijed - sve na jednom mjestu.</strong></p>
                                 <div class="hero-btns">
                                     <a href="{{ route('about-us') }}" class="primary-btn">Više informacija</a>
                                     <a href="#pricing" class="btn-ghost">Pogledaj članarine</a>
@@ -495,8 +495,12 @@
 
         <div class="hero-stats">
             <div class="hero-stat-card">
-                <div class="num"><span>1800+</span></div>
+                <div class="num"><span>3000+</span></div>
                 <div class="lbl">Registrovanih članova</div>
+            </div>
+            <div class="hero-stat-card">
+                <div class="num"><span>250+</span></div>
+                <div class="lbl">Redovnih članova</div>
             </div>
             <div class="hero-stat-card">
                 <div class="num"><span>3</span></div>
@@ -604,33 +608,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6 reveal d1">
+                <div class="col-lg-4 col-sm-6 reveal d1">
                     <div class="cs-item modern-card">
                         <div class="cs-icon-badge"><span class="flaticon-034-stationary-bike"></span></div>
                         <h4>Moderna oprema</h4>
                         <p>U našem fitness centru nudimo vrhunske sprave za vježbanje i stručne trenere.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 reveal d2">
+                <div class="col-lg-4 col-sm-6 reveal d2">
                     <div class="cs-item modern-card">
                         <div class="cs-icon-badge"><span class="flaticon-033-juice"></span></div>
                         <h4>Beg's caffe</h4>
                         <p>Poseban prostor za opuštanje i osvježenje - naš kafić i dječija igraonica. Smješten unutar samog centra, kafić i igraonica su idealno mjesto za sve koji žele odmor i ugodnu atmosferu.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 reveal d3">
+                <div class="col-lg-4 col-sm-6 reveal d3">
                     <div class="cs-item modern-card">
                         <div class="cs-icon-badge"><span class="flaticon-002-dumbell"></span></div>
                         <h4>Kik boks club - treninzi</h4>
                         <p>
 Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posjedujemo i kik boks klub. Ovaj prostor je namijenjen za sve ljubitelje borilačkih sportova, bilo da ste početnik ili iskusan borac.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 reveal d4">
-                    <div class="cs-item modern-card">
-                        <div class="cs-icon-badge"><span class="flaticon-014-heart-beat"></span></div>
-                        <h4>Zdrava ishrana</h4>
-                        <p>Svi naši proizvodi su pažljivo odabrani kako bi podržali zdrav životni stil i pomogli vam da izgledate i osjećate se najbolje. </p>
                     </div>
                 </div>
             </div>
@@ -677,7 +674,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 <div class="col-lg-4 col-md-6 reveal d3">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/hero/hero-2.jpg') }}" alt="">
+                            <img src="{{ asset('site/img/classes/ladies-fitness.jpg') }}" alt="">
                         </div>
                         <div class="ci-text">
                             <span>LADIES FITNESS</span>
