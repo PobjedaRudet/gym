@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="auth-hero-wrap">
-    <div class="auth-phone" style="background-image:url('{{ asset('site/img/hero/hero-3.jpg') }}');">
+    <div class="auth-phone" style="background-image:url('{{ asset('site/img/hero/hero-1.jpg') }}');">
         <div class="auth-phone-inner">
             <div class="auth-brand">
                 <img src="{{ asset('site/img/logo.png') }}" alt="BEG's Fit&Fight">

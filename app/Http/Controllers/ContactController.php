@@ -16,6 +16,12 @@ class ContactController extends Controller
 
     public function send(Request $request)
     {
+        // Honeypot polje je sakriveno CSS-om pa ga pravi posjetilac ne vidi.
+        // Ako je popunjeno, posiljalac je bot - tiho prekidamo bez slanja mailа.
+        if ($request->filled('website')) {
+            return back()->with('success', 'Hvala! Vaša poruka je uspješno poslana. Javit ćemo Vam se u najkraćem roku.');
+        }
+
         $validated = $request->validate([
             'ime_prezime' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],

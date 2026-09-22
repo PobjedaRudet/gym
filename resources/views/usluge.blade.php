@@ -10,16 +10,14 @@
     <title>Usluge - BEG'S FIT&FIGHT</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900|Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('site/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/font-awesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/flaticon.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/owl.carousel.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/barfiller.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/magnific-popup.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" type="text/css">
 
@@ -250,7 +248,7 @@
                 <div class="col-lg-6 col-md-6 reveal d4">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/quads.png') }}" alt="Rent a Quad">
+                            <img src="{{ asset('site/img/classes/quads.jpg') }}" alt="Rent a Quad">
                         </div>
                         <div class="ci-text">
                             <span>RENT A QUAD</span>
@@ -488,12 +486,7 @@
 
     <!-- Js Plugins -->
     <script src="{{ asset('site/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('site/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('site/js/masonry.pkgd.min.js') }}"></script>
-    <script src="{{ asset('site/js/jquery.barfiller.js') }}"></script>
     <script src="{{ asset('site/js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('site/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('site/js/main.js') }}"></script>
 
     <script>

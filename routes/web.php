@@ -66,7 +66,9 @@ Route::get('/services.html', function () {
 })->name('usluge');
 
 Route::get('/contact.html', [ContactController::class, 'show'])->name('kontakt');
-Route::post('/contact', [ContactController::class, 'send'])->name('kontakt.submit');
+// throttle: najvise 5 poruka po IP adresi u 10 minuta - sprecava botove da
+// preko forme salju mail u serijama i time ruse reputaciju domene
+Route::post('/contact', [ContactController::class, 'send'])->middleware('throttle:5,10')->name('kontakt.submit');
 
 Route::get('/portal-clanova.html', function () {
     return view('member-portal-info');
@@ -156,14 +158,16 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 // ===== Member Portal Routes =====
 Route::prefix('portal')->group(function () {
   Route::get('/forgot-password', [MemberAuthController::class, 'showForgotPasswordForm'])->name('member.password.forgot');
-  Route::post('/forgot-password', [MemberAuthController::class, 'sendResetLink'])->name('member.password.email');
+  // throttle na rutama koje salju mail ili provjeravaju lozinku - bez toga bot
+  // moze slati neograniceno mailova preko naseg SMTP naloga
+  Route::post('/forgot-password', [MemberAuthController::class, 'sendResetLink'])->middleware('throttle:5,10')->name('member.password.email');
   Route::get('/reset-password/{token}', [MemberAuthController::class, 'showResetPasswordForm'])->name('member.password.reset');
-  Route::post('/reset-password', [MemberAuthController::class, 'resetPassword'])->name('member.password.store');
+  Route::post('/reset-password', [MemberAuthController::class, 'resetPassword'])->middleware('throttle:5,10')->name('member.password.store');
 
     Route::get('/login', [MemberAuthController::class, 'showLoginForm'])->name('member.login');
-    Route::post('/login', [MemberAuthController::class, 'login'])->name('member.login.submit');
+    Route::post('/login', [MemberAuthController::class, 'login'])->middleware('throttle:10,10')->name('member.login.submit');
     Route::get('/register', [MemberAuthController::class, 'showRegisterForm'])->name('member.register');
-    Route::post('/register', [MemberAuthController::class, 'register'])->name('member.register.submit');
+    Route::post('/register', [MemberAuthController::class, 'register'])->middleware('throttle:5,10')->name('member.register.submit');
     Route::post('/logout', [MemberAuthController::class, 'logout'])->name('member.logout');
 
     Route::middleware(['active.member'])->group(function () {

@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                     <td style="padding:8px 0; color:#777;">Telefon</td>
-                    <td style="padding:8px 0;">{{ $data['telefon'] ?: '-' }}</td>
+                    <td style="padding:8px 0;">{{ empty($data['telefon']) ? '-' : $data['telefon'] }}</td>
                 </tr>
                 <tr>
                     <td style="padding:8px 0; color:#777;">Predmet</td>
