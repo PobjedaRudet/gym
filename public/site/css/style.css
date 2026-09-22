@@ -3097,16 +3097,14 @@ ol {
 		background: rgba(236, 208, 8, .12);
 		color: #ECD008;
 	}
+	/* Portal za clanove: izgleda isto kao ostale stavke menija.
+	   Ranije je bio zuto gradijentno dugme i odudarao je od ostatka.
+	   Boju, hover i ikonu preuzima od zajednickog pravila iznad. */
 	.offcanvas-menu-wrapper .slicknav_nav a.nav-link {
-		margin-top: 12px;
-		background: linear-gradient(135deg, #ECD008, #b8960b);
-		color: #111111 !important;
-		text-align: center;
-		font-weight: 800;
-	}
-	.offcanvas-menu-wrapper .slicknav_nav a.nav-link:hover {
-		color: #111111;
-		background: linear-gradient(135deg, #f5de4d, #ECD008);
+		margin: 0 0 4px;
+		background: transparent;
+		text-align: left;
+		font-weight: 600;
 	}
 	.nav-menu {
 		display: none;
@@ -3306,16 +3304,14 @@ ol {
 		background: rgba(236, 208, 8, .12);
 		color: #ECD008;
 	}
+	/* Portal za clanove: izgleda isto kao ostale stavke menija.
+	   Ranije je bio zuto gradijentno dugme i odudarao je od ostatka.
+	   Boju, hover i ikonu preuzima od zajednickog pravila iznad. */
 	.offcanvas-menu-wrapper .slicknav_nav a.nav-link {
-		margin-top: 12px;
-		background: linear-gradient(135deg, #ECD008, #b8960b);
-		color: #111111 !important;
-		text-align: center;
-		font-weight: 800;
-	}
-	.offcanvas-menu-wrapper .slicknav_nav a.nav-link:hover {
-		color: #111111;
-		background: linear-gradient(135deg, #f5de4d, #ECD008);
+		margin: 0 0 4px;
+		background: transparent;
+		text-align: left;
+		font-weight: 600;
 	}
 	.nav-menu {
 		display: none;

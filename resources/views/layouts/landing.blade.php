@@ -914,7 +914,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 <div class="col-lg-12 text-center">
                     <div class="copyright-text">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made  by <a href="https://begsfit.ba" target="_blank">BEG'S FITNESS</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made  by <a href="https://begsfit-fight.ba/" target="_blank">BEG'S FITNESS</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
@@ -981,6 +981,8 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
         </div>
     </div>
     <!-- Vijesti Modal End -->
+
+    @include('partials.back-to-top')
 
     <!-- Js Plugins -->
     <script src="@assetv('site/js/jquery-3.3.1.min.js')"></script>
