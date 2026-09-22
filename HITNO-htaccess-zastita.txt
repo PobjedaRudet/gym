@@ -1,3 +1,14 @@
+=========================================================================
+KOMPLETAN .htaccess za /home/begsfitf/public_html/.htaccess
+
+Zamijenite CIJELI sadrzaj fajla ovim tekstom.
+Donji dio je vas postojeci rewrite - nepromijenjen, slovo po slovo.
+Gornji dio je zastita koja je nedostajala.
+
+cPanel > File Manager > Settings > ukljuciti "Show Hidden Files"
+=========================================================================
+
+
 # =====================================================================
 # ZASTITA
 # Document root je korijen Laravel projekta, pa su .env, logovi i izvorni
@@ -80,3 +91,24 @@ Options -Indexes
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+
+=========================================================================
+PROVJERA nakon snimanja
+
+Moraju davati 403 (Forbidden):
+  https://begsfit-fight.ba/.env
+  https://begsfit-fight.ba/artisan
+  https://begsfit-fight.ba/composer.json
+  https://begsfit-fight.ba/server.php
+  https://begsfit-fight.ba/storage/logs/laravel.log
+
+Moraju i dalje raditi (200):
+  https://begsfit-fight.ba/
+  https://begsfit-fight.ba/about-us.html
+  https://begsfit-fight.ba/site/css/style.css
+  https://begsfit-fight.ba/site/img/logo.png
+
+Ako nesto od donjeg prestane raditi - vratite stari sadrzaj fajla
+i javite, pa cemo prilagoditi.
+=========================================================================
