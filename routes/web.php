@@ -32,47 +32,64 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('begsfit', function () {
-    return view('welcome', [
-        'sljedeciTermin' => TerminTreninga::sljedeciTermin(),
-        'sedmicniRaspored' => TerminTreninga::sedmicniRaspored(),
-        'vijesti' => \App\Models\Obavijest::where('javno', true)
-            ->orderBy('created_at', 'desc')
-            ->limit(3)
-            ->get(),
-    ]);
-})->name('begsfit');
+// Sve javne stranice sajta zive pod /begsfit.
+// Imena ruta su nepromijenjena, pa se svi route('...') linkovi u
+// stranicama sami prilagode - nijedan blade fajl ne treba dirati.
+Route::prefix('begsfit')->group(function () {
 
-Route::get('/about-us.html', function () {
-    return view('about-us');
-})->name('about-us');
+    Route::get('/', function () {
+        return view('welcome', [
+            'sljedeciTermin' => TerminTreninga::sljedeciTermin(),
+            'sedmicniRaspored' => TerminTreninga::sedmicniRaspored(),
+            'vijesti' => \App\Models\Obavijest::where('javno', true)
+                ->orderBy('created_at', 'desc')
+                ->limit(3)
+                ->get(),
+        ]);
+    })->name('begsfit');
 
-Route::get('/treninzi.html', function () {
-    return view('treninzi', [
-        'sedmicniRaspored' => TerminTreninga::sedmicniRaspored(),
-    ]);
-})->name('treninzi');
+    Route::get('/about-us.html', function () {
+        return view('about-us');
+    })->name('about-us');
 
-Route::get('/team.html', function () {
-    return view('team');
-})->name('team');
+    Route::get('/treninzi.html', function () {
+        return view('treninzi', [
+            'sedmicniRaspored' => TerminTreninga::sedmicniRaspored(),
+        ]);
+    })->name('treninzi');
 
-Route::get('/galerija.html', function () {
-    return view('galerija');
-})->name('galerija');
+    Route::get('/team.html', function () {
+        return view('team');
+    })->name('team');
 
-Route::get('/services.html', function () {
-    return view('usluge');
-})->name('usluge');
+    Route::get('/galerija.html', function () {
+        return view('galerija');
+    })->name('galerija');
 
-Route::get('/contact.html', [ContactController::class, 'show'])->name('kontakt');
-// throttle: najvise 5 poruka po IP adresi u 10 minuta - sprecava botove da
-// preko forme salju mail u serijama i time ruse reputaciju domene
-Route::post('/contact', [ContactController::class, 'send'])->middleware('throttle:5,10')->name('kontakt.submit');
+    Route::get('/services.html', function () {
+        return view('usluge');
+    })->name('usluge');
 
-Route::get('/portal-clanova.html', function () {
-    return view('member-portal-info');
-})->name('portal-info');
+    Route::get('/contact.html', [ContactController::class, 'show'])->name('kontakt');
+    // throttle: najvise 5 poruka po IP adresi u 10 minuta - sprecava botove da
+    // preko forme salju mail u serijama i time ruse reputaciju domene
+    Route::post('/contact', [ContactController::class, 'send'])->middleware('throttle:5,10')->name('kontakt.submit');
+
+    Route::get('/portal-clanova.html', function () {
+        return view('member-portal-info');
+    })->name('portal-info');
+
+});
+
+// Stare adrese -> trajno (301) na nove, da postojeci linkovi, zabiljeske
+// i Google rezultati nastave raditi.
+Route::permanentRedirect('/about-us.html', '/begsfit/about-us.html');
+Route::permanentRedirect('/treninzi.html', '/begsfit/treninzi.html');
+Route::permanentRedirect('/team.html', '/begsfit/team.html');
+Route::permanentRedirect('/galerija.html', '/begsfit/galerija.html');
+Route::permanentRedirect('/services.html', '/begsfit/services.html');
+Route::permanentRedirect('/contact.html', '/begsfit/contact.html');
+Route::permanentRedirect('/portal-clanova.html', '/begsfit/portal-clanova.html');
 
 Route::post('/slanje',[MemberController::class, 'slanje'])->name('slanje');
 Route::post('/slanje2',[MemberController::class, 'slanje'])->name('slanje');

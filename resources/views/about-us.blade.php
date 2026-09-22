@@ -15,12 +15,12 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900|Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('site/css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/font-awesome.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/flaticon.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/barfiller.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/slicknav.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/bootstrap.min.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/font-awesome.min.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/flaticon.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/barfiller.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/slicknav.min.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/style.css')" type="text/css">
 
     <style>
         /* --- Moderni dodaci za "O nama" stranicu (koristi istu paletu kao naslovna: #ECD008 - zuta iz loga) --- */
@@ -443,10 +443,10 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="{{ asset('site/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('site/js/jquery.barfiller.js') }}"></script>
-    <script src="{{ asset('site/js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('site/js/main.js') }}"></script>
+    <script src="@assetv('site/js/jquery-3.3.1.min.js')"></script>
+    <script src="@assetv('site/js/jquery.barfiller.js')"></script>
+    <script src="@assetv('site/js/jquery.slicknav.js')"></script>
+    <script src="@assetv('site/js/main.js')"></script>
 
     <script>
         // Moderni "reveal on scroll" efekat za "O nama" stranicu

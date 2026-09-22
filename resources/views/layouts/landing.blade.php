@@ -14,14 +14,14 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('site/css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/font-awesome.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/flaticon.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/owl.carousel.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/barfiller.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/magnific-popup.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/slicknav.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/bootstrap.min.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/font-awesome.min.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/flaticon.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/owl.carousel.min.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/barfiller.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/magnific-popup.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/slicknav.min.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/style.css')" type="text/css">
 
     <style>
         /* =======================================================
@@ -983,14 +983,14 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
     <!-- Vijesti Modal End -->
 
     <!-- Js Plugins -->
-    <script src="{{ asset('site/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('site/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('site/js/masonry.pkgd.min.js') }}"></script>
-    <script src="{{ asset('site/js/jquery.barfiller.js') }}"></script>
-    <script src="{{ asset('site/js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('site/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('site/js/main.js') }}"></script>
+    <script src="@assetv('site/js/jquery-3.3.1.min.js')"></script>
+    <script src="@assetv('site/js/bootstrap.min.js')"></script>
+    <script src="@assetv('site/js/jquery.magnific-popup.min.js')"></script>
+    <script src="@assetv('site/js/masonry.pkgd.min.js')"></script>
+    <script src="@assetv('site/js/jquery.barfiller.js')"></script>
+    <script src="@assetv('site/js/jquery.slicknav.js')"></script>
+    <script src="@assetv('site/js/owl.carousel.min.js')"></script>
+    <script src="@assetv('site/js/main.js')"></script>
 
     <script>
         // Moderni dodaci: staklo-header na skrol + reveal-on-scroll
