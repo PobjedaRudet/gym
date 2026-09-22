@@ -3,25 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="BEG'S FIT&FIGHT - fitness centar i kik boks klub u Goraždu. Moderna teretana, licencirani treneri, Ladies Fitness, Beg's caffe i dječija igraonica.">
-    <meta name="keywords" content="Gym, teretana, fitness centar, kik boks, Ladies Fitness, treninzi, članarine, Goražde, Beg's fitness">
+    <meta name="description" content="Gym Template">
+    <meta name="keywords" content="Gym, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BEG'S FIT&FIGHT</title>
 
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900|Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
-
-    <!-- Hero slika: skidanje pocinje odmah, ne ceka jQuery -->
-    <link rel="preload" as="image" href="{{ asset('site/img/hero/hero-1.jpg') }}" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('site/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/font-awesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/flaticon.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/barfiller.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('site/css/magnific-popup.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" type="text/css">
 
@@ -380,7 +378,7 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas-logo">
-            <img src="{{ asset('site/img/logo.png') }}" alt="BEG'S FIT&amp;FIGHT" width="480" height="160" loading="lazy" decoding="async">
+            <img src="{{ asset('site/img/logo.png') }}" alt="">
         </div>
         <div class="canvas-close">
             <i class="fa fa-close"></i>
@@ -418,7 +416,7 @@
                 <div class="col-lg-3">
                     <div class="logo">
                         <a href="{{ route('begsfit') }}">
-                            <img src="{{ asset('site/img/logo.png') }}" alt="BEG'S FIT&amp;FIGHT" width="480" height="160" fetchpriority="high">
+                            <img src="{{ asset('site/img/logo.png') }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -459,8 +457,7 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hs-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="{{ asset('site/img/hero/hero-1.jpg') }}"
-                style="background-image:url('{{ asset('site/img/hero/hero-1.jpg') }}')">
+            <div class="hs-item set-bg" data-setbg="{{ asset('site/img/hero/hero-1.jpg') }}">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7 offset-lg-7">
@@ -582,7 +579,7 @@
                              data-img="{{ $v->slika ? asset('images/obavijesti/' . $v->slika) : '' }}"
                              tabindex="0" role="button">
                             @if($v->slika)
-                                <img class="nc-img" src="{{ asset('images/obavijesti/' . $v->slika) }}" alt="{{ $v->naslov }}" loading="lazy" decoding="async">
+                                <img class="nc-img" src="{{ asset('images/obavijesti/' . $v->slika) }}" alt="{{ $v->naslov }}">
                             @endif
                             <div class="nc-body">
                                 <div class="nc-date">{{ $v->created_at ? $v->created_at->translatedFormat('d.m.Y.') : '' }}</div>
@@ -653,7 +650,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 <div class="col-lg-4 col-md-6 reveal d1">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/class-1.jpg') }}" alt="Sprave za vjezbanje" width="600" height="900" loading="lazy" decoding="async">
+                            <img src="{{ asset('site/img/classes/class-1.jpg') }}" alt="">
                         </div>
                         <div class="ci-text">
                             <span>FITNESS CENTAR</span>
@@ -665,7 +662,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 <div class="col-lg-4 col-md-6 reveal d2">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/class-2.jpg') }}" alt="Kik boks club" width="900" height="600" loading="lazy" decoding="async">
+                            <img src="{{ asset('site/img/classes/class-2.jpg') }}" alt="">
                         </div>
                         <div class="ci-text">
                             <span>KIK BOKS CLUB</span>
@@ -677,7 +674,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 <div class="col-lg-4 col-md-6 reveal d3">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/ladies-fitness.jpg') }}" alt="Ladies fitness" width="600" height="900" loading="lazy" decoding="async">
+                            <img src="{{ asset('site/img/classes/ladies-fitness.jpg') }}" alt="">
                         </div>
                         <div class="ci-text">
                             <span>LADIES FITNESS</span>
@@ -689,7 +686,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 <div class="col-lg-6 col-md-6 reveal d1">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/Screenshot_quad.jpg') }}" alt="Rent a Quad" width="1200" height="895" loading="lazy" decoding="async">
+                            <img src="{{ asset('site/img/classes/Screenshot_quad.jpg') }}" alt="">
                         </div>
                         <div class="ci-text">
                             <span>QUAD</span>
@@ -701,7 +698,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 <div class="col-lg-6 col-md-6 reveal d2">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/apartmani-rawda-foto-3-scaled.jpg') }}" alt="Apartmani Rawda" width="1200" height="569" loading="lazy" decoding="async">
+                            <img src="{{ asset('site/img/classes/apartmani-rawda-foto-3-scaled.jpg') }}" alt="">
                         </div>
                         <div class="ci-text">
                             <span>RENT A APARTMENT</span>
@@ -985,8 +982,12 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
     </div>
     <!-- Vijesti Modal End -->
 
-    <!-- Js Plugins (naslovna koristi samo owl slider i slicknav meni) -->
+    <!-- Js Plugins -->
     <script src="{{ asset('site/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('site/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('site/js/masonry.pkgd.min.js') }}"></script>
+    <script src="{{ asset('site/js/jquery.barfiller.js') }}"></script>
     <script src="{{ asset('site/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('site/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('site/js/main.js') }}"></script>
