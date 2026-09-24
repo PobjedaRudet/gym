@@ -32,6 +32,18 @@
         .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
         .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+        /* --- Portal za članove: pozadina banera je isječak iz same aplikacije (statistika), sa tamnim overlay-em radi citljivosti teksta --- */
+        .breadcrumb-section { position: relative; }
+        .breadcrumb-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.62) 55%, rgba(0,0,0,.78) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .breadcrumb-section > .container { position: relative; z-index: 2; }
+
         .portal-intro { background: #000; padding: 90px 0; }
         .portal-intro p { color: #b7b7b7; font-size: 15px; line-height: 1.8; }
 
@@ -122,10 +134,8 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -161,9 +171,8 @@
                             <i class="fa fa-search"></i>
                         </div>
                         <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -176,7 +185,7 @@
     <!-- Header End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('site/img/breadcrumb-bg.jpg') }}">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('site/img/portal-breadcrumb-bg-photo.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

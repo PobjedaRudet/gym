@@ -41,6 +41,7 @@
             background: #141414; border-radius: 16px; border: 1px solid rgba(255,255,255,.06);
         }
 
+        .raspored-grid { row-gap: 24px; }
         .raspored-day {
             background: #141414; border-radius: 16px; border: 1px solid rgba(255, 255, 255, .05);
             padding: 26px 26px 22px; margin-bottom: 24px; height: 100%;
@@ -106,10 +107,8 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -145,9 +144,8 @@
                             <i class="fa fa-search"></i>
                         </div>
                         <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -190,7 +188,7 @@
             </div>
 
             @if(count($sedmicniRaspored ?? []))
-                <div class="row">
+                <div class="row raspored-grid">
                     @foreach($sedmicniRaspored as $dan)
                         <div class="col-lg-4 col-md-6 reveal">
                             <div class="raspored-day">

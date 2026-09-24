@@ -109,6 +109,10 @@
             <ul>
                 <li><a href="{{ route('begsfit') }}"><i class="fa fa-home"></i>Početna</a></li>
                 <li><a href="{{ route('about-us') }}"><i class="fa fa-info-circle"></i>O nama</a></li>
+                <li><a href="{{ route('treninzi') }}"><i class="fa fa-calendar"></i>Treninzi</a></li>
+                <li><a href="{{ route('usluge') }}"><i class="fa fa-star"></i>Usluge</a></li>
+                <li><a href="{{ route('team') }}"><i class="fa fa-users"></i>Naš tim</a></li>
+                <li><a href="{{ route('galerija') }}"><i class="fa fa-picture-o"></i>Galerija</a></li>
                 <li><a class="active" href="{{ route('kontakt') }}"><i class="fa fa-envelope"></i>Kontakt</a></li>
                 <li><a class="nav-link" href="{{ route('portal-info') }}"><i class="fa fa-user-circle"></i>Portal za članove</a></li>
 
@@ -116,10 +120,8 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -140,6 +142,10 @@
                         <ul>
                             <li><a href="{{ route('begsfit') }}">Početna</a></li>
                             <li><a href="{{ route('about-us') }}">O nama</a></li>
+                            <li><a href="{{ route('treninzi') }}">Treninzi</a></li>
+                            <li><a href="{{ route('usluge') }}">Usluge</a></li>
+                            <li><a href="{{ route('team') }}">Naš tim</a></li>
+                            <li><a href="{{ route('galerija') }}">Galerija</a></li>
                             <li class="active"><a href="{{ route('kontakt') }}">Kontakt</a></li>
                             <li><a class="nav-link" href="{{ route('portal-info') }}">Portal za članove</a></li>
                         </ul>
@@ -151,9 +157,8 @@
                             <i class="fa fa-search"></i>
                         </div>
                         <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -269,7 +274,7 @@
                             <div class="info-icon"><i class="fa fa-envelope"></i></div>
                             <div class="info-text">
                                 <strong>Email</strong>
-                                <span>besgfitandfight@hotmail.com</span>
+                                <span>info@begsfit-fight.ba</span>
                             </div>
                         </div>
                     </div>
@@ -293,9 +298,8 @@
                     <div class="info-card">
                         <h4>Pratite nas</h4>
                         <div class="social-row">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>

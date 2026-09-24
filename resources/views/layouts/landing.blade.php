@@ -408,10 +408,8 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -447,9 +445,8 @@
                             <i class="fa fa-search"></i>
                         </div>
                         <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -882,9 +879,8 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                     <div class="fw-title">BEG'S FIT&amp;FIGHT</div>
                     <p>Fitness centar i kik boks klub u Goraždu - teretana, treninzi za sve uzraste, Beg's caffe i dječija igraonica na jednom mjestu.</p>
                     <div class="fw-social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 reveal d1">
