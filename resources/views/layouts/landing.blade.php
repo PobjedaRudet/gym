@@ -9,6 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BEG'S FIT&FIGHT</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
@@ -88,7 +94,8 @@
         }
         .hi-text .btn-ghost:hover { background: #fff; color: #111; border-color: #fff; }
 
-        .hero-stats { position: absolute; right: 6%; bottom: 15%; display: flex; flex-direction: column; gap: 16px; z-index: 5; }
+        .hero-section { position: relative; }
+        .hero-stats { position: absolute; left: 6%; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 16px; z-index: 5; }
         .hero-stat-card {
             background: rgba(255, 255, 255, .07);
             border: 1px solid rgba(255, 255, 255, .18);
@@ -691,7 +698,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                         <div class="ci-text">
                             <span>QUAD</span>
                             <h4>RENT A QUAD</h4>
-                            <a href="{{ route('about-us') }}"><i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('kontakt') }}"><i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -703,7 +710,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                         <div class="ci-text">
                             <span>RENT A APARTMENT</span>
                             <h4>Iznajmite jedan od naših apartmana</h4>
-                            <a href="{{ route('about-us') }}"><i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('kontakt') }}"><i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -738,7 +745,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                             <li>Profesionalni treneri sa iskustvon u radu sa djecom</li>
                             <li>Ideslno za mališane kiji žele aktivno provoditi slobodno vrijeme i razvijati sportsku vještinu</li>
                         </ul>
-                        <a href="{{ route('about-us') }}" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="{{ route('kontakt') }}" class="primary-btn pricing-btn">Učlani se</a>
                         <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
                     </div>
                 </div>
@@ -756,7 +763,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                             <li>Programi prilagođeni uzrastu i kondicionim sposobnostima</li>
                             <li>Poseban fokus na jačanju izdržljivosti, snage i mentalne discipline</li>
                         </ul>
-                        <a href="{{ route('about-us') }}" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="{{ route('kontakt') }}" class="primary-btn pricing-btn">Učlani se</a>
                         <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
                     </div>
                 </div>
@@ -775,7 +782,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                             <li>Treninzi pod nadzorom licenciranih instruktora</li>
                             <li>Savršeno za poboljšanje kondicije, redukciju stresa i izgradnju samopouzdanja</li>
 </ul>
-                        <a href="{{ route('about-us') }}" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="{{ route('kontakt') }}" class="primary-btn pricing-btn">Učlani se</a>
                         <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
                     </div>
                 </div>
@@ -791,7 +798,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                             <li>Uključuje pristup teretani i prilagođene treninge</li>
                             <li>Fokus na lagane vježbe, fleksibilnost i rehabilitaciju</li>
                             <li>Idealna prilika za socijalizaciju i aktivan stil života</li></ul>
-                        <a href="{{ route('about-us') }}" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="{{ route('kontakt') }}" class="primary-btn pricing-btn">Učlani se</a>
                         <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
                     </div>
                 </div>
@@ -807,7 +814,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                             <li>uključuje pristup grupnim treninzima ili individualno korištenje opreme</li>
                             <li>Fleksibilan izbor za ljude sa ograničenim rasporedom</li>
 </ul>
-                        <a href="{{ route('about-us') }}" class="primary-btn pricing-btn">Učlani se</a>
+                        <a href="{{ route('kontakt') }}" class="primary-btn pricing-btn">Učlani se</a>
                         <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
                     </div>
                 </div>
@@ -829,7 +836,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
 
 
                         </ul>
-                        <a href="{{ route('about-us') }}" class="primary-btn pricing-btn">Saznaj više</a>
+                        <a href="{{ route('kontakt') }}" class="primary-btn pricing-btn">Saznaj više</a>
                         <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
                     </div>
                 </div>

@@ -9,6 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>O nama - BEG'S FIT&FIGHT</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +35,18 @@
 
         .about-section { background: #000; }
         .about-video.set-bg { border-radius: 0; }
+
+        /* --- O nama: nova pozadina banera (gym ambijent) sa tamnim overlay-em radi citljivosti teksta --- */
+        .breadcrumb-section { position: relative; }
+        .breadcrumb-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.62) 55%, rgba(0,0,0,.78) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .breadcrumb-section > .container { position: relative; z-index: 2; }
 
         .stats-strip { background: #0d0d0d; padding: 55px 0; border-top: 1px solid #1c1c1c; border-bottom: 1px solid #1c1c1c; }
         .stat-card { text-align: center; padding: 10px 15px; }
@@ -145,7 +163,7 @@
     <!-- Header End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('site/img/breadcrumb-bg.jpg') }}">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('site/img/about-us-breadcrumb-bg.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

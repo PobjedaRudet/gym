@@ -9,6 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kontakt - BEG'S FIT&FIGHT</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +45,7 @@
         .contact-form-card .form-group { margin-bottom: 20px; }
         .contact-form-card label { display: block; color: #cfcfcf; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; font-weight: 700; }
         .contact-form-card .form-control {
-            width: 100%; background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 10px;
+            width: 100%; height: auto; background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 10px;
             padding: 13px 16px; color: #fff; font-size: 14px; transition: border-color .25s ease;
         }
         .contact-form-card select.form-control { cursor: pointer; }

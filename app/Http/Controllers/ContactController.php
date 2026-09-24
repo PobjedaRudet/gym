@@ -37,7 +37,7 @@ class ContactController extends Controller
         ]);
 
         try {
-            Mail::to('besgfitandfight@hotmail.com')->send(new ContactMessageMail($validated));
+            Mail::to('info@begsfit-fight.ba')->send(new ContactMessageMail($validated));
         } catch (Exception $e) {
             report($e);
 

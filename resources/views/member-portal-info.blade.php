@@ -9,6 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portal za članove - BEG'S FIT&FIGHT</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +41,8 @@
         .step-card .step-num { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #ECD008; color: #111111; font-weight: 800; font-family: 'Oswald', sans-serif; font-size: 18px; margin-bottom: 18px; }
         .step-card h4 { color: #fff; text-transform: uppercase; font-size: 15px; margin-bottom: 10px; letter-spacing: .5px; }
         .step-card p { color: #b7b7b7; font-size: 13px; margin: 0; line-height: 1.7; }
+        .step-card p a { color: #ECD008; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; transition: color .2s ease; }
+        .step-card p a:hover { color: #fff; }
 
         .portal-note { background: #1b1400; border: 1px solid #3a2a00; border-radius: 10px; padding: 16px 20px; margin-top: 28px; }
         .portal-note p { color: #e8b877; font-size: 13px; margin: 0; line-height: 1.7; }
@@ -218,7 +226,7 @@
                     <div class="step-card">
                         <div class="step-num">1</div>
                         <h4>Unesite svoj email</h4>
-                        <p>Otvorite stranicu za registraciju i unesite email adresu koju ste ostavili prilikom učlanjenja na recepciji. Ako sistem ne prepozna vaš email, obratite se recepciji da ga dodaju uz vaš članski nalog.</p>
+                        <p>Otvorite stranicu za <a href="https://begsfit-fight.ba/portal/register" target="_blank" rel="noopener">registraciju</a> i unesite email adresu koju ste ostavili prilikom učlanjenja na recepciji. Ako sistem ne prepozna vaš email, obratite se recepciji da ga dodaju uz vaš članski nalog.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 reveal">
@@ -232,7 +240,7 @@
                     <div class="step-card">
                         <div class="step-num">3</div>
                         <h4>Prijavite se</h4>
-                        <p>Vratite se na stranicu za prijavu i unesite svoj email i lozinku koju ste dobili. Nakon prijave, odmah imate pristup svom profilu, terminima, statistici i obavijestima.</p>
+                        <p>Vratite se na stranicu za <a href="https://begsfit-fight.ba/portal/login" target="_blank" rel="noopener">prijavu</a> i unesite svoj email i lozinku koju ste dobili. Nakon prijave, odmah imate pristup svom profilu, terminima, statistici i obavijestima.</p>
                     </div>
                 </div>
             </div>
@@ -263,7 +271,7 @@
                     <div class="step-card">
                         <div class="step-num">1</div>
                         <h4>Otvorite stranicu za prijavu</h4>
-                        <p>Kliknite na dugme "Prijavi se" ispod ili posjetite stranicu za prijavu članova.</p>
+                        <p>Kliknite na dugme "<a href="https://begsfit-fight.ba/portal/login" target="_blank" rel="noopener">Prijavi se</a>" ispod ili posjetite stranicu za prijavu članova.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 reveal">
@@ -333,6 +341,44 @@
                         </div>
                         <h5><span class="screen-num">4</span>Meni portala</h5>
                         <p>Brz pristup terminima treninga, obavijestima, pravilima centra i postavkama naloga.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-lg-3 col-sm-6 reveal d1">
+                    <div class="screen-card">
+                        <div class="screen-frame">
+                            <img src="{{ asset('site/img/portal-screens/portal-5-pregled-mjeseci.png') }}" alt="Pregled dolazaka po mjesecima na portalu">
+                        </div>
+                        <h5><span class="screen-num">5</span>Pregled po mjesecima</h5>
+                        <p>Grafik i tabela dolazaka za svaki mjesec, uz poređenje broja dolazaka po godinama.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 reveal d2">
+                    <div class="screen-card">
+                        <div class="screen-frame">
+                            <img src="{{ asset('site/img/portal-screens/portal-6-usporedba.png') }}" alt="Mjesečna usporedba dolazaka na portalu">
+                        </div>
+                        <h5><span class="screen-num">6</span>Mjesečna usporedba</h5>
+                        <p>Usporedba posljednjih 6 mjeseci - broj dolazaka, ukupno vrijeme i prosjek po posjeti.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 reveal d3">
+                    <div class="screen-card">
+                        <div class="screen-frame">
+                            <img src="{{ asset('site/img/portal-screens/portal-7-sedmicni.png') }}" alt="Sedmični pregled dolazaka na portalu">
+                        </div>
+                        <h5><span class="screen-num">7</span>Sedmični pregled</h5>
+                        <p>Broj dolazaka i utrošeno vrijeme po sedmicama, sa grafikom kretanja kroz mjesece.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 reveal d4">
+                    <div class="screen-card">
+                        <div class="screen-frame">
+                            <img src="{{ asset('site/img/portal-screens/portal-8-statistika-treninga.png') }}" alt="Statistika treninga i mjesečni ciljevi na portalu">
+                        </div>
+                        <h5><span class="screen-num">8</span>Statistika treninga</h5>
+                        <p>Ukupan broj dolazaka i sati, prosjek po treningu i napredak prema mjesečnim ciljevima.</p>
                     </div>
                 </div>
             </div>
