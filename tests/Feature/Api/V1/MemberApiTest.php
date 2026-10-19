@@ -205,6 +205,31 @@ class MemberApiTest extends TestCase
             ->assertJsonCount(12, 'data.yearly.current.visits');
     }
 
+    public function test_dashboard_shows_current_check_in(): void
+    {
+        $member = $this->member();
+        $token = $this->tokenFor($member);
+
+        // Zaboravljena odjava od jucer se ne racuna kao prisustvo.
+        Attendance::create(['in' => now()->subHours(20), 'out' => null, 'date' => now()->subHours(20)->toDateString(), 'status' => 1, 'member_id' => $member->id]);
+        $this->asToken($token)->getJson('/api/v1/member/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.checked_in', null);
+
+        $dolazak = new Attendance(['in' => now()->subMinutes(75)->startOfMinute(), 'out' => null, 'date' => now()->toDateString(), 'status' => 1, 'member_id' => $member->id]);
+        $dolazak->gym = 2;
+        $dolazak->save();
+        $this->asToken($token)->getJson('/api/v1/member/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.checked_in.checked_in_at', now()->subMinutes(75)->startOfMinute()->toIso8601String())
+            ->assertJsonPath('data.checked_in.gym', 'Ladies Gym');
+
+        $dolazak->update(['out' => now()]);
+        $this->asToken($token)->getJson('/api/v1/member/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.checked_in', null);
+    }
+
     public function test_statistics_lists_all_years_by_month(): void
     {
         $member = $this->member();

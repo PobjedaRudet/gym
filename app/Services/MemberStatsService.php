@@ -64,6 +64,35 @@ class MemberStatsService
             'goals' => $this->goals($member),
             'week' => $sedmica,
             'last_six_months' => $mjeseci,
+            'checked_in' => $this->checkedIn($id),
+        ];
+    }
+
+    /**
+     * Clan je trenutno u teretani ako ima dolazak bez odjave iz zadnjih 12 sati
+     * (stariji otvoreni dolasci su zaboravljene odjave). Sala je kao u /live:
+     * gym = 1 je Gym, ostalo Ladies Gym.
+     *
+     * @return array{checked_in_at: string, gym: ?string}|null
+     */
+    private function checkedIn(int $memberId): ?array
+    {
+        $r = DB::table('attendances')
+            ->where('member_id', $memberId)
+            ->whereNull('out')
+            ->where('in', '>=', Carbon::now()->subHours(12))
+            ->orderByDesc('in')
+            ->first();
+
+        if (!$r) {
+            return null;
+        }
+
+        $gym = $r->gym ?? null;
+
+        return [
+            'checked_in_at' => Carbon::parse($r->in)->toIso8601String(),
+            'gym' => $gym === null ? null : ((int) $gym === 1 ? 'Gym' : 'Ladies Gym'),
         ];
     }
 
