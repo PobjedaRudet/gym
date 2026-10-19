@@ -68,5 +68,7 @@ class Kernel extends HttpKernel
         'active.member' => \App\Http\Middleware\ActiveMember::class,
         'auth.moderator' => \App\Http\Middleware\AuthenticateModerator::class,
         'admin.member' => \App\Http\Middleware\AdminMember::class,
+        'force.json' => \App\Http\Middleware\ForceJsonResponse::class,
+        'active.member.api' => \App\Http\Middleware\EnsureActiveMembershipApi::class,
     ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -36,6 +37,14 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        // API rute (mobilna aplikacija) uvijek dobijaju 401 JSON umjesto
+        // redirecta na web login, i kada klijent ne posalje Accept zaglavlje.
+        $this->renderable(function (AuthenticationException $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json(['message' => 'Unauthenticated.', 'code' => 'unauthenticated'], 401);
+            }
         });
     }
 }

@@ -48,6 +48,12 @@ return [
             'driver' => 'session',
             'provider' => 'moderators',
         ],
+
+        // Mobilna aplikacija: Sanctum tokeni, prihvata samo tokene clanova.
+        'member_api' => [
+            'driver' => 'sanctum',
+            'provider' => 'members',
+        ],
     ],
 
     /*
