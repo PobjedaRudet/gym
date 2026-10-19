@@ -205,6 +205,31 @@ class MemberApiTest extends TestCase
             ->assertJsonCount(12, 'data.yearly.current.visits');
     }
 
+    public function test_statistics_lists_all_years_by_month(): void
+    {
+        $member = $this->member();
+        $godina = now()->year - 2;
+        foreach ([[3, 10, 90], [3, 12, 30], [11, 5, 60]] as [$mjesec, $dan, $minuta]) {
+            $in = \Carbon\Carbon::create($godina, $mjesec, $dan, 10, 0, 0);
+            Attendance::create(['in' => $in, 'out' => $in->copy()->addMinutes($minuta), 'date' => $in->toDateString(), 'status' => 0, 'member_id' => $member->id]);
+        }
+        Attendance::create(['in' => now()->subHours(2), 'out' => now()->subHour(), 'date' => now()->toDateString(), 'status' => 0, 'member_id' => $member->id]);
+
+        $this->asToken($this->tokenFor($member))->getJson('/api/v1/member/statistics')
+            ->assertOk()
+            ->assertJsonCount(2, 'data.years')
+            ->assertJsonPath('data.years.0.year', now()->year)
+            ->assertJsonPath('data.years.1.year', $godina)
+            ->assertJsonCount(12, 'data.years.1.visits')
+            ->assertJsonPath('data.years.1.visits.2', 2)
+            ->assertJsonPath('data.years.1.visits.10', 1)
+            ->assertJsonPath('data.years.1.total_visits', 3)
+            ->assertJsonPath('data.years.1.total_hours', 3)
+            // Postojeci godisnji pregled ostaje isti.
+            ->assertJsonPath('data.yearly.previous.year', now()->year - 1)
+            ->assertJsonPath('data.yearly.previous.visits', array_fill(0, 12, 0));
+    }
+
     public function test_settings_read_update_and_validate(): void
     {
         $member = $this->member();

@@ -89,26 +89,40 @@ class MemberStatsService
 
         $trenutnaGodina = $now->year;
         $prethodnaGodina = $trenutnaGodina - 1;
+        // Dolasci i minute po mjesecima za sve godine clanstva.
         $godisnjiRaw = DB::table('attendances')
             ->where('member_id', $id)
-            ->whereIn(DB::raw('YEAR(`in`)'), [$trenutnaGodina, $prethodnaGodina])
             ->selectRaw('YEAR(`in`) as godina, MONTH(`in`) as mjesec, COUNT(*) as dolasci, COALESCE(SUM(CASE WHEN `out` IS NOT NULL THEN TIMESTAMPDIFF(MINUTE, `in`, `out`) ELSE 0 END), 0) as ukupno_minuta')
             ->groupBy('godina', 'mjesec')
             ->get()
             ->groupBy('godina');
 
+        // 12 mjeseci jedne godine: broj dolazaka i sati (0 za mjesece bez dolazaka).
+        $poMjesecima = function (int $godina) use ($godisnjiRaw): array {
+            $visits = [];
+            $hours = [];
+            for ($m = 1; $m <= 12; $m++) {
+                $r = isset($godisnjiRaw[$godina]) ? $godisnjiRaw[$godina]->firstWhere('mjesec', $m) : null;
+                $visits[] = $r ? (int) $r->dolasci : 0;
+                $hours[] = $r ? round($r->ukupno_minuta / 60, 1) : 0;
+            }
+            return ['visits' => $visits, 'hours' => $hours];
+        };
+
         $godisnji = [
             'labels' => self::MJESECI,
-            'current' => ['year' => $trenutnaGodina, 'visits' => [], 'hours' => []],
-            'previous' => ['year' => $prethodnaGodina, 'visits' => [], 'hours' => []],
+            'current' => ['year' => $trenutnaGodina] + $poMjesecima($trenutnaGodina),
+            'previous' => ['year' => $prethodnaGodina] + $poMjesecima($prethodnaGodina),
         ];
-        for ($m = 1; $m <= 12; $m++) {
-            $t = isset($godisnjiRaw[$trenutnaGodina]) ? $godisnjiRaw[$trenutnaGodina]->firstWhere('mjesec', $m) : null;
-            $p = isset($godisnjiRaw[$prethodnaGodina]) ? $godisnjiRaw[$prethodnaGodina]->firstWhere('mjesec', $m) : null;
-            $godisnji['current']['visits'][] = $t ? (int) $t->dolasci : 0;
-            $godisnji['current']['hours'][] = $t ? round($t->ukupno_minuta / 60, 1) : 0;
-            $godisnji['previous']['visits'][] = $p ? (int) $p->dolasci : 0;
-            $godisnji['previous']['hours'][] = $p ? round($p->ukupno_minuta / 60, 1) : 0;
+
+        // Sve godine sa dolascima, od najnovije (pregled prethodnih godina u aplikaciji).
+        $godine = [];
+        foreach ($godisnjiRaw->keys()->map(fn ($g) => (int) $g)->sortDesc() as $godina) {
+            $redovi = $godisnjiRaw[$godina];
+            $godine[] = ['year' => $godina] + $poMjesecima($godina) + [
+                'total_visits' => (int) $redovi->sum('dolasci'),
+                'total_hours' => round($redovi->sum('ukupno_minuta') / 60, 1),
+            ];
         }
 
         $sedmice = [];
@@ -151,6 +165,7 @@ class MemberStatsService
             'goals' => $this->goals($member),
             'monthly' => $mjesecni,
             'yearly' => $godisnji,
+            'years' => $godine,
             'weekly' => $sedmice,
             'weekdays' => $dani,
         ];
