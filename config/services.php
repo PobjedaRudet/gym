@@ -35,4 +35,13 @@ return [
         'access_token' => env('FACEBOOK_PAGE_ACCESS_TOKEN'),
     ],
 
+    // Push notifikacije na mobilnu aplikaciju (App\Services\PushNotificationService).
+    // FCM_CREDENTIALS: putanja do service account kljuca iz Firebase konzole,
+    // apsolutna ili relativna u odnosu na korijen projekta. Bez nje se push ne salje.
+    // Lokalni server salje na poseban topic, da testne obavijesti ne odu clanovima.
+    'fcm' => [
+        'credentials' => env('FCM_CREDENTIALS'),
+        'topic' => env('FCM_TOPIC', env('APP_ENV') === 'production' ? 'obavijesti' : 'obavijesti-dev'),
+    ],
+
 ];

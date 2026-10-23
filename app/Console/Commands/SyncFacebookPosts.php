@@ -87,7 +87,7 @@ class SyncFacebookPosts extends Command
                     $slikaPath = $this->preuzmiSliku($post['full_picture'], $fbId);
                 }
 
-                $obavijest = Obavijest::create([
+                $obavijest = new Obavijest([
                     'moderator_id' => $moderator->id,
                     'fb_post_id' => $fbId,
                     'naslov' => $naslov,
@@ -97,13 +97,13 @@ class SyncFacebookPosts extends Command
                     'javno' => true,
                 ]);
 
-                // created_at/updated_at nisu u $fillable (mass-assignment zastita), pa se
-                // datum objave sa Facebooka postavlja posebno preko forceFill().
+                // created_at nije u $fillable (mass-assignment zastita), pa se datum objave
+                // sa Facebooka postavlja posebno. Mora prije snimanja: po njemu push
+                // notifikacija (Obavijest::booted) preskace stare objave.
                 if (!empty($post['created_time'])) {
-                    $obavijest->forceFill([
-                        'created_at' => Carbon::parse($post['created_time']),
-                    ])->save();
+                    $obavijest->created_at = Carbon::parse($post['created_time']);
                 }
+                $obavijest->save();
 
                 $created++;
             } catch (\Throwable $e) {

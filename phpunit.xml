@@ -25,6 +25,8 @@
         <!-- <server name="DB_DATABASE" value=":memory:"/> -->
         <!-- Testovi NIKAD ne smiju ici na pravu bazu. -->
         <server name="DB_DATABASE" value="begs_gym_testing"/>
+        <!-- Testovi ne salju push notifikacije (PushNotificationService bez kljuca ne radi nista). -->
+        <server name="FCM_CREDENTIALS" value=""/>
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
