@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use Throwable;
@@ -286,6 +287,34 @@ class MemberController extends Controller
         return redirect()
             ->route('memberProfile', ['id' => $member->id])
             ->with('success', 'Postavke ciljeva su uspjesno sacuvane.');
+    }
+
+    public function setMemberPassword(Request $request, $id)
+    {
+        $member = Member::findOrFail($id);
+
+        // Prijava na portal i mobilnu aplikaciju ide preko e-maila
+        if (!$member->email) {
+            return redirect()
+                ->route('memberProfile', ['id' => $member->id])
+                ->withErrors(['password' => 'Član nema e-mail adresu. Unesite e-mail prije postavljanja lozinke.']);
+        }
+
+        $validated = $request->validate([
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ], [
+            'password.required' => 'Unesite lozinku.',
+            'password.min' => 'Lozinka mora imati najmanje 6 znakova.',
+            'password.confirmed' => 'Potvrda lozinke se ne podudara.',
+        ]);
+
+        $member->password = Hash::make($validated['password']);
+        $member->remember_token = null;
+        $member->save();
+
+        return redirect()
+            ->route('memberProfile', ['id' => $member->id])
+            ->with('success', 'Lozinka za portal je postavljena. Član se može prijaviti e-mailom ' . $member->email . '.');
     }
 
     public function resetMemberPassword($id)

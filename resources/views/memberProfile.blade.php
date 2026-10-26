@@ -362,6 +362,61 @@
         </form>
 
       </div>
+
+      <div class="info-card mt-3">
+        <div class="card-header-custom">
+          <svg width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Pristup portalu
+        </div>
+        <div style="padding:1rem 1.25rem;">
+          <div style="margin-bottom:14px;font-size:13px;color:#4b5563;">
+            Status:
+            @if($member->password)
+              <strong style="color:#065f46;">Lozinka postavljena</strong>
+            @else
+              <strong style="color:#991b1b;">Lozinka nije postavljena</strong>
+            @endif
+            <div style="margin-top:4px;">Prijava: <strong style="color:#1f2937;">{{ $member->email ?? '—' }}</strong></div>
+          </div>
+
+          @if($member->email)
+            <form method="POST" action="{{ route('memberProfile.password.set', ['id' => $member->id]) }}" onsubmit="return {{ $member->password ? "confirm('Član već ima lozinku. Da li želite postaviti novu?')" : 'true' }};">
+              @csrf
+              <div style="margin-bottom:12px;">
+                <label for="portal_password" style="display:block;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;">Nova lozinka</label>
+                <input
+                  type="password"
+                  id="portal_password"
+                  name="password"
+                  minlength="6"
+                  autocomplete="new-password"
+                  style="width:100%;border:1px solid #d1d5db;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2937;"
+                  required
+                >
+              </div>
+              <div style="margin-bottom:14px;">
+                <label for="portal_password_confirmation" style="display:block;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;">Potvrda lozinke</label>
+                <input
+                  type="password"
+                  id="portal_password_confirmation"
+                  name="password_confirmation"
+                  minlength="6"
+                  autocomplete="new-password"
+                  style="width:100%;border:1px solid #d1d5db;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2937;"
+                  required
+                >
+              </div>
+              <button type="submit" style="border:none;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;">
+                Sačuvaj lozinku
+              </button>
+            </form>
+          @else
+            <div style="font-size:13px;color:#991b1b;">
+              Član nema e-mail adresu. Unesite e-mail na <a href="{{ route('editMember', ['id' => $member->id]) }}">uređivanju člana</a> da bi se mogla postaviti lozinka.
+            </div>
+          @endif
+        </div>
+      </div>
     </div>
 
     <!-- Statistika dolazaka -->
