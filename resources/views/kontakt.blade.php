@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="@assetv('site/css/flaticon.css')" type="text/css">
     <link rel="stylesheet" href="@assetv('site/css/slicknav.min.css')" type="text/css">
     <link rel="stylesheet" href="@assetv('site/css/style.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/ui-polish.css')" type="text/css">
 
     <style>
         /* --- Kontakt stranica: koristi istu paletu kao naslovna/O nama: #ECD008 (zuta iz loga) --- */
@@ -97,12 +98,12 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas-logo">
-            <img src="{{ asset('site/img/logo.png') }}" alt="">
+            <img src="{{ asset('site/img/logo.png') }}" alt="BEG'S FIT&amp;FIGHT logo">
         </div>
-        <div class="canvas-close">
+        <div class="canvas-close" role="button" tabindex="0" aria-label="Zatvori meni">
             <i class="fa fa-close"></i>
         </div>
-        <div class="canvas-search search-switch">
+        <div class="canvas-search search-switch" role="button" tabindex="0" aria-label="Pretraga">
             <i class="fa fa-search"></i>
         </div>
         <nav class="canvas-menu mobile-menu">
@@ -120,8 +121,8 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener" aria-label="Facebook stranica"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener" aria-label="Instagram profil"><i class="fa fa-instagram" aria-hidden="true"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -133,7 +134,7 @@
                 <div class="col-lg-3">
                     <div class="logo">
                         <a href="{{ route('begsfit') }}">
-                            <img src="{{ asset('site/img/logo.png') }}" alt="">
+                            <img src="{{ asset('site/img/logo.png') }}" alt="BEG'S FIT&amp;FIGHT logo">
                         </a>
                     </div>
                 </div>
@@ -153,17 +154,17 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="top-option">
-                        <div class="to-search search-switch">
+                        <div class="to-search search-switch" role="button" tabindex="0" aria-label="Pretraga">
                             <i class="fa fa-search"></i>
                         </div>
                         <div class="to-social">
-                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener" aria-label="Facebook stranica"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener" aria-label="Instagram profil"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="canvas-open">
+            <div class="canvas-open" role="button" tabindex="0" aria-label="Otvori meni">
                 <i class="fa fa-bars"></i>
             </div>
         </div>
@@ -298,8 +299,8 @@
                     <div class="info-card">
                         <h4>Pratite nas</h4>
                         <div class="social-row">
-                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener" aria-label="Facebook stranica"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener" aria-label="Instagram profil"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -363,6 +364,7 @@
         })();
     </script>
 
+    <script src="@assetv('site/js/ui-polish.js')"></script>
 </body>
 
 </html>

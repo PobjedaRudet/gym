@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Gym Template">
-    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="description" content="BEG'S FIT&amp;FIGHT - fitness centar i kik boks klub u Goraždu. Teretana, kik boks, Ladies Fitness i raspored treninga.">
+    <meta name="keywords" content="teretana, kik boks, fitness, Goražde, BEG'S FIT&amp;FIGHT">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BEG'S FIT&FIGHT</title>
@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="@assetv('site/css/magnific-popup.css')" type="text/css">
     <link rel="stylesheet" href="@assetv('site/css/slicknav.min.css')" type="text/css">
     <link rel="stylesheet" href="@assetv('site/css/style.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/ui-polish.css')" type="text/css">
 
     <style>
         /* =======================================================
@@ -385,12 +386,12 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas-logo">
-            <img src="{{ asset('site/img/logo.png') }}" alt="">
+            <img src="{{ asset('site/img/logo.png') }}" alt="BEG'S FIT&amp;FIGHT logo">
         </div>
-        <div class="canvas-close">
+        <div class="canvas-close" role="button" tabindex="0" aria-label="Zatvori meni">
             <i class="fa fa-close"></i>
         </div>
-        <div class="canvas-search search-switch">
+        <div class="canvas-search search-switch" role="button" tabindex="0" aria-label="Pretraga">
             <i class="fa fa-search"></i>
         </div>
         <nav class="canvas-menu mobile-menu">
@@ -408,8 +409,8 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener" aria-label="Facebook stranica"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener" aria-label="Instagram profil"><i class="fa fa-instagram" aria-hidden="true"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -421,7 +422,7 @@
                 <div class="col-lg-3">
                     <div class="logo">
                         <a href="{{ route('begsfit') }}">
-                            <img src="{{ asset('site/img/logo.png') }}" alt="">
+                            <img src="{{ asset('site/img/logo.png') }}" alt="BEG'S FIT&amp;FIGHT logo">
                         </a>
                     </div>
                 </div>
@@ -441,17 +442,17 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="top-option">
-                        <div class="to-search search-switch">
+                        <div class="to-search search-switch" role="button" tabindex="0" aria-label="Pretraga">
                             <i class="fa fa-search"></i>
                         </div>
                         <div class="to-social">
-                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener" aria-label="Facebook stranica"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener" aria-label="Instagram profil"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="canvas-open">
+            <div class="canvas-open" role="button" tabindex="0" aria-label="Otvori meni">
                 <i class="fa fa-bars"></i>
             </div>
         </div>
@@ -583,7 +584,7 @@
                              data-img="{{ $v->slika ? asset('images/obavijesti/' . $v->slika) : '' }}"
                              tabindex="0" role="button">
                             @if($v->slika)
-                                <img class="nc-img" src="{{ asset('images/obavijesti/' . $v->slika) }}" alt="{{ $v->naslov }}">
+                                <img loading="lazy" decoding="async" class="nc-img" src="{{ asset('images/obavijesti/' . $v->slika) }}" alt="{{ $v->naslov }}">
                             @endif
                             <div class="nc-body">
                                 <div class="nc-date">{{ $v->created_at ? $v->created_at->translatedFormat('d.m.Y.') : '' }}</div>
@@ -654,60 +655,60 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                 <div class="col-lg-4 col-md-6 reveal d1">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/class-1.jpg') }}" alt="">
+                            <img loading="lazy" decoding="async" src="{{ asset('site/img/classes/class-1.jpg') }}" alt="Sprave za vježbanje u teretani">
                         </div>
                         <div class="ci-text">
                             <span>FITNESS CENTAR</span>
                             <h5>SPRAVE ZA VJEŽBANJE</h5>
-                            <a href="{{ route('about-us') }}"><i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('about-us') }}" aria-label="Saznaj više"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 reveal d2">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/class-2.jpg') }}" alt="">
+                            <img loading="lazy" decoding="async" src="{{ asset('site/img/classes/class-2.jpg') }}" alt="Kik boks trening">
                         </div>
                         <div class="ci-text">
                             <span>KIK BOKS CLUB</span>
                             <h5>BEZ KONTAKTNI I KONTAKTNI</h5>
-                            <a href="{{ route('about-us') }}"><i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('about-us') }}" aria-label="Saznaj više"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 reveal d3">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/ladies-fitness.jpg') }}" alt="">
+                            <img loading="lazy" decoding="async" src="{{ asset('site/img/classes/ladies-fitness.jpg') }}" alt="Ladies Fitness">
                         </div>
                         <div class="ci-text">
                             <span>LADIES FITNESS</span>
                             <h5>poseban objekat za žene opremljen je najnovijim spravama</h5>
-                            <a href="{{ route('about-us') }}"><i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('about-us') }}" aria-label="Saznaj više"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 reveal d1">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/Screenshot_quad.jpg') }}" alt="">
+                            <img loading="lazy" decoding="async" src="{{ asset('site/img/classes/Screenshot_quad.jpg') }}" alt="Iznajmljivanje quadova">
                         </div>
                         <div class="ci-text">
                             <span>QUAD</span>
                             <h4>RENT A QUAD</h4>
-                            <a href="{{ route('kontakt') }}"><i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('kontakt') }}" aria-label="Saznaj više"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 reveal d2">
                     <div class="class-item modern-card">
                         <div class="ci-pic">
-                            <img src="{{ asset('site/img/classes/apartmani-rawda-foto-3-scaled.jpg') }}" alt="">
+                            <img loading="lazy" decoding="async" src="{{ asset('site/img/classes/apartmani-rawda-foto-3-scaled.jpg') }}" alt="Apartmani">
                         </div>
                         <div class="ci-text">
                             <span>RENT A APARTMENT</span>
                             <h4>Iznajmite jedan od naših apartmana</h4>
-                            <a href="{{ route('kontakt') }}"><i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('kontakt') }}" aria-label="Saznaj više"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -879,8 +880,8 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
                     <div class="fw-title">BEG'S FIT&amp;FIGHT</div>
                     <p>Fitness centar i kik boks klub u Goraždu - teretana, treninzi za sve uzraste, Beg's caffe i dječija igraonica na jednom mjestu.</p>
                     <div class="fw-social">
-                        <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener" aria-label="Facebook stranica"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener" aria-label="Instagram profil"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 reveal d1">
@@ -1113,6 +1114,7 @@ Uz našu standardnu ponudu, s ponosom ističemo da u sklopu fitness centra posje
         })();
     </script>
 
+    <script src="@assetv('site/js/ui-polish.js')"></script>
 </body>
 
 </html>

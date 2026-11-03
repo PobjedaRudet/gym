@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="@assetv('site/css/magnific-popup.css')" type="text/css">
     <link rel="stylesheet" href="@assetv('site/css/slicknav.min.css')" type="text/css">
     <link rel="stylesheet" href="@assetv('site/css/style.css')" type="text/css">
+    <link rel="stylesheet" href="@assetv('site/css/ui-polish.css')" type="text/css">
 
     <style>
         /* --- Moderni dodaci za "Galerija" stranicu (ista paleta: #ECD008 - zuta iz loga) --- */
@@ -67,12 +68,12 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas-logo">
-            <img src="{{ asset('site/img/logo.png') }}" alt="">
+            <img src="{{ asset('site/img/logo.png') }}" alt="BEG'S FIT&amp;FIGHT logo">
         </div>
-        <div class="canvas-close">
+        <div class="canvas-close" role="button" tabindex="0" aria-label="Zatvori meni">
             <i class="fa fa-close"></i>
         </div>
-        <div class="canvas-search search-switch">
+        <div class="canvas-search search-switch" role="button" tabindex="0" aria-label="Pretraga">
             <i class="fa fa-search"></i>
         </div>
         <nav class="canvas-menu mobile-menu">
@@ -90,8 +91,8 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener" aria-label="Facebook stranica"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener" aria-label="Instagram profil"><i class="fa fa-instagram" aria-hidden="true"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -103,7 +104,7 @@
                 <div class="col-lg-3">
                     <div class="logo">
                         <a href="{{ route('begsfit') }}">
-                            <img src="{{ asset('site/img/logo.png') }}" alt="">
+                            <img src="{{ asset('site/img/logo.png') }}" alt="BEG'S FIT&amp;FIGHT logo">
                         </a>
                     </div>
                 </div>
@@ -123,17 +124,17 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="top-option">
-                        <div class="to-search search-switch">
+                        <div class="to-search search-switch" role="button" tabindex="0" aria-label="Pretraga">
                             <i class="fa fa-search"></i>
                         </div>
                         <div class="to-social">
-                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/beg.s.fit.fight/" target="_blank" rel="noopener" aria-label="Facebook stranica"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/begsfitandfight/" target="_blank" rel="noopener" aria-label="Instagram profil"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="canvas-open">
+            <div class="canvas-open" role="button" tabindex="0" aria-label="Otvori meni">
                 <i class="fa fa-bars"></i>
             </div>
         </div>
@@ -173,22 +174,22 @@
         <div class="gallery">
             <div class="grid-sizer"></div>
             <div class="gs-item modern-gallery grid-wide set-bg" data-setbg="{{ asset('site/img/gallery/teretana.jpg') }}">
-                <a href="{{ asset('site/img/gallery/teretana.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+                <a href="{{ asset('site/img/gallery/teretana.jpg') }}" class="thumb-icon image-popup" aria-label="Uvećaj sliku"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
             </div>
             <div class="gs-item modern-gallery set-bg" data-setbg="{{ asset('site/img/gallery/sampion.jpg') }}">
-                <a href="{{ asset('site/img/gallery/sampion.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+                <a href="{{ asset('site/img/gallery/sampion.jpg') }}" class="thumb-icon image-popup" aria-label="Uvećaj sliku"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
             </div>
             <div class="gs-item modern-gallery set-bg" data-setbg="{{ asset('site/img/gallery/latte.jpg') }}">
-                <a href="{{ asset('site/img/gallery/gallery-3.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+                <a href="{{ asset('site/img/gallery/gallery-3.jpg') }}" class="thumb-icon image-popup" aria-label="Uvećaj sliku"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
             </div>
             <div class="gs-item modern-gallery set-bg" data-setbg="{{ asset('site/img/gallery/igraonavanjska.jpg') }}">
-                <a href="{{ asset('site/img/gallery/igraonavanjska.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+                <a href="{{ asset('site/img/gallery/igraonavanjska.jpg') }}" class="thumb-icon image-popup" aria-label="Uvećaj sliku"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
             </div>
             <div class="gs-item modern-gallery set-bg" data-setbg="{{ asset('site/img/gallery/sank.jpg') }}">
-                <a href="{{ asset('site/img/gallery/sank.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+                <a href="{{ asset('site/img/gallery/sank.jpg') }}" class="thumb-icon image-popup" aria-label="Uvećaj sliku"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
             </div>
             <div class="gs-item modern-gallery grid-wide set-bg" data-setbg="{{ asset('site/img/gallery/begstim.jpg') }}">
-                <a href="{{ asset('site/img/gallery/begstim.jpg') }}" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+                <a href="{{ asset('site/img/gallery/begstim.jpg') }}" class="thumb-icon image-popup" aria-label="Uvećaj sliku"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
             </div>
         </div>
     </section>
@@ -280,6 +281,7 @@
         })();
     </script>
 
+    <script src="@assetv('site/js/ui-polish.js')"></script>
 </body>
 
 </html>

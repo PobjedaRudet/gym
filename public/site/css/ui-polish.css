@@ -1,0 +1,199 @@
+/* =======================================================
+   UI POLISH - zajednicki sloj za sve /begsfit stranice
+   Ucitava se POSLIJE style.css i inline stilova stranica nisu dirani.
+   Ista paleta (crna + zuta iz loga #ECD008), samo male nijanse.
+   Fokus: pristupacnost, dodir, citljivost, smanjeni pokret.
+========================================================== */
+:root {
+    --bf-accent: #ECD008;        /* zuta iz loga - nepromijenjena */
+    --bf-accent-soft: #F2DA2E;   /* malo svjetlija za hover/fokus */
+    --bf-accent-deep: #6b5100;   /* tamna zuta (postojeca) */
+    --bf-bg: #0a0a0a;
+    --bf-surface: #141414;
+    --bf-surface-2: #1a1a1a;
+    --bf-text: #ffffff;
+    --bf-muted: #c4c4c4;
+    --bf-on-accent: #111111;     /* tekst na zutoj podlozi */
+}
+
+/* --- Citljivost: malo veci osnovni tekst i prored --- */
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+p { font-size: 15px; line-height: 1.75; }
+::selection { background: var(--bf-accent); color: var(--bf-on-accent); }
+
+/* --- Vidljiv fokus za tastaturu (ne smeta klikovima misem) --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+    outline: 3px solid var(--bf-accent-soft) !important;
+    outline-offset: 3px !important;
+    border-radius: 4px;
+    box-shadow: 0 0 0 6px rgba(236, 208, 8, .18) !important;
+}
+a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
+
+/* --- Dodir: dovoljno velike mete (min 44x44) --- */
+.to-social a, .canvas-social a, .fw-social a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+}
+.canvas-open, .canvas-close, .search-switch { cursor: pointer; }
+.canvas-close, .search-switch {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 991px) {
+    .canvas-open { min-width: 44px; min-height: 44px; display: flex !important; align-items: center; justify-content: center; }
+    .slicknav_nav a { padding-top: 12px !important; padding-bottom: 12px !important; }
+}
+.primary-btn, .site-btn, input[type="submit"], button[type="submit"] { min-height: 44px; touch-action: manipulation; }
+.primary-btn { transition: background .25s ease, color .25s ease, transform .2s ease, box-shadow .25s ease; }
+.primary-btn:hover { background: var(--bf-accent-soft); color: var(--bf-on-accent); box-shadow: 0 10px 24px rgba(236, 208, 8, .22); }
+.primary-btn:active { transform: translateY(1px); }
+
+/* --- Ostaci narandzaste (#f36100) iz sablona -> ista zuta paleta --- */
+.primary-btn.appoinment-btn { border-color: var(--bf-accent); color: #fff; }
+.primary-btn.appoinment-btn:hover { background: var(--bf-accent); color: var(--bf-on-accent); }
+.ts-slider.owl-carousel .owl-dots button.active { background: var(--bf-accent); }
+.ss-text:hover a { color: var(--bf-accent); }
+.class-timetable table thead tr th { background: var(--bf-accent); color: var(--bf-on-accent); font-weight: 600; }
+.class-timetable table tbody tr td.class-time { color: var(--bf-accent); }
+.class-timetable table tbody tr td.hover-bg:hover { background: var(--bf-accent); }
+.class-timetable table tbody tr td.hover-bg:hover h5,
+.class-timetable table tbody tr td.hover-bg:hover span { color: var(--bf-on-accent) !important; }
+.sidebar-option .so-categories ul li:hover a { color: var(--bf-accent); }
+
+/* --- Forme: jasne ivice i fokus --- */
+input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+    font-size: 16px; /* sprjecava auto-zoom na iOS */
+}
+input::placeholder, textarea::placeholder { color: #9a9a9a; opacity: 1; }
+
+/* --- Slike: bez prelijevanja, rezervisan prostor --- */
+img { max-width: 100%; height: auto; }
+.nc-img { height: 180px; }
+
+/* --- Bez horizontalnog skrolovanja na telefonu --- */
+/* 'clip' (ne 'hidden'): hidden na html+body pravi body skrol-kontejnerom,
+   pa window 'scroll' dogadjaj ne radi (npr. dugme 'nazad na vrh'). */
+html, body { overflow-x: clip; }
+
+/* --- Link za preskakanje na sadrzaj (tastatura / citac ekrana) --- */
+.bf-skip-link {
+    position: absolute; left: 12px; top: -60px; z-index: 100000;
+    background: var(--bf-accent); color: var(--bf-on-accent); font-weight: 700;
+    padding: 10px 18px; border-radius: 6px; transition: top .2s ease;
+}
+.bf-skip-link:focus { top: 12px; color: var(--bf-on-accent); }
+
+/* --- Postovanje "smanji pokret" postavke sistema --- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto !important; }
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* =======================================================
+   KOMPAKTAN MOBILNI HEADER (samo telefoni, ispod 768px)
+   Tablet/laptop (>=768px) i desktop zadrzavaju originalni
+   transparentni header preko banera/hera.
+   Ranije: 55px praznog prostora iznad loga, header apsolutno
+   pozicioniran preko 500px visokog banera, pa je sadrzaj
+   pocinjao tek na pola ekrana. Sada: fiksna traka od 60px
+   (logo lijevo, hamburger desno), niži baner i hero.
+========================================================== */
+@media (max-width: 767px) {
+    :root { --bf-header-h: 60px; }
+
+    .header-section,
+    .header-section.scrolled {
+        position: fixed !important;
+        top: 0; left: 0; right: 0;
+        width: 100%;
+        padding: env(safe-area-inset-top, 0px) 0 0 !important;
+        background: rgba(10, 10, 10, .9);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(236, 208, 8, .16);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .28);
+        z-index: 998; /* ispod off-canvas menija (999) */
+    }
+    .header-section .container-fluid {
+        height: var(--bf-header-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+        position: relative;
+    }
+    .header-section .container-fluid > .row { margin: 0; flex: 1 1 auto; min-width: 0; }
+    .header-section .container-fluid > .row > [class*="col-"] { padding: 0; }
+    .header-section .container-fluid > .row > .col-lg-6,
+    .header-section .container-fluid > .row > .col-lg-3 + .col-lg-6 + .col-lg-3 { display: none; }
+
+    .header-section .logo a { display: flex; align-items: center; min-height: 44px; }
+    .header-section .logo a img { height: 34px; width: auto; }
+
+    .header-section .canvas-open {
+        position: static !important;
+        flex: 0 0 44px;
+        width: 44px; height: 44px;
+        margin: 0;
+        display: flex !important;
+        align-items: center; justify-content: center;
+        line-height: 1;
+        font-size: 18px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid rgba(255, 255, 255, .16);
+        color: #fff;
+    }
+    .header-section .canvas-open:active { background: rgba(236, 208, 8, .18); border-color: rgba(236, 208, 8, .5); }
+
+    /* Podstranice: baner ispod headera bez ogromnog praznog prostora */
+    .breadcrumb-section {
+        height: auto !important;
+        padding-top: calc(var(--bf-header-h) + env(safe-area-inset-top, 0px) + 56px) !important;
+        padding-bottom: 56px !important;
+    }
+
+    /* Off-canvas meni: ne skrola stranicu iza sebe, postuje notch */
+    .offcanvas-menu-wrapper { overscroll-behavior: contain; padding-top: calc(28px + env(safe-area-inset-top, 0px)); }
+}
+
+@media (max-width: 767px) {
+    .breadcrumb-section {
+        padding-top: calc(var(--bf-header-h) + env(safe-area-inset-top, 0px) + 36px) !important;
+        padding-bottom: 36px !important;
+    }
+    .breadcrumb-text h2 { font-size: 32px; margin-bottom: 8px; }
+
+    /* Naslovna: hero pocinje odmah ispod trake umjesto 250px nize */
+    .hs-slider .hs-item {
+        padding: calc(var(--bf-header-h) + env(safe-area-inset-top, 0px) + 40px) 0 100px !important; /* +60px preklop kartice 'Sljedeci trening' */
+        min-height: 0;
+    }
+    .hs-slider .hs-item .hi-text h1 { font-size: clamp(32px, 9vw, 40px); line-height: 1.1; }
+    .hi-text span { font-size: 11px !important; letter-spacing: 1px; padding: 6px 14px; }
+    .hi-text .hero-sub { margin: 12px 0 20px; }
+    .scroll-cue { display: none; } /* na dodir nepotrebno, sudaralo se sa karticom */
+}
+
+/* Tap highlight bez sivog bljeska; hover samo za mis */
+html { -webkit-tap-highlight-color: transparent; }
